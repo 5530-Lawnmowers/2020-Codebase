@@ -55,7 +55,9 @@ public final class Constants {
     public static final int TURRET_S2 = 3;
 
     //Spinner motors
-    public static final int SPIN = 17;      //TalonSRX
+    public static final int SPIN = 6;      //SparkMax
+    public static final int SPIN_ACT = 17;      //TalonSRX
+
 
     //Spinner color sensor
     public static final I2C.Port I2C_PORT = I2C.Port.kOnboard;
