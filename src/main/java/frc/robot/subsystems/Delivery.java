@@ -23,6 +23,9 @@ public class Delivery extends SubsystemBase {
     //Delivery has assorted digital triggers
     private final DigitalInput deliverySensor1 = new DigitalInput(Constants.DELIVERY_S1);
     private final DigitalInput deliverySensor2 = new DigitalInput(Constants.DELIVERY_S2);
+    private final DigitalInput deliverySensor3 = new DigitalInput(Constants.DELIVERY_S3);
+    private final DigitalInput deliverySensor4 = new DigitalInput(Constants.DELIVERY_S4);
+    private final DigitalInput deliverySensor5 = new DigitalInput(Constants.DELIVERY_S5);
 
     /**
      * Creates a new Delivery.
