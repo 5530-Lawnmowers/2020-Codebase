@@ -89,8 +89,8 @@ public class DefaultDrive extends CommandBase {
         if (Math.abs(oldTriggerR - rightPower) > 0.2)
             rightPower = accelerateR(rightPower);
         // Set the right side to the next iteration closer to leftPower
-        drivetrain.testDrivetrainSet(-rightPower, Constants.DT_R1);
-        drivetrain.testDrivetrainSet(-rightPower, Constants.DT_R2);
+        drivetrain.setDrivetrainMotor(-rightPower, Constants.DT_R1);
+        drivetrain.setDrivetrainMotor(-rightPower, Constants.DT_R2);
 
         // Left Thrust
         double leftPower = speedL(lStick, rTrigger, lTrigger);
@@ -99,8 +99,8 @@ public class DefaultDrive extends CommandBase {
         if (Math.abs(oldTriggerL - leftPower) > 0.2)
             leftPower = accelerateL(leftPower);
         // Set the left side to the next iteration closer to leftPower
-        drivetrain.testDrivetrainSet(leftPower, Constants.DT_L1);
-        drivetrain.testDrivetrainSet(leftPower, Constants.DT_L2);
+        drivetrain.setDrivetrainMotor(leftPower, Constants.DT_L1);
+        drivetrain.setDrivetrainMotor(leftPower, Constants.DT_L2);
     }
 
     /**

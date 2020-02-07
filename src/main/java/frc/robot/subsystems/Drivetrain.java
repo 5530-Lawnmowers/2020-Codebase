@@ -122,24 +122,24 @@ public class Drivetrain extends SubsystemBase {
         drivetrainRight.stopMotor();
     }
 
-    private double testGetThrottle() {
+    private double getThrottle() {
         double n = RobotContainer.XBController.getTriggerAxis(GenericHID.Hand.kRight) -
                 RobotContainer.XBController.getTriggerAxis(GenericHID.Hand.kLeft);
         return Math.abs(n) < 0.1 ? 0 : n;
     }
 
-    private double testGetTurn() {
+    private double getTurn() {
         double n = RobotContainer.XBController.getX(GenericHID.Hand.kLeft);
         return Math.abs(n) < 0.1 ? 0 : n;
     }
 
     /**
-     * For test purposes only
+     * Set the speed of a drivetrain motor
      *
-     * @param speed      set speed
+     * @param speed The speed to set
      * @param controller Constants.DT_L1, DT_L2, DT_R1, DT_R2
      */
-    public void testDrivetrainSet(double speed, int controller) {
+    public void setDrivetrainMotor(double speed, int controller) {
         if (controller == Constants.DT_L1) {
             drivetrainLeft1.set(speed);
         } else if (controller == Constants.DT_L2) {
