@@ -32,11 +32,18 @@ public class Intake extends SubsystemBase {
         // This method will be called once per scheduler run
     }
 
-    public void testIntakeSet(double input) {
-        intake.set(input);
+    /**
+     * Sets the speed of the intake motor
+     * @param speed The speed to set
+     */
+    public void setIntake(double speed) {
+        intake.set(speed);
     }
 
-    public void testIntakeStop() {
+    /**
+     * Stops the intake motor
+     */
+    public void stopIntake() {
         intake.stopMotor();
     }
 }
