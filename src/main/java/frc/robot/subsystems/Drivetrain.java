@@ -100,13 +100,6 @@ public class Drivetrain extends SubsystemBase {
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
-        ShuffleboardHelpers.setWidgetValue("Sensors", "Gyro Yaw", gyro.getYaw());
-        ShuffleboardHelpers.setWidgetValue("Drivetrain", "Right1", drivetrainRight1.get());
-        ShuffleboardHelpers.setWidgetValue("Drivetrain", "Right2", drivetrainRight2.get());
-        ShuffleboardHelpers.setWidgetValue("Drivetrain", "Left1", drivetrainLeft1.get());
-        ShuffleboardHelpers.setWidgetValue("Drivetrain", "Left2", drivetrainLeft2.get());
-        ShuffleboardHelpers.setWidgetValue("Drivetrain", "Left Position", drivetrainLeft1.getSelectedSensorPosition());
-        ShuffleboardHelpers.setWidgetValue("Drivetrain", "Right Position", drivetrainRight1.getSelectedSensorPosition());
     }
 
     //Drive test only

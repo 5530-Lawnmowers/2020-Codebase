@@ -35,8 +35,6 @@ public class Shooter extends SubsystemBase {
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
-        ShuffleboardHelpers.setWidgetValue("Test", "Shooter Velocity", shooter1.getEncoder().getVelocity());
-        ShuffleboardHelpers.setWidgetValue("Encoders", "Angle Encoder", angleEnc.get());
     }
 
     public void testShooterSet(double speed) {

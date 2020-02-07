@@ -68,8 +68,5 @@ public class Turret extends SubsystemBase {
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
-        ShuffleboardHelpers.setWidgetValue("Sensors", "Turret Limit 1", !hardStop1.get());
-        ShuffleboardHelpers.setWidgetValue("Sensors", "Turret Limit 2", !hardStop2.get());
-        ShuffleboardHelpers.setWidgetValue("Encoders", "Turret", turretSpin.getSelectedSensorPosition());
     }
 }
