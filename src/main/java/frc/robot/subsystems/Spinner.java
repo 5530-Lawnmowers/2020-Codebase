@@ -63,19 +63,33 @@ public class Spinner extends SubsystemBase {
         return colorMatch.matchClosestColor(colorSensor.getColor());
     }
 
-    public void testSpinnerSet(double speed) {
+    /**
+     * Sets the spinner motor speed
+     * @param speed The speed to set
+     */
+    public void setSpinner(double speed) {
         spinner.set(speed);
     }
 
-    public void testSpinnerStop() {
+    /**
+     * Stops the spinner motor
+     */
+    public void stopSpinner() {
         spinner.stopMotor();
     }
 
-    public void testSpinActSet(double speed) {
+    /**
+     * Sets the spinner actuation motor speed
+     * @param speed The speed to set
+     */
+    public void setSpinAct(double speed) {
         spinnerActuation.set(speed);
     }
 
-    public void testSpinActStop() {
+    /**
+     * Stops the spinner actuation motor
+     */
+    public void stopSpinAct() {
         spinnerActuation.stopMotor();
     }
 
