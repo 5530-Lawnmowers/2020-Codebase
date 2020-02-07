@@ -10,7 +10,11 @@ package frc.robot.helpers;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.RobotContainer;
+import edu.wpi.first.wpilibj.GenericHID.HIDType;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 
 /**
  * Add your docs here.
@@ -54,5 +58,10 @@ public class LimelightHelper {
 
     public static double getTargetY(double angle) {
         return getDistance() * Math.sin(angle);
+    }
+    public static void updateRumble(){
+        RobotContainer.XBController.setRumble(RumbleType.kRightRumble, 1);
+        RobotContainer.XBController.setRumble(RumbleType.kLeftRumble, 1);
+
     }
 }
