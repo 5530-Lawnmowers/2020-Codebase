@@ -33,15 +33,27 @@ public class Climber extends SubsystemBase {
         // This method will be called once per scheduler run
     }
 
-    public void testClimbSet(double speed) {
-        climbLeft.set(speed);
-        climbRight.set(speed);
+    /**
+     * Sets the speed of the Left Climb motor.
+     * @param speed The speed to set.
+     * @param motor The motor to set. Use Constants class for motor values.
+     */
+    public void setClimb(double speed, int motor) {
+        if (motor == Constants.CLIMB_L) {
+            climbLeft.set(speed);
+        } else if (motor == Constants.CLIMB_R) {
+            climbRight.set(speed);
+        }
     }
 
-    public void testClimbStop() {
+    /**
+     * Stops Left Climb and Right Climb
+     */
+    public void stopAll() {
         climbLeft.stopMotor();
         climbRight.stopMotor();
     }
+
     public void realeaseArm(){
         pinservo.set(0);
     }
