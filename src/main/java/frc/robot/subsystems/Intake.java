@@ -15,8 +15,8 @@ import com.ctre.phoenix.motorcontrol.can.*;
 import edu.wpi.first.wpilibj.DigitalInput;
 
 public class Intake extends SubsystemBase {
-    //Intake has 3 motors: 2 NEO motors on the intake (Spark) and 1 motor on the  (TalonSRX)
-    private final CANSparkMax intake1 = new CANSparkMax(Constants.INTAKE, CANSparkMaxLowLevel.MotorType.kBrushless);
+    //Intake has 2 motors: 2 NEO motors on the intake (Spark)
+    private final CANSparkMax intake = new CANSparkMax(Constants.INTAKE, CANSparkMaxLowLevel.MotorType.kBrushless);
 
     /**
      * Creates a new Intake.
@@ -31,10 +31,10 @@ public class Intake extends SubsystemBase {
     }
 
     public void testIntakeSet(double input) {
-        intake1.set(input);
+        intake.set(input);
     }
 
     public void testIntakeStop() {
-        intake1.stopMotor();
+        intake.stopMotor();
     }
 }

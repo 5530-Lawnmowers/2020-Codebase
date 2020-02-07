@@ -37,8 +37,8 @@ public final class Constants {
     public static final int INTAKE = 8;   //SparkMAX (NEO 550)
 
     //Delivery motors
-    public static final int DELIVERY_1 = 4; //TalonSRX
-    public static final int DELIVERY_2 = 13;//TalonSRX
+    public static final int DELIVERY_BELT = 4; //SparkMAX
+    public static final int DELIVERY_WHEEL = 7;//SParkMAX
 
     //Delivery sensors
     public static final int DELIVERY_S1 = 0;
@@ -50,14 +50,17 @@ public final class Constants {
     public static final int ANGLE = 15;    //UNKNOWN
     public static final int TURRET = 16;   //UNKNOWN
 
+    //Shooter Encoder
+    public static final int ANGLE_ENCODER_A = 8;
+    public static final int ANGLE_ENCODER_B = 9;
+
     //Turret sensors
     public static final int TURRET_S1 = 2;
     public static final int TURRET_S2 = 3;
 
     //Spinner motors
-    public static final int SPIN = 6;      //SparkMax
+    public static final int SPIN = 6;
     public static final int SPIN_ACT = 17;      //TalonSRX
-
 
     //Spinner color sensor
     public static final I2C.Port I2C_PORT = I2C.Port.kOnboard;

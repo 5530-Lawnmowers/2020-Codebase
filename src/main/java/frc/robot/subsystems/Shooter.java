@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.helpers.ShuffleboardHelpers;
@@ -22,6 +23,8 @@ public class Shooter extends SubsystemBase {
 
     private final WPI_TalonSRX hoodAdjust = new WPI_TalonSRX(Constants.ADJUST);
 
+    private final Encoder angleEnc = new Encoder(Constants.ANGLE_ENCODER_A, Constants.ANGLE_ENCODER_B);
+
     /**
      * Creates a new Shooter.
      */
@@ -33,6 +36,7 @@ public class Shooter extends SubsystemBase {
     public void periodic() {
         // This method will be called once per scheduler run
         ShuffleboardHelpers.setWidgetValue("Test", "Shooter Velocity", shooter1.getEncoder().getVelocity());
+        ShuffleboardHelpers.setWidgetValue("Encoders", "Angle Encoder", angleEnc.get());
     }
 
     public void testShooterSet(double speed) {
