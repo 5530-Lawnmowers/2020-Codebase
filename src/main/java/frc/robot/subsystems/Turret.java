@@ -36,32 +36,35 @@ public class Turret extends SubsystemBase {
     }
 
     /**
-     * For test purposes only
-     *
-     * @param speed set speed
+     * Sets the turret motor speed
+     * @param speed The speed to set
      */
-    public void testTurretSet(double speed) {
-         
+    public void setTurret(double speed) {
+         turretSpin.set(speed);
         //TODO: Confirm that the hardstops correspond correctly to motor direction  
         
     }
 
-    public void setPosition(int TargetPosition){
-        turretSpin.set(ControlMode.Position, TargetPosition);
+    /**
+     * Moves the turret to a set position
+     * @param targetPosition The position to set
+     */
+    public void setPosition(int targetPosition){
+        turretSpin.set(ControlMode.Position, targetPosition);
     }
     /**
-     * For test purposes only
+     * Stops the turret motor
      */
-    public void testTurretStop() {
+    public void stopTurret() {
         turretSpin.stopMotor();
     }
 
     /**
-     * For test purposes only
+     * Gets the current limit state of the turret
      *
-     * @return {@type boolean}
+     * @return {@code true} if a stop is reached, {@code false} if turret is free to move
      */
-    public boolean testLimit() {
+    public boolean reachedLimit() {
         return !hardStop1.get() || !hardStop2.get();
     }
 
