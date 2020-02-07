@@ -38,14 +38,33 @@ public class Delivery extends SubsystemBase {
         // This method will be called once per scheduler run
     }
 
-
-    public void testDeliverySet(double input) {
-        deliveryBelt.set(input);
-        deliveryWheel.set(input);
+    /**
+     * Sets the speed of the inner intake wheel
+     * @param speed The speed to set
+     */
+    public void setDeliveryWheel(double speed) {
+        deliveryWheel.set(speed);
     }
 
-    public void testDeliveryStop() {
+    /**
+     * Sets the speed of the belt system
+     * @param speed The speed to set
+     */
+    public void setDeliveryBelt(double speed) {
+        deliveryBelt.set(speed);
+    }
+
+    /**
+     * Stops the belt system
+     */
+    public void stopDeliveryBelt(double speed) {
         deliveryBelt.stopMotor();
+    }
+
+    /**
+     * Stops the inner intake wheel
+     */
+    public void stopDeliveryWheel() {
         deliveryWheel.stopMotor();
     }
 }
