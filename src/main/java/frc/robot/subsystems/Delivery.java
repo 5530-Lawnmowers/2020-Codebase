@@ -57,7 +57,7 @@ public class Delivery extends SubsystemBase {
     /**
      * Stops the belt system
      */
-    public void stopDeliveryBelt(double speed) {
+    public void stopDeliveryBelt() {
         deliveryBelt.stopMotor();
     }
 
