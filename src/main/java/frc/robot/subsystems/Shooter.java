@@ -37,20 +37,34 @@ public class Shooter extends SubsystemBase {
         // This method will be called once per scheduler run
     }
 
-    public void testShooterSet(double speed) {
+    /**
+     * Sets the speed of both the shooter motors
+     * @param speed The speed to set
+     */
+    public void setShooter(double speed) {
         shooter1.set(speed);
         shooter2.set(speed);
     }
 
-    public void testHoodSet(double speed) {
+    /**
+     * Sets the speed of the hood motor
+     * @param speed The speed to set
+     */
+    public void setHood(double speed) {
         hoodAdjust.set(speed);
     }
 
-    public void testHoodStop() {
+    /**
+     * Stops the hood motor
+     */
+    public void stopHood() {
         hoodAdjust.stopMotor();
     }
 
-    public void testShooterStop() {
+    /**
+     * Stops the shooter motors
+     */
+    public void stopShooter() {
         shooter1.stopMotor();
         shooter2.stopMotor();
     }
