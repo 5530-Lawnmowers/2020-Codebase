@@ -8,6 +8,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.helpers.LimelightHelper;
@@ -29,6 +30,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    Shuffleboard.getTab("Test");
+    Shuffleboard.getTab("Test").add("Set Intake", 0.4);
+    Shuffleboard.getTab("Test").add("Set Wheel", 0.4);
+    Shuffleboard.getTab("Test").add("Set Belt", 0.4);
+    Shuffleboard.getTab("Test").add("RunIntake", "Init");
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
