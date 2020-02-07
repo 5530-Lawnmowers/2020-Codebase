@@ -43,8 +43,6 @@ public class Spinner extends SubsystemBase {
     public void periodic() {
         // This method will be called once per scheduler run
         // In theory, this should schedule the command to output the RGB values.
-        ShuffleboardHelpers.setWidgetValue("Encoders", "Spinner", spinner.getEncoder().getPosition());
-        ShuffleboardHelpers.setWidgetValue("Encoders", "Spin Act", spinnerActuation.getSelectedSensorPosition());
     }
 
     /**
