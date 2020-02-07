@@ -40,23 +40,29 @@ public final class Constants {
     public static final int DELIVERY_BELT = 4; //SparkMAX
     public static final int DELIVERY_WHEEL = 7;//SParkMAX
 
-    //Delivery sensors
-    public static final int DELIVERY_S1 = 0;
-    public static final int DELIVERY_S2 = 1;
-
     //Shooter motors
     public static final int SHOOTER_1 = 1; //SparkMAX
     public static final int SHOOTER_2 = 5; //SparkMAX
     public static final int ANGLE = 15;    //UNKNOWN
     public static final int TURRET = 16;   //UNKNOWN
 
+    //Delivery sensors
+    public static final int DELIVERY_S1 = 0;
+    public static final int DELIVERY_S2 = 1;
+    public static final int DELIVERY_S3 = 2;
+    public static final int DELIVERY_S4 = 3;
+    public static final int DELIVERY_S5 = 4;
+
+    //Intake sensor
+    public static final int INTAKE_SWITCH = 5;
+
+    //Turret sensors
+    public static final int TURRET_S1 = 6;
+    public static final int TURRET_S2 = 7;
+
     //Shooter Encoder
     public static final int ANGLE_ENCODER_A = 8;
     public static final int ANGLE_ENCODER_B = 9;
-
-    //Turret sensors
-    public static final int TURRET_S1 = 2;
-    public static final int TURRET_S2 = 3;
 
     //Spinner motors
     public static final int SPIN = 6;

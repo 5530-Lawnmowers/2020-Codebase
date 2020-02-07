@@ -18,6 +18,8 @@ public class Intake extends SubsystemBase {
     //Intake has 2 motors: 2 NEO motors on the intake (Spark)
     private final CANSparkMax intake = new CANSparkMax(Constants.INTAKE, CANSparkMaxLowLevel.MotorType.kBrushless);
 
+    private final DigitalInput intakeSwitch = new DigitalInput(Constants.INTAKE_SWITCH);
+
     /**
      * Creates a new Intake.
      */
