@@ -14,7 +14,7 @@ import frc.robot.subsystems.*;
 public class RunIntake extends CommandBase {
   private double beltSet = 0.4;
   private double wheelSet = 0.4;
-  private double intakeSet = 0.4;
+  private double intakeSet = -0.4;
   private Delivery delivery;
   private Intake intake;
 
@@ -29,13 +29,14 @@ public class RunIntake extends CommandBase {
     this.delivery = delivery;
     this.intake = intake;
 
-    if (!delivery.getBreakbeams()[3]) {
-      state = 4;
-    } else if (!delivery.getBreakbeams()[2]) {
-      state = 3;
-    } else if (!delivery.getBreakbeams()[1]) {
-      state = 2;
-    } else if (!delivery.getBreakbeams()[0]) {
+    //if (!delivery.getBreakbeams()[3]) {
+    //  state = 4;
+    //} else if (!delivery.getBreakbeams()[2]) {
+    //  state = 3;
+    //} else if (!delivery.getBreakbeams()[1]) {
+    //  state = 2;
+    //} else 
+    if (!delivery.getBreakbeams()[0]) {
       state = 1;
     } else {
       state = 0;
@@ -57,13 +58,13 @@ public class RunIntake extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(!intake.getSwitch() && delivery.getBreakbeams()[state]) {
+    if(delivery.getBreakbeams()[state]) {
       delivery.setDeliveryBelt(beltSet);
       delivery.setDeliveryWheel(wheelSet);
     } else if (!delivery.getBreakbeams()[state]) {
       delivery.stopDeliveryBelt();
       delivery.stopDeliveryWheel();
-      state++;
+      //state++;
     }
   }
 
@@ -79,7 +80,7 @@ public class RunIntake extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (!delivery.getBreakbeams()[4]) {
+    if (!delivery.getBreakbeams()[1]) {
      return true;
    }
     return false;
