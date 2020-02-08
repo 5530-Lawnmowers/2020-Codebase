@@ -33,12 +33,15 @@ public class Delivery extends SubsystemBase {
      */
     public Delivery() {
         deliveryBelt.setIdleMode(IdleMode.kBrake);
+        deliveryBelt.setSmartCurrentLimit(40);
         deliveryWheel.setIdleMode(IdleMode.kBrake);
+        deliveryWheel.setSmartCurrentLimit(40);
     }
 
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
+        ShuffleboardHelpers.setWidgetValue("Test", "Breakbeam", deliverySensor1.get());
     }
 
     /**

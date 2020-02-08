@@ -26,6 +26,7 @@ public class Intake extends SubsystemBase {
      */
     public Intake() {
         intake.setIdleMode(IdleMode.kBrake);
+        intake.setSmartCurrentLimit(40);
     }
 
     @Override

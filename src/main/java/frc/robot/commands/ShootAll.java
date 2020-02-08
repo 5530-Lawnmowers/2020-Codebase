@@ -34,11 +34,13 @@ public class ShootAll extends CommandBase {
   @Override
   public void initialize() {
     ShuffleboardHelpers.setWidgetValue("Test", "ShootAll", "Runnning");
+    shootSpeed = (double) ShuffleboardHelpers.getWidgetValue("Test", "Set Shoot Speed"); //Test
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    /**
     if (shooter.getShooterVelocity() < THRESHOLD_VELOCITY) {
       shooter.setShooter(accelSpeed);
       delivery.stopDeliveryBelt();
@@ -48,6 +50,8 @@ public class ShootAll extends CommandBase {
     } else if (shooter.getShooterVelocity() >= TARGET_VELOCITY) {
       delivery.setDeliveryBelt(feedSpeed);
     }
+    */
+    shooter.setShooter(shootSpeed); //Test
 
     ShuffleboardHelpers.setWidgetValue("Test", "Shooter Velocity", shooter.getShooterVelocity());
   }
