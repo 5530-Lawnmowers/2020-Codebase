@@ -73,4 +73,18 @@ public class Delivery extends SubsystemBase {
     public void stopDeliveryWheel() {
         deliveryWheel.stopMotor();
     }
+
+    /**
+     * Returns the states of the delivery breakbeam sensors. {@code true} if clear, {@code false} otherwise
+     * @return An array of size 5 with the state of each breakbeam sensor
+     */
+    public boolean[] getBreakbeams() {
+        boolean[] states = new boolean[5];
+        states[0] = deliverySensor1.get();
+        states[1] = deliverySensor2.get();
+        states[2] = deliverySensor3.get();
+        states[3] = deliverySensor4.get();
+        states[4] = deliverySensor5.get();
+        return states;
+    }
 }

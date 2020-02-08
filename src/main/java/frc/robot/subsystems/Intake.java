@@ -48,4 +48,12 @@ public class Intake extends SubsystemBase {
     public void stopIntake() {
         intake.stopMotor();
     }
+
+    /**
+     * Returns the state of the intake limit switch
+     * @return {@code true} if the switch is tripped, {@code false} otherwise
+     */
+    public boolean getSwitch() {
+        return intakeSwitch.get();
+    }
 }
