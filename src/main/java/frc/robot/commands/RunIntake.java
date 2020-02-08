@@ -17,6 +17,9 @@ public class RunIntake extends CommandBase {
   private double intakeSet = 0.4;
   private Delivery delivery;
   private Intake intake;
+
+  private int state;
+
   /**
    * Creates a new RunIntake.
    */
@@ -25,6 +28,18 @@ public class RunIntake extends CommandBase {
     addRequirements(delivery, intake);
     this.delivery = delivery;
     this.intake = intake;
+
+    if (!delivery.getBreakbeams()[3]) {
+      state = 4;
+    } else if (!delivery.getBreakbeams()[2]) {
+      state = 3;
+    } else if (!delivery.getBreakbeams()[1]) {
+      state = 2;
+    } else if (!delivery.getBreakbeams()[0]) {
+      state = 1;
+    } else {
+      state = 0;
+    }
   }
 
   // Called when the command is initially scheduled.
@@ -35,13 +50,20 @@ public class RunIntake extends CommandBase {
     beltSet = (double) ShuffleboardHelpers.getWidgetValue("Test", "Set Belt");
     ShuffleboardHelpers.setWidgetValue("Test", "RunIntake", "Running");
     intake.setIntake(intakeSet);
-    delivery.setDeliveryBelt(beltSet);
-    delivery.setDeliveryWheel(wheelSet);
+    //delivery.setDeliveryBelt(beltSet);
+    //delivery.setDeliveryWheel(wheelSet);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    if(intake.getSwitch() && delivery.getBreakbeams()[state]) {
+      delivery.setDeliveryBelt(beltSet);
+      delivery.setDeliveryWheel(wheelSet);
+    } else if (!delivery.getBreakbeams()[state]) {
+      delivery.stopDeliveryBelt();
+      delivery.stopDeliveryWheel();
+    }
   }
 
   // Called once the command ends or is interrupted.
@@ -56,6 +78,9 @@ public class RunIntake extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    if (!delivery.getBreakbeams()[4]) {
+     return true;
+   }
     return false;
   }
 }
