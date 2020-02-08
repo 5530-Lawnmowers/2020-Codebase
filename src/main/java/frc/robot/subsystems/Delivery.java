@@ -12,6 +12,7 @@ import frc.robot.Constants;
 import frc.robot.helpers.ShuffleboardHelpers;
 
 import com.revrobotics.*;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.*;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -31,6 +32,8 @@ public class Delivery extends SubsystemBase {
      * Creates a new Delivery.
      */
     public Delivery() {
+        deliveryBelt.setIdleMode(IdleMode.kBrake);
+        deliveryWheel.setIdleMode(IdleMode.kBrake);
     }
 
     @Override
