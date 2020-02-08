@@ -59,9 +59,16 @@ public class LimelightHelper {
     public static double getTargetY(double angle) {
         return getDistance() * Math.sin(angle);
     }
-    public static void updateRumble(){
-        RobotContainer.XBController.setRumble(RumbleType.kRightRumble, 1);
-        RobotContainer.XBController.setRumble(RumbleType.kLeftRumble, 1);
+    public static void updateRumble(){        
+        if(getRawA() > 0){
+            RobotContainer.XBController.setRumble(RumbleType.kRightRumble, 1);
+            RobotContainer.XBController.setRumble(RumbleType.kLeftRumble, 1);
+        }
+        else{
+            RobotContainer.XBController.setRumble(RumbleType.kRightRumble, 0);
+            RobotContainer.XBController.setRumble(RumbleType.kLeftRumble, 0);
+        }
+        
 
     }
 }
