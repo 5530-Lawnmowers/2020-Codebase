@@ -41,7 +41,11 @@ public class Delivery extends SubsystemBase {
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
-        ShuffleboardHelpers.setWidgetValue("Test", "Breakbeam", deliverySensor1.get());
+        ShuffleboardHelpers.setWidgetValue("Test", "Breakbeam 1", deliverySensor1.get());
+        ShuffleboardHelpers.setWidgetValue("Test", "Breakbeam 2", deliverySensor2.get());
+        ShuffleboardHelpers.setWidgetValue("Test", "Breakbeam 3", deliverySensor3.get());
+        ShuffleboardHelpers.setWidgetValue("Test", "Breakbeam 4", deliverySensor4.get());
+        ShuffleboardHelpers.setWidgetValue("Test", "Breakbeam 5", deliverySensor5.get());
     }
 
     /**

@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.helpers.ShuffleboardHelpers;
 
 import com.revrobotics.*;
 import com.revrobotics.CANSparkMax.IdleMode;
@@ -31,6 +32,7 @@ public class Intake extends SubsystemBase {
 
     @Override
     public void periodic() {
+        ShuffleboardHelpers.setWidgetValue("Test", "Breakbeam Intake", intakeSwitch.get());
         // This method will be called once per scheduler run
     }
 
