@@ -18,12 +18,14 @@ import com.revrobotics.CANSparkMaxLowLevel;
 import com.revrobotics.ColorMatch;
 import com.revrobotics.ColorMatchResult;
 import com.revrobotics.ColorSensorV3;
+import edu.wpi.first.wpilibj.Servo;
+
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.*;
 
 public class Spinner extends SubsystemBase {
     private final CANSparkMax spinner = new CANSparkMax(Constants.SPIN, CANSparkMaxLowLevel.MotorType.kBrushless);
-    private final WPI_TalonSRX spinnerActuation = new WPI_TalonSRX(Constants.SPIN_ACT);
+    private final Servo spinnerActuation = new Servo(Constants.SPIN_ACT);
     private final ColorSensorV3 colorSensor = new ColorSensorV3(Constants.I2C_PORT);
     private final ColorMatch colorMatch = new ColorMatch();
 
@@ -35,8 +37,6 @@ public class Spinner extends SubsystemBase {
         colorMatch.addColorMatch(Constants.greenTarget);
         colorMatch.addColorMatch(Constants.redTarget);
         colorMatch.addColorMatch(Constants.yellowTarget);
-        spinnerActuation.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
-        spinnerActuation.setSelectedSensorPosition(0);
     }
 
     @Override
@@ -84,6 +84,13 @@ public class Spinner extends SubsystemBase {
      */
     public void setSpinAct(double speed) {
         spinnerActuation.set(speed);
+    }
+
+    public void setSpinnerUp(){
+        spinnerActuation.set(1);
+    }
+    public void setSpinnerDown(){
+        spinnerActuation.set(0);
     }
 
     /**
