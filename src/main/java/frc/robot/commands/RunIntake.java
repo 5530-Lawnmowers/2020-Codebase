@@ -57,7 +57,7 @@ public class RunIntake extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(intake.getSwitch() && delivery.getBreakbeams()[state]) {
+    if(!intake.getSwitch() && delivery.getBreakbeams()[state]) {
       delivery.setDeliveryBelt(beltSet);
       delivery.setDeliveryWheel(wheelSet);
     } else if (!delivery.getBreakbeams()[state]) {
