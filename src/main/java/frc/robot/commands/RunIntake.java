@@ -63,6 +63,7 @@ public class RunIntake extends CommandBase {
     } else if (!delivery.getBreakbeams()[state]) {
       delivery.stopDeliveryBelt();
       delivery.stopDeliveryWheel();
+      state++;
     }
   }
 
