@@ -35,6 +35,9 @@ public class Robot extends TimedRobot {
     Shuffleboard.getTab("Test").add("Set Wheel", 0.4);
     Shuffleboard.getTab("Test").add("Set Belt", 0.4);
     Shuffleboard.getTab("Test").add("RunIntake", "Init");
+    Shuffleboard.getTab("Test").add("Shooter Velocity", 0);
+    Shuffleboard.getTab("Test").add("Set Shoot Speed", 0.9);
+    Shuffleboard.getTab("Test").add("ShootAll", "Init");
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();

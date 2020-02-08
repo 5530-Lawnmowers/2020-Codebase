@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.helpers.ShuffleboardHelpers;
 import frc.robot.subsystems.*;
 
 public class ShootAll extends CommandBase {
@@ -32,6 +33,7 @@ public class ShootAll extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    ShuffleboardHelpers.setWidgetValue("Test", "ShootAll", "Runnning");
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -46,6 +48,8 @@ public class ShootAll extends CommandBase {
     } else if (shooter.getShooterVelocity() >= TARGET_VELOCITY) {
       delivery.setDeliveryBelt(feedSpeed);
     }
+
+    ShuffleboardHelpers.setWidgetValue("Test", "Shooter Velocity", shooter.getShooterVelocity());
   }
 
   // Called once the command ends or is interrupted.
@@ -53,6 +57,7 @@ public class ShootAll extends CommandBase {
   public void end(boolean interrupted) {
     delivery.stopDeliveryBelt();
     shooter.stopShooter();
+    ShuffleboardHelpers.setWidgetValue("Test", "ShootAll", "Ended");
   }
 
   // Returns true when the command should end.
