@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 import com.revrobotics.*;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.ctre.phoenix.motorcontrol.can.*;
 import edu.wpi.first.wpilibj.DigitalInput;
 
@@ -24,7 +25,7 @@ public class Intake extends SubsystemBase {
      * Creates a new Intake.
      */
     public Intake() {
-
+        intake.setIdleMode(IdleMode.kBrake);
     }
 
     @Override
