@@ -46,10 +46,10 @@ public class RunIntake extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    intakeSet = (double) ShuffleboardHelpers.getWidgetValue("Test", "Set Intake");
-    wheelSet = (double) ShuffleboardHelpers.getWidgetValue("Test", "Set Wheel");
-    beltSet = (double) ShuffleboardHelpers.getWidgetValue("Test", "Set Belt");
-    ShuffleboardHelpers.setWidgetValue("Test", "RunIntake", "Running");
+    intakeSet = (double) ShuffleboardHelpers.getWidgetValue("Intake/Delivery", "Set Intake");
+    wheelSet = (double) ShuffleboardHelpers.getWidgetValue("Intake/Delivery", "Set Wheel");
+    beltSet = (double) ShuffleboardHelpers.getWidgetValue("Intake/Delivery", "Set Belt");
+    ShuffleboardHelpers.setWidgetValue("Intake/Delivery", "RunIntake", "Running");
     intake.setIntake(intakeSet);
     //delivery.setDeliveryBelt(beltSet);
     //delivery.setDeliveryWheel(wheelSet);
@@ -74,7 +74,7 @@ public class RunIntake extends CommandBase {
     intake.stopIntake();
     delivery.stopDeliveryBelt();
     delivery.stopDeliveryWheel();
-    ShuffleboardHelpers.setWidgetValue("Test", "RunIntake", "Ended");
+    ShuffleboardHelpers.setWidgetValue("Intake/Delivery", "RunIntake", "Ended");
   }
 
   // Returns true when the command should end.

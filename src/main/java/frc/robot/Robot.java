@@ -30,24 +30,24 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    Shuffleboard.getTab("Test");
-    Shuffleboard.getTab("Test").add("Set Intake", 0.4);
-    Shuffleboard.getTab("Test").add("Set Wheel", 0.4);
-    Shuffleboard.getTab("Test").add("Set Belt", 0.4);
-    Shuffleboard.getTab("Test").add("RunIntake", "Init");
-    Shuffleboard.getTab("Test").add("Shooter Velocity", 0);
-    Shuffleboard.getTab("Test").add("Set Shoot Speed", 0.9);
-    Shuffleboard.getTab("Test").add("ShootAll", "Init");
-    Shuffleboard.getTab("Test").add("Breakbeam 1", true);
-    Shuffleboard.getTab("Test").add("Breakbeam 2", true);
-    Shuffleboard.getTab("Test").add("Breakbeam 3", true);
-    Shuffleboard.getTab("Test").add("Breakbeam 4", true);
-    Shuffleboard.getTab("Test").add("Breakbeam 5", true);
-    Shuffleboard.getTab("Test").add("Breakbeam Intake", true);
+    Shuffleboard.getTab("Intake/Delivery");
+    Shuffleboard.getTab("Intake/Delivery").add("Set Intake", 0.4);
+    Shuffleboard.getTab("Intake/Delivery").add("Set Wheel", 0.4);
+    Shuffleboard.getTab("Intake/Delivery").add("Set Belt", 0.4);
+    Shuffleboard.getTab("Intake/Delivery").add("RunIntake", "Init");
+    Shuffleboard.getTab("Intake/Delivery").add("Shooter Velocity", 0);
+    Shuffleboard.getTab("Intake/Delivery").add("Set Shoot Speed", 0.9);
+    Shuffleboard.getTab("Intake/Delivery").add("ShootAll", "Init");
+    Shuffleboard.getTab("Intake/Delivery").add("Breakbeam 1", true);
+    Shuffleboard.getTab("Intake/Delivery").add("Breakbeam 2", true);
+    Shuffleboard.getTab("Intake/Delivery").add("Breakbeam 3", true);
+    Shuffleboard.getTab("Intake/Delivery").add("Breakbeam 4", true);
+    Shuffleboard.getTab("Intake/Delivery").add("Breakbeam 5", true);
+    Shuffleboard.getTab("Intake/Delivery").add("Breakbeam Intake", true);
 
-    Shuffleboard.getTab("Encoders");
-    Shuffleboard.getTab("Encoders").add("Turret", 0);
-    Shuffleboard.getTab("Encoders").add("Turret Zero", 0);
+    Shuffleboard.getTab("Turret");
+    Shuffleboard.getTab("Turret").add("Position", 0);
+    Shuffleboard.getTab("Turret").add("Turret Zero", 0);
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();

@@ -33,8 +33,8 @@ public class ShootAll extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    ShuffleboardHelpers.setWidgetValue("Test", "ShootAll", "Runnning");
-    shootSpeed = (double) ShuffleboardHelpers.getWidgetValue("Test", "Set Shoot Speed"); //Test
+    ShuffleboardHelpers.setWidgetValue("Intake/Delivery", "ShootAll", "Runnning");
+    shootSpeed = (double) ShuffleboardHelpers.getWidgetValue("Intake/Delivery", "Set Shoot Speed"); //Test
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -53,7 +53,7 @@ public class ShootAll extends CommandBase {
     */
     shooter.setShooter(shootSpeed); //Test
 
-    ShuffleboardHelpers.setWidgetValue("Test", "Shooter Velocity", shooter.getShooterVelocity());
+    ShuffleboardHelpers.setWidgetValue("Intake/Delivery", "Shooter Velocity", shooter.getShooterVelocity());
   }
 
   // Called once the command ends or is interrupted.
@@ -61,7 +61,7 @@ public class ShootAll extends CommandBase {
   public void end(boolean interrupted) {
     delivery.stopDeliveryBelt();
     shooter.stopShooter();
-    ShuffleboardHelpers.setWidgetValue("Test", "ShootAll", "Ended");
+    ShuffleboardHelpers.setWidgetValue("Intake/Delivery", "ShootAll", "Ended");
   }
 
   // Returns true when the command should end.
