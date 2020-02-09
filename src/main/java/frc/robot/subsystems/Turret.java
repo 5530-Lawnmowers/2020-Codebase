@@ -19,9 +19,13 @@ import frc.robot.helpers.ShuffleboardHelpers;
 public class Turret extends SubsystemBase {
     private final WPI_TalonSRX turretSpin = new WPI_TalonSRX(Constants.TURRET);
 
-    //Emergency stop the turret
+    //Physical stops for the turret
     private final DigitalInput hardStop1 = new DigitalInput(Constants.TURRET_S1);
     private final DigitalInput hardStop2 = new DigitalInput(Constants.TURRET_S2);
+
+    //Constants
+    private final int REL_ZERO = 189;
+    private final int CYCLE_ZERO;
 
     /**
      * Creates a new Turret.
@@ -32,7 +36,14 @@ public class Turret extends SubsystemBase {
         turretSpin.config_kP(0, .01, 10);
         turretSpin.config_kI(0, .007, 10);
         turretSpin.config_kD(0, .007, 10);
-        turretSpin.setSelectedSensorPosition(0);
+
+        if (turretSpin.getSelectedSensorPosition() % 4096 > REL_ZERO + 2560) {
+            CYCLE_ZERO = (((turretSpin.getSelectedSensorPosition() / 4096) + 1) * 4096) + REL_ZERO;
+        } else {
+            CYCLE_ZERO = ((turretSpin.getSelectedSensorPosition() / 4096) * 4096) + REL_ZERO;
+        }
+
+        ShuffleboardHelpers.setWidgetValue("Encoders", "Turret Zero", CYCLE_ZERO);
     }
 
     /**
@@ -41,8 +52,7 @@ public class Turret extends SubsystemBase {
      */
     public void setTurret(double speed) {
          turretSpin.set(speed);
-        //TODO: Confirm that the hardstops correspond correctly to motor direction  
-        
+        //TODO: Confirm that the hardstops correspond correctly to motor direction
     }
 
     /**
@@ -68,8 +78,18 @@ public class Turret extends SubsystemBase {
         return !hardStop1.get() || !hardStop2.get();
     }
 
+    /**
+     * Gets the current encoder value
+     * 
+     * @return Position of turret
+     */
+    public int getEncoderValue() {
+        return turretSpin.getSelectedSensorPosition();
+    }
+
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
+        ShuffleboardHelpers.setWidgetValue("Encoders", "Turret", turretSpin.getSelectedSensorPosition());
     }
 }
