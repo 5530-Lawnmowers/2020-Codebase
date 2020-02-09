@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.helpers.ShuffleboardHelpers;
 import frc.robot.subsystems.*;
 
 public class TurretManual extends CommandBase {
@@ -26,6 +27,8 @@ private double turretSpeed = 0.3;
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    turretSpeed = (double) ShuffleboardHelpers.getWidgetValue("Turret", "Set Turret");
+    ShuffleboardHelpers.setWidgetValue("Turret", "TurretManual", "Running");
     turret.setTurret(turretSpeed);
   }
 
@@ -37,6 +40,7 @@ private double turretSpeed = 0.3;
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    ShuffleboardHelpers.setWidgetValue("Turret", "TurretManual", "Ended");
     turret.stopTurret();
   }
 

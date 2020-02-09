@@ -31,7 +31,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     Shuffleboard.getTab("Intake/Delivery");
-    Shuffleboard.getTab("Intake/Delivery").add("Set Intake", 0.4);
+    Shuffleboard.getTab("Intake/Delivery").add("Set Intake", -0.4);
     Shuffleboard.getTab("Intake/Delivery").add("Set Wheel", 0.4);
     Shuffleboard.getTab("Intake/Delivery").add("Set Belt", 0.4);
     Shuffleboard.getTab("Intake/Delivery").add("RunIntake", "Init");
@@ -48,6 +48,8 @@ public class Robot extends TimedRobot {
     Shuffleboard.getTab("Turret");
     Shuffleboard.getTab("Turret").add("Position", 0);
     Shuffleboard.getTab("Turret").add("Turret Zero", 0);
+    Shuffleboard.getTab("Turret").add("Set Turret", 0.3);
+    Shuffleboard.getTab("Turret").add("TurretManual", "Init");
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
