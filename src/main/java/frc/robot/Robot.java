@@ -50,6 +50,9 @@ public class Robot extends TimedRobot {
     Shuffleboard.getTab("Turret").add("Turret Zero", 0);
     Shuffleboard.getTab("Turret").add("Set Turret", 0.3);
     Shuffleboard.getTab("Turret").add("TurretManual", "Init");
+
+    Shuffleboard.getTab("Shooter");
+    Shuffleboard.getTab("Shooter").add("Hood Position", 0);
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
