@@ -43,7 +43,7 @@ public class Turret extends SubsystemBase {
             CYCLE_ZERO = ((turretSpin.getSelectedSensorPosition() / 4096) * 4096) + REL_ZERO;
         }
 
-        ShuffleboardHelpers.setWidgetValue("Encoders", "Turret Zero", CYCLE_ZERO);
+        ShuffleboardHelpers.setWidgetValue("Turret", "Turret Zero", CYCLE_ZERO);
     }
 
     /**
