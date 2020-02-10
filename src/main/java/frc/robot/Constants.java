@@ -64,6 +64,8 @@ public final class Constants {
     public static final int ANGLE_ENCODER_A = 8;
     public static final int ANGLE_ENCODER_B = 9;
 
+    public static final int DUTY_CYCLE_SOURCE = 10;
+
     //Spinner motors
     public static final int SPIN = 6;
 

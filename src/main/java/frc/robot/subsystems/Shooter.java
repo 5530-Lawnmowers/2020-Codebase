@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.DutyCycleEncoder;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -24,6 +25,9 @@ public class Shooter extends SubsystemBase {
     private final WPI_TalonSRX hoodAdjust = new WPI_TalonSRX(Constants.ADJUST);
 
     private final Encoder angleEnc = new Encoder(Constants.ANGLE_ENCODER_A, Constants.ANGLE_ENCODER_B);
+
+    private final DutyCycleEncoder angleAbs = new DutyCycleEncoder(Constants.DUTY_CYCLE_SOURCE);
+
 
     /**
      * Creates a new Shooter.
