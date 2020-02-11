@@ -24,8 +24,10 @@ public class Turret extends SubsystemBase {
     private final DigitalInput hardStop2 = new DigitalInput(Constants.TURRET_S2);
 
     //Constants
-    private final int REL_ZERO = 189;
-    private final int CYCLE_ZERO;
+    private final int REL_ZERO = 189; //Forward-facing encoder reading mod 4096
+    private final int CYCLE_ZERO;     //Forward-facing encoder reading for this cycle
+    private final int LOWER_LIMIT;
+    private final int UPPER_LIMIT;
 
     /**
      * Creates a new Turret.
@@ -43,7 +45,10 @@ public class Turret extends SubsystemBase {
             CYCLE_ZERO = ((turretSpin.getSelectedSensorPosition() / 4096) * 4096) + REL_ZERO;
         }
 
-        ShuffleboardHelpers.setWidgetValue("Turret", "Turret Zero", CYCLE_ZERO);
+        LOWER_LIMIT = CYCLE_ZERO - 2560;
+        UPPER_LIMIT = CYCLE_ZERO + 2560;
+
+        ShuffleboardHelpers.setWidgetValue("Encoders", "Turret Zero", CYCLE_ZERO);
     }
 
     /**
@@ -51,16 +56,23 @@ public class Turret extends SubsystemBase {
      * @param speed The speed to set
      */
     public void setTurret(double speed) {
-         turretSpin.set(speed);
+         turretSpin.set(ControlMode.PercentOutput, speed);
         //TODO: Confirm that the hardstops correspond correctly to motor direction
     }
 
     /**
-     * Moves the turret to a set position
+     * Moves the turret to a set position. If target position is outside of acceptable range,
+     * turret moves to limit in that direction.
      * @param targetPosition The position to set
      */
     public void setPosition(int targetPosition){
-        turretSpin.set(ControlMode.Position, targetPosition);
+        if (targetPosition > UPPER_LIMIT) {
+            turretSpin.set(ControlMode.Position, UPPER_LIMIT);
+        } else if (targetPosition < LOWER_LIMIT) {
+            turretSpin.set(ControlMode.Position, LOWER_LIMIT);
+        } else {
+            turretSpin.set(ControlMode.Position, targetPosition);
+        }
     }
     /**
      * Stops the turret motor
