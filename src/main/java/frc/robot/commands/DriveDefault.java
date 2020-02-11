@@ -8,13 +8,13 @@ import frc.robot.RobotContainer;
 import frc.robot.subsystems.Drivetrain;
 
 
-public class DefaultDrive extends CommandBase {
+public class DriveDefault extends CommandBase {
     private final Drivetrain drivetrain;
     public static double oldTriggerR;
     public static double oldTriggerL;
     private static double driveWeight = 0.85;
 
-    public DefaultDrive(Drivetrain drivetrain) {
+    public DriveDefault(Drivetrain drivetrain) {
         this.drivetrain = drivetrain;
         addRequirements(drivetrain);
     }

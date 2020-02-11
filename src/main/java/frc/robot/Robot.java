@@ -34,7 +34,7 @@ public class Robot extends TimedRobot {
     Shuffleboard.getTab("Intake/Delivery").add("Set Intake", -0.4);
     Shuffleboard.getTab("Intake/Delivery").add("Set Wheel", 0.4);
     Shuffleboard.getTab("Intake/Delivery").add("Set Belt", 0.4);
-    Shuffleboard.getTab("Intake/Delivery").add("RunIntake", "Init");
+    Shuffleboard.getTab("Intake/Delivery").add("IntakeRun", "Init");
     Shuffleboard.getTab("Intake/Delivery").add("Shooter Velocity", 0);
     Shuffleboard.getTab("Intake/Delivery").add("Set Shoot Speed", 0.9);
     Shuffleboard.getTab("Intake/Delivery").add("ShootAll", "Init");

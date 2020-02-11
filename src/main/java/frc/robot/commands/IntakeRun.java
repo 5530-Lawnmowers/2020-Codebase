@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.helpers.ShuffleboardHelpers;
 import frc.robot.subsystems.*;
 
-public class RunIntake extends CommandBase {
+public class IntakeRun extends CommandBase {
   private double beltSet = 0.4;
   private double wheelSet = 0.4;
   private double intakeSet = -0.4;
@@ -21,9 +21,9 @@ public class RunIntake extends CommandBase {
   private int state;
 
   /**
-   * Creates a new RunIntake.
+   * Creates a new IntakeRun.
    */
-  public RunIntake(Delivery delivery, Intake intake) {
+  public IntakeRun(Delivery delivery, Intake intake) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(delivery, intake);
     this.delivery = delivery;
@@ -49,7 +49,7 @@ public class RunIntake extends CommandBase {
     intakeSet = (double) ShuffleboardHelpers.getWidgetValue("Intake/Delivery", "Set Intake");
     wheelSet = (double) ShuffleboardHelpers.getWidgetValue("Intake/Delivery", "Set Wheel");
     beltSet = (double) ShuffleboardHelpers.getWidgetValue("Intake/Delivery", "Set Belt");
-    ShuffleboardHelpers.setWidgetValue("Intake/Delivery", "RunIntake", "Running");
+    ShuffleboardHelpers.setWidgetValue("Intake/Delivery", "IntakeRun", "Running");
     intake.setIntake(intakeSet);
     //delivery.setDeliveryBelt(beltSet);
     //delivery.setDeliveryWheel(wheelSet);
@@ -74,7 +74,7 @@ public class RunIntake extends CommandBase {
     intake.stopIntake();
     delivery.stopDeliveryBelt();
     delivery.stopDeliveryWheel();
-    ShuffleboardHelpers.setWidgetValue("Intake/Delivery", "RunIntake", "Ended");
+    ShuffleboardHelpers.setWidgetValue("Intake/Delivery", "IntakeRun", "Ended");
   }
 
   // Returns true when the command should end.

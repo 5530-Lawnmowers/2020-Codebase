@@ -14,7 +14,7 @@ import com.ctre.phoenix.*;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.sensors.PigeonIMU;
-import frc.robot.commands.DefaultDrive;
+import frc.robot.commands.DriveDefault;
 import org.opencv.core.RotatedRect;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
@@ -94,7 +94,7 @@ public class Drivetrain extends SubsystemBase {
 
         gyro.zeroYaw();
         //setDefaultCommand(new ThrottleMotorTest(this)); //Use this for motor tests
-        setDefaultCommand(new DefaultDrive(this));
+        setDefaultCommand(new DriveDefault(this));
     }
 
     @Override

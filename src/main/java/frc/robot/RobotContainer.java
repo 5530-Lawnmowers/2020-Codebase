@@ -64,7 +64,7 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    xba.toggleWhenPressed(new RunIntake(delivery, intake));
+    xba.toggleWhenPressed(new IntakeRun(delivery, intake));
     xbb.toggleWhenPressed(new TurretManual(turret));
   }
 
