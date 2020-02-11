@@ -41,6 +41,9 @@ public class ShootAll extends CommandBase {
   @Override
   public void execute() {
     /**
+    //If speed too low, stop feed and accelerate at max power
+    //If speed close to desired, stop feed and reduce speed to hold power
+    //If speed at or above desired, feed ball
     if (shooter.getShooterVelocity() < THRESHOLD_VELOCITY) {
       shooter.setShooter(accelSpeed);
       delivery.stopDeliveryBelt();
@@ -51,7 +54,7 @@ public class ShootAll extends CommandBase {
       delivery.setDeliveryBelt(feedSpeed);
     }
     */
-    shooter.setShooter(shootSpeed); //Test
+    shooter.setShooter(shootSpeed); //Test just shoot
 
     ShuffleboardHelpers.setWidgetValue("Intake/Delivery", "Shooter Velocity", shooter.getShooterVelocity());
   }
