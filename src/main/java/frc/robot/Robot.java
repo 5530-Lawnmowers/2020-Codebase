@@ -50,6 +50,8 @@ public class Robot extends TimedRobot {
     Shuffleboard.getTab("Turret").add("Turret Zero", 0);
     Shuffleboard.getTab("Turret").add("Set Turret", 0.3);
     Shuffleboard.getTab("Turret").add("TurretManual", "Init");
+    Shuffleboard.getTab("Turret").add("TurretAlign", "Init");
+    Shuffleboard.getTab("Turret").add("Offset X", 0);
 
     Shuffleboard.getTab("Shooter");
     Shuffleboard.getTab("Shooter").add("Hood Position", 0);

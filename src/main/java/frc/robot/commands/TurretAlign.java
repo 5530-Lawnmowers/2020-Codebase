@@ -10,6 +10,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.*;
 import frc.robot.helpers.LimelightHelper;
+import frc.robot.helpers.ShuffleboardHelpers;
 
 public class TurretAlign extends CommandBase {
   private Turret turret;
@@ -36,6 +37,8 @@ public class TurretAlign extends CommandBase {
     turret.setPosition(currentPosition + (int) Math.round(offset * 4096 / 360)); //Instant set
 
     previousOffset = offset;
+
+    ShuffleboardHelpers.setWidgetValue("Turret", "TurretAlign", "Running");
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -54,6 +57,7 @@ public class TurretAlign extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     turret.stopTurret();
+    ShuffleboardHelpers.setWidgetValue("Turret", "TurretAlign", "Ended");
   }
 
   // Returns true when the command should end.

@@ -14,6 +14,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.*;
 import frc.robot.Constants;
 import edu.wpi.first.wpilibj.DigitalInput;
+import frc.robot.helpers.LimelightHelper;
 import frc.robot.helpers.ShuffleboardHelpers;
 
 public class Turret extends SubsystemBase {
@@ -103,5 +104,6 @@ public class Turret extends SubsystemBase {
     public void periodic() {
         // This method will be called once per scheduler run
         ShuffleboardHelpers.setWidgetValue("Turret", "Position", turretSpin.getSelectedSensorPosition());
+        ShuffleboardHelpers.setWidgetValue("Turret", "Offset x", LimelightHelper.getRawX());
     }
 }
