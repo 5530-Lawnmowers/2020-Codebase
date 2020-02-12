@@ -66,6 +66,7 @@ public class RobotContainer {
   private void configureButtonBindings() {
     xba.toggleWhenPressed(new IntakeRun(delivery, intake));
     xbb.toggleWhenPressed(new TurretManual(turret));
+    xbx.toggleWhenPressed(new TurretAlign(turret));
   }
 
 
