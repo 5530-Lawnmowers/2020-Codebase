@@ -29,6 +29,7 @@ public class Turret extends SubsystemBase {
     private int cycleZero;     //Forward-facing encoder reading for this cycle
     private int lowerLimit;
     private int upperLimit;
+    private boolean ignoreSoftwareLimit = false;
 
     /**
      * Creates a new Turret.
@@ -58,16 +59,15 @@ public class Turret extends SubsystemBase {
      * @param speed The speed to set
      */
     public void setTurret(double speed) {
-         turretSpin.set(ControlMode.PercentOutput, speed);
-         if (turretSpin.getSelectedSensorPosition() >= upperLimit && speed > 0) {
-            turretSpin.set(ControlMode.PercentOutput, -.3);
-         } else if (turretSpin.getSelectedSensorPosition() <= lowerLimit && speed < 0) {
-             turretSpin.set(ControlMode.PercentOutput, +.3);
-         } else {
-             turretSpin.set(ControlMode.PercentOutput, speed);
-         }
+        turretSpin.set(ControlMode.PercentOutput, speed);
+        if (!ignoreSoftwareLimit) {
+            if (turretSpin.getSelectedSensorPosition() >= upperLimit && speed > 0) {
+                turretSpin.set(ControlMode.PercentOutput, -0.3);
+            } else if (turretSpin.getSelectedSensorPosition() <= lowerLimit && speed < 0) {
+                turretSpin.set(ControlMode.PercentOutput, 0.3);
+            }
+        }
         //Positive direction of encoder is positive speed
-        //TODO: Confirm that the hardstops correspond correctly to motor direction
     }
 
     /**
@@ -109,6 +109,14 @@ public class Turret extends SubsystemBase {
         return turretSpin.getSelectedSensorPosition();
     }
 
+    /**
+     * Toggles the state of software limits on the turret
+     * @param isSet {@code true} to abide by software limits, {@code false} to ignore software limits
+     */
+    public void setSoftwareLimit(boolean isSet) {
+        ignoreSoftwareLimit = !isSet;
+    }
+
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
@@ -121,10 +129,12 @@ public class Turret extends SubsystemBase {
         lowerLimit = cycleZero - 1536;
         upperLimit = cycleZero + 1536;
 
-        if (turretSpin.getSelectedSensorPosition() >= upperLimit && turretSpin.get() > 0) {
-            turretSpin.stopMotor();
-        } else if (turretSpin.getSelectedSensorPosition() <= lowerLimit && turretSpin.get() < 0) {
-            turretSpin.stopMotor();
+        if (!ignoreSoftwareLimit) {
+            if (turretSpin.getSelectedSensorPosition() >= upperLimit && turretSpin.get() > 0) {
+                turretSpin.stopMotor();
+            } else if (turretSpin.getSelectedSensorPosition() <= lowerLimit && turretSpin.get() < 0) {
+                turretSpin.stopMotor();
+            }
         }
 
         ShuffleboardHelpers.setWidgetValue("Turret", "Turret Zero", cycleZero);
