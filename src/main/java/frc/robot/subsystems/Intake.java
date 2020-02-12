@@ -32,7 +32,7 @@ public class Intake extends SubsystemBase {
 
     @Override
     public void periodic() {
-        ShuffleboardHelpers.setWidgetValue("Intake/Delivery", "Breakbeam Intake", intakeSwitch.get());
+        ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "Breakbeam Intake", intakeSwitch.get());
         // This method will be called once per scheduler run
     }
 

@@ -30,20 +30,20 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    Shuffleboard.getTab("Intake/Delivery");
-    Shuffleboard.getTab("Intake/Delivery").add("Set Intake", -0.4);
-    Shuffleboard.getTab("Intake/Delivery").add("Set Wheel", 0.4);
-    Shuffleboard.getTab("Intake/Delivery").add("Set Belt", 0.4);
-    Shuffleboard.getTab("Intake/Delivery").add("IntakeRun", "Init");
-    Shuffleboard.getTab("Intake/Delivery").add("Shooter Velocity", 0);
-    Shuffleboard.getTab("Intake/Delivery").add("Set Shoot Speed", 0.9);
-    Shuffleboard.getTab("Intake/Delivery").add("ShootAll", "Init");
-    Shuffleboard.getTab("Intake/Delivery").add("Breakbeam 1", true);
-    Shuffleboard.getTab("Intake/Delivery").add("Breakbeam 2", true);
-    Shuffleboard.getTab("Intake/Delivery").add("Breakbeam 3", true);
-    Shuffleboard.getTab("Intake/Delivery").add("Breakbeam 4", true);
-    Shuffleboard.getTab("Intake/Delivery").add("Breakbeam 5", true);
-    Shuffleboard.getTab("Intake/Delivery").add("Breakbeam Intake", true);
+    Shuffleboard.getTab("Intake and Delivery");
+    Shuffleboard.getTab("Intake and Delivery").add("Set Intake", -0.4);
+    Shuffleboard.getTab("Intake and Delivery").add("Set Wheel", 0.4);
+    Shuffleboard.getTab("Intake and Delivery").add("Set Belt", 0.4);
+    Shuffleboard.getTab("Intake and Delivery").add("IntakeRun", "Init");
+    Shuffleboard.getTab("Intake and Delivery").add("Shooter Velocity", 0);
+    Shuffleboard.getTab("Intake and Delivery").add("Set Shoot Speed", 0.9);
+    Shuffleboard.getTab("Intake and Delivery").add("ShootAll", "Init");
+    Shuffleboard.getTab("Intake and Delivery").add("Breakbeam 1", true);
+    Shuffleboard.getTab("Intake and Delivery").add("Breakbeam 2", true);
+    Shuffleboard.getTab("Intake and Delivery").add("Breakbeam 3", true);
+    Shuffleboard.getTab("Intake and Delivery").add("Breakbeam 4", true);
+    Shuffleboard.getTab("Intake and Delivery").add("Breakbeam 5", true);
+    Shuffleboard.getTab("Intake and Delivery").add("Breakbeam Intake", true);
 
     Shuffleboard.getTab("Turret");
     Shuffleboard.getTab("Turret").add("Position", 0);
