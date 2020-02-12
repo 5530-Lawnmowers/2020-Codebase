@@ -26,9 +26,9 @@ public class Turret extends SubsystemBase {
 
     //Constants
     private final int REL_ZERO = 189; //Forward-facing encoder reading mod 4096
-    private final int CYCLE_ZERO;     //Forward-facing encoder reading for this cycle
-    private final int LOWER_LIMIT;
-    private final int UPPER_LIMIT;
+    private int cycleZero;     //Forward-facing encoder reading for this cycle
+    private int lowerLimit;
+    private int upperLimit;
 
     /**
      * Creates a new Turret.
@@ -41,15 +41,16 @@ public class Turret extends SubsystemBase {
         turretSpin.config_kD(0, .007, 10);
 
         if (turretSpin.getSelectedSensorPosition() % 4096 > REL_ZERO + 2560) {
-            CYCLE_ZERO = (((turretSpin.getSelectedSensorPosition() / 4096) + 1) * 4096) + REL_ZERO;
+            cycleZero = (((turretSpin.getSelectedSensorPosition() / 4096) + 1) * 4096) + REL_ZERO;
         } else {
-            CYCLE_ZERO = ((turretSpin.getSelectedSensorPosition() / 4096) * 4096) + REL_ZERO;
+            cycleZero = ((turretSpin.getSelectedSensorPosition() / 4096) * 4096) + REL_ZERO;
         }
 
-        LOWER_LIMIT = CYCLE_ZERO - 2560;
-        UPPER_LIMIT = CYCLE_ZERO + 2560;
+        lowerLimit = cycleZero - 2560;
+        upperLimit = cycleZero + 2560;
 
-        ShuffleboardHelpers.setWidgetValue("Encoders", "Turret Zero", CYCLE_ZERO);
+        ShuffleboardHelpers.setWidgetValue("Turret", "Turret Zero", cycleZero);
+        ShuffleboardHelpers.setWidgetValue("Turret", "Initial Position", turretSpin.getSelectedSensorPosition());
     }
 
     /**
@@ -67,10 +68,10 @@ public class Turret extends SubsystemBase {
      * @param targetPosition The position to set
      */
     public void setPosition(int targetPosition){
-        if (targetPosition > UPPER_LIMIT) {
-            turretSpin.set(ControlMode.Position, UPPER_LIMIT);
-        } else if (targetPosition < LOWER_LIMIT) {
-            turretSpin.set(ControlMode.Position, LOWER_LIMIT);
+        if (targetPosition > upperLimit) {
+            turretSpin.set(ControlMode.Position, upperLimit);
+        } else if (targetPosition < lowerLimit) {
+            turretSpin.set(ControlMode.Position, lowerLimit);
         } else {
             turretSpin.set(ControlMode.Position, targetPosition);
         }
@@ -103,7 +104,17 @@ public class Turret extends SubsystemBase {
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
+        //if (turretSpin.getSelectedSensorPosition() % 4096 > REL_ZERO + 2560) {
+        //    cycleZero = (((turretSpin.getSelectedSensorPosition() / 4096) + 1) * 4096) + REL_ZERO;
+        //} else {
+        //    cycleZero = ((turretSpin.getSelectedSensorPosition() / 4096) * 4096) + REL_ZERO;
+        //}
+
+        //lowerLimit = cycleZero - 2560;
+        //upperLimit = cycleZero + 2560;
+
+        //ShuffleboardHelpers.setWidgetValue("Turret", "Turret Zero", cycleZero);
         ShuffleboardHelpers.setWidgetValue("Turret", "Position", turretSpin.getSelectedSensorPosition());
-        ShuffleboardHelpers.setWidgetValue("Turret", "Offset x", LimelightHelper.getRawX());
+        ShuffleboardHelpers.setWidgetValue("Turret", "Offset X", LimelightHelper.getRawX());
     }
 }
