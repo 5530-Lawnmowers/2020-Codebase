@@ -40,14 +40,14 @@ public class Turret extends SubsystemBase {
         turretSpin.config_kI(0, .007, 10);
         turretSpin.config_kD(0, .007, 10);
 
-        if (turretSpin.getSelectedSensorPosition() % 4096 > REL_ZERO + 2560) {
+        if (((turretSpin.getSelectedSensorPosition() % 4096) + 4096) % 4096 > REL_ZERO + 2048) {
             cycleZero = (((turretSpin.getSelectedSensorPosition() / 4096) + 1) * 4096) + REL_ZERO;
         } else {
             cycleZero = ((turretSpin.getSelectedSensorPosition() / 4096) * 4096) + REL_ZERO;
         }
 
-        lowerLimit = cycleZero - 2560;
-        upperLimit = cycleZero + 2560;
+        lowerLimit = cycleZero - 1536;
+        upperLimit = cycleZero + 1536;
 
         ShuffleboardHelpers.setWidgetValue("Turret", "Turret Zero", cycleZero);
         ShuffleboardHelpers.setWidgetValue("Turret", "Initial Position", turretSpin.getSelectedSensorPosition());
@@ -59,6 +59,14 @@ public class Turret extends SubsystemBase {
      */
     public void setTurret(double speed) {
          turretSpin.set(ControlMode.PercentOutput, speed);
+         if (turretSpin.getSelectedSensorPosition() >= upperLimit && speed > 0) {
+            turretSpin.set(ControlMode.PercentOutput, -.3);
+         } else if (turretSpin.getSelectedSensorPosition() <= lowerLimit && speed < 0) {
+             turretSpin.set(ControlMode.PercentOutput, +.3);
+         } else {
+             turretSpin.set(ControlMode.PercentOutput, speed);
+         }
+        //Positive direction of encoder is positive speed
         //TODO: Confirm that the hardstops correspond correctly to motor direction
     }
 
@@ -104,16 +112,22 @@ public class Turret extends SubsystemBase {
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
-        //if (turretSpin.getSelectedSensorPosition() % 4096 > REL_ZERO + 2560) {
-        //    cycleZero = (((turretSpin.getSelectedSensorPosition() / 4096) + 1) * 4096) + REL_ZERO;
-        //} else {
-        //    cycleZero = ((turretSpin.getSelectedSensorPosition() / 4096) * 4096) + REL_ZERO;
-        //}
+        if (((turretSpin.getSelectedSensorPosition() % 4096) + 4096) % 4096 > REL_ZERO + 2048) {
+            cycleZero = (((turretSpin.getSelectedSensorPosition() / 4096) + 1) * 4096) + REL_ZERO;
+        } else {
+            cycleZero = ((turretSpin.getSelectedSensorPosition() / 4096) * 4096) + REL_ZERO;
+        }
 
-        //lowerLimit = cycleZero - 2560;
-        //upperLimit = cycleZero + 2560;
+        lowerLimit = cycleZero - 1536;
+        upperLimit = cycleZero + 1536;
 
-        //ShuffleboardHelpers.setWidgetValue("Turret", "Turret Zero", cycleZero);
+        if (turretSpin.getSelectedSensorPosition() >= upperLimit && turretSpin.get() > 0) {
+            turretSpin.stopMotor();
+        } else if (turretSpin.getSelectedSensorPosition() <= lowerLimit && turretSpin.get() < 0) {
+            turretSpin.stopMotor();
+        }
+
+        ShuffleboardHelpers.setWidgetValue("Turret", "Turret Zero", cycleZero);
         ShuffleboardHelpers.setWidgetValue("Turret", "Position", turretSpin.getSelectedSensorPosition());
         ShuffleboardHelpers.setWidgetValue("Turret", "Offset X", LimelightHelper.getRawX());
     }
