@@ -382,7 +382,7 @@ public class SQLHelper {
      * @throws SQLException
      */
     public static boolean compareLast() throws SQLException {
-        if (!row.isClosed() && row != null) row.getStatement().close();
+        if (row != null && !row.isClosed()) row.getStatement().close();
         Statement stmnt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
         row = stmnt.executeQuery("SELECT * FROM `NETWORK_TABLES`");
         int cols = row.getMetaData().getColumnCount();

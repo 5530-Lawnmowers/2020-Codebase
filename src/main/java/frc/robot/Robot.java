@@ -160,11 +160,13 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopPeriodic() {
         LimelightHelper.updateRumble();
+        /*
         try {
             SQLHelper.mySQLperiodic((int) (timer.get() * 1000));
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        */
     }
 
     @Override
