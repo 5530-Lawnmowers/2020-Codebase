@@ -32,31 +32,31 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     Shuffleboard.getTab("Intake and Delivery");
-    Shuffleboard.getTab("Intake and Delivery").add("Set Intake", -0.4);
-    Shuffleboard.getTab("Intake and Delivery").add("Set Wheel", 0.4);
-    Shuffleboard.getTab("Intake and Delivery").add("Set Belt", 0.4);
-    Shuffleboard.getTab("Intake and Delivery").add("IntakeRun", "Init");
-    Shuffleboard.getTab("Intake and Delivery").add("Shooter Velocity", 0);
-    Shuffleboard.getTab("Intake and Delivery").add("Set Shoot Speed", 0.9);
-    Shuffleboard.getTab("Intake and Delivery").add("ShootAll", "Init");
-    Shuffleboard.getTab("Intake and Delivery").add("Breakbeam 1", true);
-    Shuffleboard.getTab("Intake and Delivery").add("Breakbeam 2", true);
-    Shuffleboard.getTab("Intake and Delivery").add("Breakbeam 3", true);
-    Shuffleboard.getTab("Intake and Delivery").add("Breakbeam 4", true);
-    Shuffleboard.getTab("Intake and Delivery").add("Breakbeam 5", true);
-    Shuffleboard.getTab("Intake and Delivery").add("Breakbeam Intake", true);
+    SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Set Intake", -0.4));
+    SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Set Wheel", 0.4));
+    SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Set Belt", 0.4));
+    SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("IntakeRun", "Init"));
+    SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Shooter Velocity", 0));
+    SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Set Shoot Speed", 0.9));
+    SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("ShootAll", "Init"));
+    SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Breakbeam 1", true));
+    SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Breakbeam 2", true));
+    SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Breakbeam 3", true));
+    SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Breakbeam 4", true));
+    SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Breakbeam 5", true));
+    SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Breakbeam Intake", true));
 
     Shuffleboard.getTab("Turret");
-    Shuffleboard.getTab("Turret").add("Position", 0);
-    Shuffleboard.getTab("Turret").add("Turret Zero", 0);
-    Shuffleboard.getTab("Turret").add("Set Turret", 0.3);
-    Shuffleboard.getTab("Turret").add("TurretManual", "Init");
-    Shuffleboard.getTab("Turret").add("TurretAlign", "Init");
-    Shuffleboard.getTab("Turret").add("Offset X", 0);
-    Shuffleboard.getTab("Turret").add("Initial Position", 0);
+    SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("Position", 0));
+    SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("Turret Zero", 0));
+    SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("Set Turret", 0.3));
+    SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("TurretManual", "Init"));
+    SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("TurretAlign", "Init"));
+    SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("Offset X", 0));
+    SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("Initial Position", 0));
 
     Shuffleboard.getTab("Shooter");
-    Shuffleboard.getTab("Shooter").add("Hood Position", 0);
+    SQLHelper.stageWidget(Shuffleboard.getTab("Shooter").add("Hood Position", 0));
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
