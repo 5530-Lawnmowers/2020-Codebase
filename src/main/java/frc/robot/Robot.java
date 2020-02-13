@@ -8,11 +8,13 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.helpers.LimelightHelper;
 import frc.robot.helpers.SQLHelper;
+import java.sql.SQLException;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -22,7 +24,7 @@ import frc.robot.helpers.SQLHelper;
  */
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
-
+  private Timer timer = new Timer();
   private RobotContainer m_robotContainer;
 
   /**
@@ -83,6 +85,14 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void disabledInit() {
+    try {
+      timer.reset();
+      timer.stop();
+      SQLHelper.backupTable();
+      SQLHelper.closeConnection();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
   }
 
   @Override
@@ -100,6 +110,15 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
+    try {
+      if (!SQLHelper.isOpen()) {
+        SQLHelper.openConnection();
+        SQLHelper.initTable();
+        timer.start();
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
   }
 
   /**
@@ -107,6 +126,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
+    try {
+      SQLHelper.mySQLperiodic((int) timer.get());
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
   }
 
   @Override
@@ -118,6 +142,15 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    try {
+      if (!SQLHelper.isOpen()) {
+        SQLHelper.openConnection();
+        SQLHelper.initTable();
+        timer.start();
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
   }
 
   /**
@@ -126,6 +159,11 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     LimelightHelper.updateRumble();
+    try {
+      SQLHelper.mySQLperiodic((int)(timer.get() * 1000));
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
   }
 
   @Override
