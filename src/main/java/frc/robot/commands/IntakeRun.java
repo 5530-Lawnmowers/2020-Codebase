@@ -58,14 +58,14 @@ public class IntakeRun extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        if (delivery.getBreakbeams()[state]) {
-            delivery.setDeliveryBelt(beltSet);
-            delivery.setDeliveryWheel(wheelSet);
-        } else if (!delivery.getBreakbeams()[state]) {
-            delivery.stopDeliveryBelt();
-            delivery.stopDeliveryWheel();
+        //if (delivery.getBreakbeams()[state]) {
+        //    delivery.setDeliveryBelt(beltSet);
+        //    delivery.setDeliveryWheel(wheelSet);
+        //} else if (!delivery.getBreakbeams()[state]) {
+        //    delivery.stopDeliveryBelt();
+        //    delivery.stopDeliveryWheel();
             //state++;
-        }
+        //}
     }
 
     // Called once the command ends or is interrupted.
@@ -80,9 +80,9 @@ public class IntakeRun extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        if (!delivery.getBreakbeams()[1]) {
-            return true;
-        }
+        //if (!delivery.getBreakbeams()[1]) {
+        //    return true;
+        //}
         return false;
     }
 }
