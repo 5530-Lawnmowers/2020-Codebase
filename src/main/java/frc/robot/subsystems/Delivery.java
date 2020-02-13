@@ -50,6 +50,7 @@ public class Delivery extends SubsystemBase {
 
     /**
      * Sets the speed of the inner intake wheel
+     *
      * @param speed The speed to set
      */
     public void setDeliveryWheel(double speed) {
@@ -58,6 +59,7 @@ public class Delivery extends SubsystemBase {
 
     /**
      * Sets the speed of the belt system
+     *
      * @param speed The speed to set
      */
     public void setDeliveryBelt(double speed) {
@@ -80,6 +82,7 @@ public class Delivery extends SubsystemBase {
 
     /**
      * Returns the states of the delivery breakbeam sensors. {@code true} if clear, {@code false} otherwise
+     *
      * @return An array of size 5 with the state of each breakbeam sensor
      */
     public boolean[] getBreakbeams() {

@@ -13,56 +13,56 @@ import frc.robot.helpers.LimelightHelper;
 import frc.robot.helpers.ShuffleboardHelpers;
 
 public class TurretAlign extends CommandBase {
-  private Turret turret;
-  private final int MARGIN = 1;
-  private double previousOffset;
-  private final double kp = .01;
-  private final double kd = 0;
+    private Turret turret;
+    private final int MARGIN = 1;
+    private double previousOffset;
+    private final double kp = .01;
+    private final double kd = 0;
 
 
-  /**
-   * Creates a new TurretAlign.
-   */
-  public TurretAlign(Turret turret) {
-    // Use addRequirements() here to declare subsystem dependencies.
-    this.turret = turret;
-    addRequirements(turret);
-  }
-
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {
-    int currentPosition = turret.getEncoderValue();
-    double offset = LimelightHelper.getRawX();
-    turret.setPosition(currentPosition + (int) Math.round(offset * 4096 / 360)); //Instant set
-
-    previousOffset = offset;
-
-    ShuffleboardHelpers.setWidgetValue("Turret", "TurretAlign", "Running");
-  }
-
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
     /**
-    //Align via continous power set
-    double offset = LimelightHelper.getRawX();
-    double offsetVelocity = Math.abs(offset - previousOffset);
-    turret.setTurret(kp * offset - kd * offsetVelocity);
-    previousOffset = offset;
-    */
-  }
+     * Creates a new TurretAlign.
+     */
+    public TurretAlign(Turret turret) {
+        // Use addRequirements() here to declare subsystem dependencies.
+        this.turret = turret;
+        addRequirements(turret);
+    }
 
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {
-    turret.stopTurret();
-    ShuffleboardHelpers.setWidgetValue("Turret", "TurretAlign", "Ended");
-  }
+    // Called when the command is initially scheduled.
+    @Override
+    public void initialize() {
+        int currentPosition = turret.getEncoderValue();
+        double offset = LimelightHelper.getRawX();
+        turret.setPosition(currentPosition + (int) Math.round(offset * 4096 / 360)); //Instant set
 
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return false;
-  }
+        previousOffset = offset;
+
+        ShuffleboardHelpers.setWidgetValue("Turret", "TurretAlign", "Running");
+    }
+
+    // Called every time the scheduler runs while the command is scheduled.
+    @Override
+    public void execute() {
+        /**
+         //Align via continous power set
+         double offset = LimelightHelper.getRawX();
+         double offsetVelocity = Math.abs(offset - previousOffset);
+         turret.setTurret(kp * offset - kd * offsetVelocity);
+         previousOffset = offset;
+         */
+    }
+
+    // Called once the command ends or is interrupted.
+    @Override
+    public void end(boolean interrupted) {
+        turret.stopTurret();
+        ShuffleboardHelpers.setWidgetValue("Turret", "TurretAlign", "Ended");
+    }
+
+    // Returns true when the command should end.
+    @Override
+    public boolean isFinished() {
+        return false;
+    }
 }

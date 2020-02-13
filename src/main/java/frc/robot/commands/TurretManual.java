@@ -12,41 +12,41 @@ import frc.robot.helpers.ShuffleboardHelpers;
 import frc.robot.subsystems.*;
 
 public class TurretManual extends CommandBase {
-private Turret turret;
-private double turretSpeed = 0.3;
-  
-  /**
-   * Creates a new TurretManual.
-   */
-  public TurretManual(Turret turret) {
-    // Use addRequirements() here to declare subsystem dependencies.
-    this.turret = turret;
-    addRequirements(turret);
-  }
+    private Turret turret;
+    private double turretSpeed = 0.3;
 
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {
-    turretSpeed = (double) ShuffleboardHelpers.getWidgetValue("Turret", "Set Turret");
-    ShuffleboardHelpers.setWidgetValue("Turret", "TurretManual", "Running");
-    turret.setTurret(turretSpeed);
-  }
+    /**
+     * Creates a new TurretManual.
+     */
+    public TurretManual(Turret turret) {
+        // Use addRequirements() here to declare subsystem dependencies.
+        this.turret = turret;
+        addRequirements(turret);
+    }
 
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
-  }
+    // Called when the command is initially scheduled.
+    @Override
+    public void initialize() {
+        turretSpeed = (double) ShuffleboardHelpers.getWidgetValue("Turret", "Set Turret");
+        ShuffleboardHelpers.setWidgetValue("Turret", "TurretManual", "Running");
+        turret.setTurret(turretSpeed);
+    }
 
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {
-    ShuffleboardHelpers.setWidgetValue("Turret", "TurretManual", "Ended");
-    turret.stopTurret();
-  }
+    // Called every time the scheduler runs while the command is scheduled.
+    @Override
+    public void execute() {
+    }
 
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return false;
-  }
+    // Called once the command ends or is interrupted.
+    @Override
+    public void end(boolean interrupted) {
+        ShuffleboardHelpers.setWidgetValue("Turret", "TurretManual", "Ended");
+        turret.stopTurret();
+    }
+
+    // Returns true when the command should end.
+    @Override
+    public boolean isFinished() {
+        return false;
+    }
 }

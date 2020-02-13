@@ -19,7 +19,7 @@ public class Climber extends SubsystemBase {
 
     private final WPI_TalonSRX climbLeft = new WPI_TalonSRX(Constants.CLIMB_L);
     private final WPI_TalonSRX climbRight = new WPI_TalonSRX(Constants.CLIMB_R);
-    
+
 
     /**
      * Creates a new Climber.
@@ -35,6 +35,7 @@ public class Climber extends SubsystemBase {
 
     /**
      * Sets the speed of the Left Climb motor.
+     *
      * @param speed The speed to set.
      * @param motor The motor to set. Use Constants class for motor values.
      */
@@ -54,8 +55,8 @@ public class Climber extends SubsystemBase {
         climbRight.stopMotor();
     }
 
-    public void realeaseArm(){
+    public void realeaseArm() {
         pinservo.set(0);
     }
-    
+
 }

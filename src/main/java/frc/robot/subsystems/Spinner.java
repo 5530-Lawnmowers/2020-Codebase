@@ -65,6 +65,7 @@ public class Spinner extends SubsystemBase {
 
     /**
      * Sets the spinner motor speed
+     *
      * @param speed The speed to set
      */
     public void setSpinner(double speed) {
@@ -80,16 +81,18 @@ public class Spinner extends SubsystemBase {
 
     /**
      * Sets the spinner actuation motor speed
+     *
      * @param speed The speed to set
      */
     public void setSpinAct(double speed) {
         spinnerActuation.set(speed);
     }
 
-    public void setSpinnerUp(){
+    public void setSpinnerUp() {
         spinnerActuation.set(1);
     }
-    public void setSpinnerDown(){
+
+    public void setSpinnerDown() {
         spinnerActuation.set(0);
     }
 

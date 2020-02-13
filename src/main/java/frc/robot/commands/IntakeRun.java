@@ -12,77 +12,77 @@ import frc.robot.helpers.ShuffleboardHelpers;
 import frc.robot.subsystems.*;
 
 public class IntakeRun extends CommandBase {
-  private double beltSet = 0.4;
-  private double wheelSet = 0.4;
-  private double intakeSet = -0.4;
-  private Delivery delivery;
-  private Intake intake;
+    private double beltSet = 0.4;
+    private double wheelSet = 0.4;
+    private double intakeSet = -0.4;
+    private Delivery delivery;
+    private Intake intake;
 
-  private int state;
+    private int state;
 
-  /**
-   * Creates a new IntakeRun.
-   */
-  public IntakeRun(Delivery delivery, Intake intake) {
-    // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(delivery, intake);
-    this.delivery = delivery;
-    this.intake = intake;
+    /**
+     * Creates a new IntakeRun.
+     */
+    public IntakeRun(Delivery delivery, Intake intake) {
+        // Use addRequirements() here to declare subsystem dependencies.
+        addRequirements(delivery, intake);
+        this.delivery = delivery;
+        this.intake = intake;
 
-    //if (!delivery.getBreakbeams()[3]) {
-    //  state = 4;
-    //} else if (!delivery.getBreakbeams()[2]) {
-    //  state = 3;
-    //} else if (!delivery.getBreakbeams()[1]) {
-    //  state = 2;
-    //} else 
-    if (!delivery.getBreakbeams()[0]) {
-      state = 1;
-    } else {
-      state = 0;
+        //if (!delivery.getBreakbeams()[3]) {
+        //  state = 4;
+        //} else if (!delivery.getBreakbeams()[2]) {
+        //  state = 3;
+        //} else if (!delivery.getBreakbeams()[1]) {
+        //  state = 2;
+        //} else
+        if (!delivery.getBreakbeams()[0]) {
+            state = 1;
+        } else {
+            state = 0;
+        }
     }
-  }
 
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {
-    intakeSet = (double) ShuffleboardHelpers.getWidgetValue("Intake/Delivery", "Set Intake");
-    wheelSet = (double) ShuffleboardHelpers.getWidgetValue("Intake/Delivery", "Set Wheel");
-    beltSet = (double) ShuffleboardHelpers.getWidgetValue("Intake/Delivery", "Set Belt");
-    ShuffleboardHelpers.setWidgetValue("Intake/Delivery", "IntakeRun", "Running");
-    intake.setIntake(intakeSet);
-    //delivery.setDeliveryBelt(beltSet);
-    //delivery.setDeliveryWheel(wheelSet);
-  }
-
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
-    if(delivery.getBreakbeams()[state]) {
-      delivery.setDeliveryBelt(beltSet);
-      delivery.setDeliveryWheel(wheelSet);
-    } else if (!delivery.getBreakbeams()[state]) {
-      delivery.stopDeliveryBelt();
-      delivery.stopDeliveryWheel();
-      //state++;
+    // Called when the command is initially scheduled.
+    @Override
+    public void initialize() {
+        intakeSet = (double) ShuffleboardHelpers.getWidgetValue("Intake/Delivery", "Set Intake");
+        wheelSet = (double) ShuffleboardHelpers.getWidgetValue("Intake/Delivery", "Set Wheel");
+        beltSet = (double) ShuffleboardHelpers.getWidgetValue("Intake/Delivery", "Set Belt");
+        ShuffleboardHelpers.setWidgetValue("Intake/Delivery", "IntakeRun", "Running");
+        intake.setIntake(intakeSet);
+        //delivery.setDeliveryBelt(beltSet);
+        //delivery.setDeliveryWheel(wheelSet);
     }
-  }
 
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {
-    intake.stopIntake();
-    delivery.stopDeliveryBelt();
-    delivery.stopDeliveryWheel();
-    ShuffleboardHelpers.setWidgetValue("Intake/Delivery", "IntakeRun", "Ended");
-  }
+    // Called every time the scheduler runs while the command is scheduled.
+    @Override
+    public void execute() {
+        if (delivery.getBreakbeams()[state]) {
+            delivery.setDeliveryBelt(beltSet);
+            delivery.setDeliveryWheel(wheelSet);
+        } else if (!delivery.getBreakbeams()[state]) {
+            delivery.stopDeliveryBelt();
+            delivery.stopDeliveryWheel();
+            //state++;
+        }
+    }
 
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    if (!delivery.getBreakbeams()[1]) {
-     return true;
-   }
-    return false;
-  }
+    // Called once the command ends or is interrupted.
+    @Override
+    public void end(boolean interrupted) {
+        intake.stopIntake();
+        delivery.stopDeliveryBelt();
+        delivery.stopDeliveryWheel();
+        ShuffleboardHelpers.setWidgetValue("Intake/Delivery", "IntakeRun", "Ended");
+    }
+
+    // Returns true when the command should end.
+    @Override
+    public boolean isFinished() {
+        if (!delivery.getBreakbeams()[1]) {
+            return true;
+        }
+        return false;
+    }
 }

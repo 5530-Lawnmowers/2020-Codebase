@@ -56,6 +56,7 @@ public class Turret extends SubsystemBase {
 
     /**
      * Sets the turret motor speed
+     *
      * @param speed The speed to set
      */
     public void setTurret(double speed) {
@@ -73,9 +74,10 @@ public class Turret extends SubsystemBase {
     /**
      * Moves the turret to a set position. If target position is outside of acceptable range,
      * turret moves to limit in that direction.
+     *
      * @param targetPosition The position to set
      */
-    public void setPosition(int targetPosition){
+    public void setPosition(int targetPosition) {
         if (targetPosition > upperLimit) {
             turretSpin.set(ControlMode.Position, upperLimit);
         } else if (targetPosition < lowerLimit) {
@@ -84,6 +86,7 @@ public class Turret extends SubsystemBase {
             turretSpin.set(ControlMode.Position, targetPosition);
         }
     }
+
     /**
      * Stops the turret motor
      */
@@ -102,7 +105,7 @@ public class Turret extends SubsystemBase {
 
     /**
      * Gets the current encoder value
-     * 
+     *
      * @return Position of turret
      */
     public int getEncoderValue() {
@@ -111,6 +114,7 @@ public class Turret extends SubsystemBase {
 
     /**
      * Toggles the state of software limits on the turret
+     *
      * @param isSet {@code true} to abide by software limits, {@code false} to ignore software limits
      */
     public void setSoftwareLimit(boolean isSet) {

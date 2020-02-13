@@ -403,11 +403,11 @@ public class SQLHelper {
             if (type == String.class) {
                 if (!val.equals(lastVals.get(i))) return false;
             } else if (type == Double.class) {
-                if (Math.abs((double)(val) - (double)lastVals.get(i)) > 0.00001) return false;
+                if (Math.abs((double) (val) - (double) lastVals.get(i)) > 0.00001) return false;
             } else if (type == Boolean.class) {
-                if ((boolean)(val) != (boolean)lastVals.get(i)) return false;
+                if ((boolean) (val) != (boolean) lastVals.get(i)) return false;
             } else if (type == Integer.class) {
-                if ((int)(val) != (int)lastVals.get(i)) return false;
+                if ((int) (val) != (int) lastVals.get(i)) return false;
             }
         }
         return true;

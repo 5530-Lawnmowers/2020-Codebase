@@ -136,7 +136,7 @@ public class Drivetrain extends SubsystemBase {
     /**
      * Set the speed of a drivetrain motor
      *
-     * @param speed The speed to set
+     * @param speed      The speed to set
      * @param controller Constants.DT_L1, DT_L2, DT_R1, DT_R2
      */
     public void setDrivetrainMotor(double speed, int controller) {

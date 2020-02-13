@@ -44,6 +44,7 @@ public class Shooter extends SubsystemBase {
 
     /**
      * Sets the speed of both the shooter motors
+     *
      * @param speed The speed to set
      */
     public void setShooter(double speed) {
@@ -53,6 +54,7 @@ public class Shooter extends SubsystemBase {
 
     /**
      * Sets the speed of the hood motor
+     *
      * @param speed The speed to set
      */
     public void setHood(double speed) {

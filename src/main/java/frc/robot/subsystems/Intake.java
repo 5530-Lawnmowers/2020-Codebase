@@ -38,6 +38,7 @@ public class Intake extends SubsystemBase {
 
     /**
      * Sets the speed of the intake motor
+     *
      * @param speed The speed to set
      */
     public void setIntake(double speed) {
@@ -53,6 +54,7 @@ public class Intake extends SubsystemBase {
 
     /**
      * Returns the state of the intake limit switch
+     *
      * @return {@code true} if the switch is tripped, {@code false} otherwise
      */
     public boolean getSwitch() {
