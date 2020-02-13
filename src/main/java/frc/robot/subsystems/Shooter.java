@@ -49,7 +49,7 @@ public class Shooter extends SubsystemBase {
      */
     public void setShooter(double speed) {
         shooter1.set(speed);
-        shooter2.set(speed);
+        shooter2.set(-speed);
     }
 
     /**
