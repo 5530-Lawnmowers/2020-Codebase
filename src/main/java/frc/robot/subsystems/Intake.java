@@ -15,10 +15,13 @@ import com.revrobotics.*;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.ctre.phoenix.motorcontrol.can.*;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Servo;
+
 
 public class Intake extends SubsystemBase {
     //Intake has 2 motors: 2 NEO motors on the intake (Spark)
     private final CANSparkMax intake = new CANSparkMax(Constants.INTAKE, CANSparkMaxLowLevel.MotorType.kBrushless);
+    private final Servo releaseServo = new Servo(6);
 
     private final DigitalInput intakeSwitch = new DigitalInput(Constants.INTAKE_SWITCH);
 
@@ -26,6 +29,7 @@ public class Intake extends SubsystemBase {
      * Creates a new Intake.
      */
     public Intake() {
+        releaseServo.set(0);
         intake.setIdleMode(IdleMode.kBrake);
         intake.setSmartCurrentLimit(40);
     }
