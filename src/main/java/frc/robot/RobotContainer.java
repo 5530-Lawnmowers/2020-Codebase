@@ -23,7 +23,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  */
 public class RobotContainer {
     // The robot's subsystems and commands are defined here...
-    public static XboxController XBController = new XboxController(1);
+    public static final XboxController XBController = new XboxController(1);
 
     private final Climber climber = new Climber();
     private final Drivetrain drivetrain = new Drivetrain();
@@ -39,7 +39,7 @@ public class RobotContainer {
     public static JoystickButton xbrb = new JoystickButton(XBController, 6);
     public static JoystickButton xby = new JoystickButton(XBController, 4);
     public static JoystickButton xbx = new JoystickButton(XBController, 3);
-    public static JoystickButton xbstart = new JoystickButton(XBController, 8);
+    //public static JoystickButton xbstart = new JoystickButton(XBController, 8);
     public static JoystickButton xbback = new JoystickButton(XBController, 7);
     public static JoystickButton xblstick = new JoystickButton(XBController, 9);
     public static JoystickButton xbrstick = new JoystickButton(XBController, 10);
@@ -62,7 +62,10 @@ public class RobotContainer {
         xba.toggleWhenPressed(new IntakeRun(delivery, intake));
         xbb.toggleWhenPressed(new TurretManual(turret));
         xbx.toggleWhenPressed(new TurretAlign(turret));
+        xbback.whenPressed(new Climb(climber));
+
     }
+
 
     /**
      * Use this to pass the autonomous command to the main {@link Robot} class.

@@ -21,7 +21,6 @@ import edu.wpi.first.wpilibj.GenericHID.RumbleType;
  * Add your docs here.
  */
 public class LimelightHelper {
-    public static Timer timer = new Timer();
     public static double getRawY() {
         NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
         NetworkTableEntry ty = table.getEntry("ty");
@@ -67,7 +66,7 @@ public class LimelightHelper {
             RobotContainer.XBController.setRumble(RumbleType.kRightRumble, 1);
             RobotContainer.XBController.setRumble(RumbleType.kLeftRumble, 0);
         }
-        else if(Timer.getMatchTime() <= 30  ) {
+        else if(TimerHelper.getEndgame()) {
             RobotContainer.XBController.setRumble(RumbleType.kRightRumble, 1);
             RobotContainer.XBController .setRumble(RumbleType.kLeftRumble, 1);
         }
