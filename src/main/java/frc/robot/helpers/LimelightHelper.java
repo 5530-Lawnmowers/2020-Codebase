@@ -12,6 +12,7 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.Timer;
 import frc.robot.RobotContainer;
 import edu.wpi.first.wpilibj.GenericHID.HIDType;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
@@ -20,6 +21,7 @@ import edu.wpi.first.wpilibj.GenericHID.RumbleType;
  * Add your docs here.
  */
 public class LimelightHelper {
+    public static Timer timer = new Timer();
     public static double getRawY() {
         NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
         NetworkTableEntry ty = table.getEntry("ty");
@@ -63,8 +65,13 @@ public class LimelightHelper {
     public static void updateRumble() {
         if (getRawA() > 0) {
             RobotContainer.XBController.setRumble(RumbleType.kRightRumble, 1);
-            RobotContainer.XBController.setRumble(RumbleType.kLeftRumble, 1);
-        } else {
+            RobotContainer.XBController.setRumble(RumbleType.kLeftRumble, 0);
+        }
+        else if(Timer.getMatchTime() <= 30  ) {
+            RobotContainer.XBController.setRumble(RumbleType.kRightRumble, 1);
+            RobotContainer.XBController .setRumble(RumbleType.kLeftRumble, 1);
+        }
+        else{
             RobotContainer.XBController.setRumble(RumbleType.kRightRumble, 0);
             RobotContainer.XBController.setRumble(RumbleType.kLeftRumble, 0);
         }
