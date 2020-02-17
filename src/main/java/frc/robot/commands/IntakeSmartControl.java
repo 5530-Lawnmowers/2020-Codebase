@@ -37,6 +37,8 @@ public class IntakeSmartControl extends CommandBase {
     wheelSet = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Set Wheel");
     beltSet = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Set Belt");
 
+    ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "IntakeSmartControl", "Running");
+
     if (delivery.getBreakbeams()[2]) {
       furthestTrigger = 3;
     } else if (delivery.getBreakbeams()[1]) {
@@ -72,6 +74,8 @@ public class IntakeSmartControl extends CommandBase {
     intake.stopIntake();
     delivery.stopDeliveryBelt();
     delivery.stopDeliveryWheel();
+
+    ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "IntakeSmartControl", "Ended");
   }
 
   // Returns true when the command should end.
