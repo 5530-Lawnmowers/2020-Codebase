@@ -29,7 +29,7 @@ public class Intake extends SubsystemBase {
      * Creates a new Intake.
      */
     public Intake() {
-        releaseServo.set(0);
+        releaseServo.set(1);
         intake.setIdleMode(IdleMode.kBrake);
         intake.setSmartCurrentLimit(40);
     }
@@ -62,7 +62,7 @@ public class Intake extends SubsystemBase {
      * @return {@code true} if the switch is tripped, {@code false} otherwise
      */
     public boolean getSwitch() {
-        return intakeSwitch.get();
+        return !intakeSwitch.get();
     }
 
     /**

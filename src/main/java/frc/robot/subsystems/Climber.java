@@ -28,8 +28,9 @@ public class Climber extends SubsystemBase {
      */
     public Climber() {
         rightRelease.set(1);
-        leftRelease.set(1);
+        leftRelease.set(0);
     }
+    
 
     @Override
     public void periodic() {

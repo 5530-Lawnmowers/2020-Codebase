@@ -28,8 +28,9 @@ public class Climb extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    climber.realeaseArm();
+    //Put this in here later
     if(!TimerHelper.getEndgame()){
-      climber.realeaseArm();
     }
     
   }
@@ -38,12 +39,12 @@ public class Climb extends CommandBase {
   @Override
   public void execute() {
     if(RobotContainer.XBController2.getStartButton()){
-      climber.setClimb(.4, Constants.CLIMB_L);
-      climber.setClimb(.4, Constants.CLIMB_R);
+      //climber.setClimb(.4, Constants.CLIMB_L);
+      //climber.setClimb(.4, Constants.CLIMB_R);
     }
     else{
-      climber.setClimb(RobotContainer.XBController2.getX(Hand.kLeft), Constants.CLIMB_L);
-      climber.setClimb(RobotContainer.XBController2.getX(Hand.kRight), Constants.CLIMB_R);
+      //climber.setClimb(RobotContainer.XBController2.getTriggerAxis(Hand.kLeft), Constants.CLIMB_L);
+      //climber.setClimb(RobotContainer.XBController2.getTriggerAxis(Hand.kRight), Constants.CLIMB_R);
     }
     
   }
@@ -51,13 +52,15 @@ public class Climb extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    //TODO Brake Climb on End
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
     if(!TimerHelper.getEndgame()){
-      return true;
+      //return true;
+      //Put this in later
     }
     return false;
   }

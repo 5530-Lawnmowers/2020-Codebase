@@ -85,10 +85,10 @@ public class Delivery extends SubsystemBase {
      */
     public boolean[] getBreakbeams() {
         boolean[] states = new boolean[4];
-        states[0] = deliverySensor1.get();
-        states[1] = deliverySensor2.get();
-        states[2] = deliverySensor3.get();
-        states[3] = deliverySensor4.get();
+        states[0] = !deliverySensor1.get();
+        states[1] = !deliverySensor2.get();
+        states[2] = !deliverySensor3.get();
+        states[3] = !deliverySensor4.get();
         return states;
     }
 }

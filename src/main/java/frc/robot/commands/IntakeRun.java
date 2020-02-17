@@ -50,9 +50,9 @@ public class IntakeRun extends CommandBase {
         wheelSet = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Set Wheel");
         beltSet = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Set Belt");
         ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "IntakeRun", "Running");
-        //intake.setIntake(intakeSet);
+        intake.setIntake(intakeSet);
         delivery.setDeliveryBelt(beltSet);
-        //delivery.setDeliveryWheel(wheelSet);
+        delivery.setDeliveryWheel(wheelSet);
     }
 
     // Called every time the scheduler runs while the command is scheduled.
