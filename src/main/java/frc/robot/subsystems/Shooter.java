@@ -7,15 +7,20 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.DemandType;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import edu.wpi.first.wpilibj.DutyCycleEncoder;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.helpers.LimelightHelper;
 import frc.robot.helpers.ShuffleboardHelpers;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.*;
+import edu.wpi.first.wpilibj.controller.PIDController;
 
 
 public class Shooter extends SubsystemBase {
@@ -23,6 +28,7 @@ public class Shooter extends SubsystemBase {
     private final CANSparkMax shooter2 = new CANSparkMax(Constants.SHOOTER_2, CANSparkMaxLowLevel.MotorType.kBrushless);
 
     private final WPI_TalonSRX hoodAdjust = new WPI_TalonSRX(Constants.ADJUST);
+    private final PIDController hoodController = new PIDController(.01, .007, .007, 10);
 
     private final Encoder angleEnc = new Encoder(Constants.ANGLE_ENCODER_A, Constants.ANGLE_ENCODER_B);
 
