@@ -68,6 +68,21 @@ public class Shooter extends SubsystemBase {
     }
 
     /**
+     * Adjust the hood to a new target
+     *
+     * @return The calculated speed the hood should be set to based on the current Limelight offset
+     */
+    public double hoodControllerCalculate() {
+        double offsetX = LimelightHelper.getRawX();
+        double offsetY = LimelightHelper.getRawY();
+        return hoodController.calculate(offsetY, getOffsetConstY(offsetX, offsetY));
+    }
+
+    public double getOffsetConstY(double offsetX, double offsetY) {
+        return 0;
+    }
+
+    /**
      * Stops the hood motor
      */
     public void stopHood() {
