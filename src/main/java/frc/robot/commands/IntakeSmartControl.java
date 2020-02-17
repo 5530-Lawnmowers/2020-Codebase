@@ -41,6 +41,7 @@ public class IntakeSmartControl extends CommandBase {
     intakeSet = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Set Intake");
     wheelSet = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Set Wheel");
     beltSet = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Set Belt");
+    feedOffset = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Feed Offset");
 
     ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "IntakeSmartControl", "Running");
 
@@ -59,53 +60,53 @@ public class IntakeSmartControl extends CommandBase {
   @Override
   public void execute() {
 
-    // //Intake control logic
-    // if (!intake.getSwitch()) { //If intake switch is not tripped
-    //   intake.setIntake(intakeSet); //Run intake
-    //   triggerReset = true;  //Allow the triggerPosition to be reset
-    // } else {  //If intake switch is tripped
-    //   if(triggerReset) {  //If triggerPosition reset is allowed
-    //     triggerPosition = intake.getIntakePosition(); //Reset triggerPosition
-    //     triggerReset = false; //Disallow reset until switch untripped
-    //   } //If triggerPosition reset not allowed, do nothing (switch has yet to be let go)
-    //   newBall = true; //New ball in the system not yet placed
-    //   intake.setIntake(intakeSet);  //If intake switch is tripped run intake at (maybe?) different level
-    // }
-      
-    // //Delivery Logic
-    // if (furthestTrigger <= 3 && delivery.getBreakbeams()[furthestTrigger]) { //If new Breakbeam triggered
-    //   delivery.stopDeliveryWheel(); //Stop delivery
-    //   delivery.stopDeliveryBelt();
-    //   furthestTrigger++; //New target breakbeam
-    //   newBall = false; //Ball is in place
-    // } else if (newBall && intake.getIntakePosition() >= triggerPosition + feedOffset) { //If intake reach threshold
-    //   delivery.setDeliveryBelt(beltSet); //Run delivery
-    //   delivery.setDeliveryWheel(wheelSet);
-    // } //Otherwise no change
+    // Intake control logic
+    if (!intake.getSwitch()) { // If intake switch is not tripped
+      intake.setIntake(intakeSet); // Run intake
+      triggerReset = true; // Allow the triggerPosition to be reset
+    } else { // If intake switch is tripped
+      if (triggerReset) { // If triggerPosition reset is allowed
+        triggerPosition = intake.getIntakePosition(); // Reset triggerPosition
+        triggerReset = false; // Disallow reset until switch untripped
+      } // If triggerPosition reset not allowed, do nothing (switch has yet to be let go)
+      newBall = true; // New ball in the system not yet placed
+      intake.setIntake(intakeSet); // If intake switch is tripped run intake at (maybe?) different level
+    }
+
+    // Delivery Logic
+    if (furthestTrigger <= 3 && delivery.getBreakbeams()[furthestTrigger]) { // If new Breakbeam triggered
+      delivery.stopDeliveryWheel(); // Stop delivery
+      delivery.stopDeliveryBelt();
+      furthestTrigger++; // New target breakbeam
+      newBall = false; // Ball is in place
+    } else if (newBall && intake.getIntakePosition() >= triggerPosition + feedOffset) { // If intake reach threshold
+      delivery.setDeliveryBelt(beltSet); // Run delivery
+      delivery.setDeliveryWheel(wheelSet);
+    } // Otherwise no change
 
     //Slower control
-    if (!newBall && !intake.getSwitch()) { //If no new ball and no trigger, run intake
-      intake.setIntake(intakeSet);
-      triggerReset = true;
-    } else { //if new ball or trigger
-      if (triggerReset) {
-        triggerPosition = intake.getIntakePosition(); //reset position
-        triggerReset = false;
-        newBall = true; //is new ball
-      }
-      if (intake.getIntakePosition() >= triggerPosition + feedOffset) { //once reach offset, run delivery
-        intake.stopIntake();
-        delivery.setDeliveryBelt(beltSet);
-        delivery.setDeliveryWheel(wheelSet);
-      }
+    // if (!newBall && !intake.getSwitch()) { //If no new ball and no trigger, run intake
+    //   intake.setIntake(intakeSet);
+    //   triggerReset = true;
+    // } else { //if new ball or trigger
+    //   if (triggerReset) {
+    //     triggerPosition = intake.getIntakePosition(); //reset position
+    //     triggerReset = false;
+    //     newBall = true; //is new ball
+    //   }
+    //   if (intake.getIntakePosition() >= triggerPosition + feedOffset) { //once reach offset, run delivery
+    //     intake.stopIntake();
+    //     delivery.setDeliveryBelt(beltSet);
+    //     delivery.setDeliveryWheel(wheelSet);
+    //   }
 
-      if (furthestTrigger <= 3 && delivery.getBreakbeams()[furthestTrigger]) { //if new Breakbeam triggered
-        delivery.stopDeliveryWheel(); //stop delivery
-        delivery.stopDeliveryBelt();
-        furthestTrigger++; // New target breakbeam
-        newBall = false; // Ball is in place
-      }
-    }
+    //   if (furthestTrigger <= 3 && delivery.getBreakbeams()[furthestTrigger]) { //if new Breakbeam triggered
+    //     delivery.stopDeliveryWheel(); //stop delivery
+    //     delivery.stopDeliveryBelt();
+    //     furthestTrigger++; // New target breakbeam
+    //     newBall = false; // Ball is in place
+    //   }
+    // }
   }
 
   // Called once the command ends or is interrupted.

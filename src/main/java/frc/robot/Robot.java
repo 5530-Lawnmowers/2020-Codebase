@@ -45,6 +45,8 @@ public class Robot extends TimedRobot {
         SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Breakbeam 3", true));
         SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Breakbeam 4", true));
         SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Breakbeam Intake", true));
+        SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Feed Offset", 0.25));
+
 
         Shuffleboard.getTab("Turret");
         SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("Position", 0));
