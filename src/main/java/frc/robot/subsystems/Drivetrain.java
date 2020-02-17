@@ -130,13 +130,13 @@ public class Drivetrain extends SubsystemBase {
     }
 
     private double getThrottle() {
-        double n = RobotContainer.XBController.getTriggerAxis(GenericHID.Hand.kRight) -
-                RobotContainer.XBController.getTriggerAxis(GenericHID.Hand.kLeft);
+        double n = RobotContainer.XBController1.getTriggerAxis(GenericHID.Hand.kRight) -
+                RobotContainer.XBController1.getTriggerAxis(GenericHID.Hand.kLeft);
         return Math.abs(n) < 0.1 ? 0 : n;
     }
 
     private double getTurn() {
-        double n = RobotContainer.XBController.getX(GenericHID.Hand.kLeft);
+        double n = RobotContainer.XBController1.getX(GenericHID.Hand.kLeft);
         return Math.abs(n) < 0.1 ? 0 : n;
     }
 

@@ -23,7 +23,10 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  */
 public class RobotContainer {
     // The robot's subsystems and commands are defined here...
-    public static final XboxController XBController = new XboxController(1);
+    public static final XboxController XBController1 = new XboxController(1);
+    //Driver Controller
+    public static final XboxController XBController2 = new XboxController(2);
+    //Operator Controller
 
     private final Climber climber = new Climber();
     private final Drivetrain drivetrain = new Drivetrain();
@@ -33,16 +36,27 @@ public class RobotContainer {
     private final Delivery delivery = new Delivery();
     private final Turret turret = new Turret();
 
-    public static JoystickButton xba = new JoystickButton(XBController, 1);
-    public static JoystickButton xbb = new JoystickButton(XBController, 2);
-    public static JoystickButton xblb = new JoystickButton(XBController, 5);
-    public static JoystickButton xbrb = new JoystickButton(XBController, 6);
-    public static JoystickButton xby = new JoystickButton(XBController, 4);
-    public static JoystickButton xbx = new JoystickButton(XBController, 3);
+    public static JoystickButton xb1a = new JoystickButton(XBController1, 1);
+    public static JoystickButton xb1b = new JoystickButton(XBController1, 2);
+    public static JoystickButton xb1lb = new JoystickButton(XBController1, 5);
+    public static JoystickButton xb1rb = new JoystickButton(XBController1, 6);
+    public static JoystickButton xb1y = new JoystickButton(XBController1, 4);
+    public static JoystickButton xb1x = new JoystickButton(XBController1, 3);
     //public static JoystickButton xbstart = new JoystickButton(XBController, 8);
-    public static JoystickButton xbback = new JoystickButton(XBController, 7);
-    public static JoystickButton xblstick = new JoystickButton(XBController, 9);
-    public static JoystickButton xbrstick = new JoystickButton(XBController, 10);
+    public static JoystickButton xb1back = new JoystickButton(XBController1, 7);
+    public static JoystickButton xb1lstick = new JoystickButton(XBController1, 9);
+    public static JoystickButton xb1rstick = new JoystickButton(XBController1, 10);
+    
+    public static JoystickButton xb2a = new JoystickButton(XBController2, 1);
+    public static JoystickButton xb2b = new JoystickButton(XBController2, 2);
+    public static JoystickButton xb2lb = new JoystickButton(XBController2, 5);
+    public static JoystickButton xb2rb = new JoystickButton(XBController2, 6);
+    public static JoystickButton xb2y = new JoystickButton(XBController2, 4);
+    public static JoystickButton xb2x = new JoystickButton(XBController2, 3);
+    //public static JoystickButton xbstart = new JoystickButton(XBController, 8);
+    public static JoystickButton xb2back = new JoystickButton(XBController2, 7);
+    public static JoystickButton xb2lstick = new JoystickButton(XBController2, 9);
+    public static JoystickButton xb2rstick = new JoystickButton(XBController2, 10);
 
     /**
      * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -59,11 +73,11 @@ public class RobotContainer {
      * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
      */
     private void configureButtonBindings() {
-        xba.toggleWhenPressed(new IntakeRun(delivery, intake));
-        xbb.toggleWhenPressed(new TurretManual(turret));
-        xbx.toggleWhenPressed(new TurretAlign(turret));
-        xbback.whenPressed(new Climb(climber));
-        xby.toggleWhenPressed(new IntakeSmartControl(intake, delivery));
+        xb1a.toggleWhenPressed(new IntakeRun(delivery, intake));
+        xb1b.toggleWhenPressed(new TurretManual(turret));
+        xb1x.toggleWhenPressed(new TurretAlign(turret));
+        xb2back.whenPressed(new Climb(climber));
+        xb1y.toggleWhenPressed(new IntakeSmartControl(intake, delivery));
 
     }
 

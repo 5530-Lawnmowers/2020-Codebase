@@ -63,16 +63,16 @@ public class LimelightHelper {
 
     public static void updateRumble() {
         if (getRawA() > 0) {
-            RobotContainer.XBController.setRumble(RumbleType.kRightRumble, 1);
-            RobotContainer.XBController.setRumble(RumbleType.kLeftRumble, 0);
+            RobotContainer.XBController1.setRumble(RumbleType.kRightRumble, 1);
+            RobotContainer.XBController1.setRumble(RumbleType.kLeftRumble, 0);
         }
         else if(TimerHelper.getEndgame()) {
-            RobotContainer.XBController.setRumble(RumbleType.kRightRumble, 1);
-            RobotContainer.XBController .setRumble(RumbleType.kLeftRumble, 1);
+            RobotContainer.XBController1.setRumble(RumbleType.kRightRumble, 1);
+            RobotContainer.XBController1.setRumble(RumbleType.kLeftRumble, 1);
         }
         else{
-            RobotContainer.XBController.setRumble(RumbleType.kRightRumble, 0);
-            RobotContainer.XBController.setRumble(RumbleType.kLeftRumble, 0);
+            RobotContainer.XBController1.setRumble(RumbleType.kRightRumble, 0);
+            RobotContainer.XBController1.setRumble(RumbleType.kLeftRumble, 0);
         }
 
 

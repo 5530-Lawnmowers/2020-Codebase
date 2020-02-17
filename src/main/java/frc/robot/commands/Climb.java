@@ -36,7 +36,7 @@ public class Climb extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(RobotContainer.XBController.getStartButton()){
+    if(RobotContainer.XBController2.getStartButton()){
       climber.setClimb(.4, Constants.CLIMB_L);
       climber.setClimb(.4, Constants.CLIMB_R);
     }
