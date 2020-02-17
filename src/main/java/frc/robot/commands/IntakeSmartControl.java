@@ -24,6 +24,7 @@ public class IntakeSmartControl extends CommandBase {
   private double triggerPosition;
   private boolean triggerReset;
   private boolean newBall = false;
+  private boolean beltGood = true;
 
   /**
    * Creates a new IntakeSmartControl.
@@ -71,18 +72,30 @@ public class IntakeSmartControl extends CommandBase {
       } // If triggerPosition reset not allowed, do nothing (switch has yet to be let go)
       newBall = true; // New ball in the system not yet placed
       intake.setIntake(intakeSet); // If intake switch is tripped run intake at (maybe?) different level
+      beltGood = false; //Belt needs to move
     }
 
-    // Delivery Logic
+    // Delivery Belt Logic
     if (furthestTrigger <= 3 && delivery.getBreakbeams()[furthestTrigger]) { // If new Breakbeam triggered
-      delivery.stopDeliveryWheel(); // Stop delivery
-      delivery.stopDeliveryBelt();
+      delivery.stopDeliveryBelt(); //Stop Belt
       furthestTrigger++; // New target breakbeam
-      newBall = false; // Ball is in place
+      beltGood = true; //Belt is done
     } else if (newBall && Math.abs(intake.getIntakePosition() - triggerPosition) >= feedOffset) { // If intake reach threshold
       delivery.setDeliveryBelt(beltSet); // Run delivery
-      delivery.setDeliveryWheel(wheelSet);
     } // Otherwise no change
+
+    //Delivery Wheel Logic
+    if (beltGood && delivery.getBreakbeams()[0]) { //If belt done and ball in position
+      delivery.stopDeliveryWheel(); //Stop wheel
+      newBall = false; //All in place
+    } else if (newBall && Math.abs(intake.getIntakePosition() - triggerPosition) >= feedOffset) { //If intake reach threshold
+      delivery.setDeliveryWheel(wheelSet);
+    }
+
+    // Target Logic
+    // if (beltGood && !newBall && delivery.getBreakbeams()[0] && delivery.getBreakbeams()[furthestTrigger]) {
+    //   furthestTrigger++;
+    // }
 
     //Slower control
     // if (!newBall && !intake.getSwitch()) { //If no new ball and no trigger, run intake
