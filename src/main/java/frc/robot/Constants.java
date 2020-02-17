@@ -51,10 +51,9 @@ public final class Constants {
     public static final int DELIVERY_S2 = 1;
     public static final int DELIVERY_S3 = 2;
     public static final int DELIVERY_S4 = 3;
-    public static final int DELIVERY_S5 = 4;
 
     //Intake sensor
-    public static final int INTAKE_SWITCH = 5;
+    public static final int INTAKE_SWITCH = 4;
 
     //Turret sensors
     public static final int TURRET_S1 = 6;
@@ -64,7 +63,7 @@ public final class Constants {
     public static final int ANGLE_ENCODER_A = 8;
     public static final int ANGLE_ENCODER_B = 10;
 
-    public static final int DUTY_CYCLE_SOURCE = 9;
+    public static final int DUTY_CYCLE_SOURCE = 5;
 
     //Spinner motors
     public static final int SPIN = 6;
