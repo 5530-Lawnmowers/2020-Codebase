@@ -32,7 +32,7 @@ public class Delivery extends SubsystemBase {
      */
     public Delivery() {
         deliveryBelt.setIdleMode(IdleMode.kBrake);
-        deliveryBelt.setSmartCurrentLimit(40);
+        //deliveryBelt.setSmartCurrentLimit(40);
         deliveryWheel.setIdleMode(IdleMode.kBrake);
         deliveryWheel.setSmartCurrentLimit(40);
     }
