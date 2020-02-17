@@ -64,4 +64,12 @@ public class Intake extends SubsystemBase {
     public boolean getSwitch() {
         return intakeSwitch.get();
     }
+
+    /**
+     * Get the position of the motor
+     * @return position of the intake encoder
+     */
+    public double getIntakePosition() {
+        return intake.getEncoder().getPosition();
+    }
 }
