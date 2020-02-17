@@ -79,7 +79,7 @@ public class IntakeSmartControl extends CommandBase {
       delivery.stopDeliveryBelt();
       furthestTrigger++; // New target breakbeam
       newBall = false; // Ball is in place
-    } else if (newBall && intake.getIntakePosition() >= triggerPosition + feedOffset) { // If intake reach threshold
+    } else if (newBall && Math.abs(intake.getIntakePosition() - triggerPosition) >= feedOffset) { // If intake reach threshold
       delivery.setDeliveryBelt(beltSet); // Run delivery
       delivery.setDeliveryWheel(wheelSet);
     } // Otherwise no change
