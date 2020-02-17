@@ -26,14 +26,13 @@ public class Delivery extends SubsystemBase {
     private final DigitalInput deliverySensor2 = new DigitalInput(Constants.DELIVERY_S2);
     private final DigitalInput deliverySensor3 = new DigitalInput(Constants.DELIVERY_S3);
     private final DigitalInput deliverySensor4 = new DigitalInput(Constants.DELIVERY_S4);
-    private final DigitalInput deliverySensor5 = new DigitalInput(Constants.DELIVERY_S5);
 
     /**
      * Creates a new Delivery.
      */
     public Delivery() {
         deliveryBelt.setIdleMode(IdleMode.kBrake);
-        deliveryBelt.setSmartCurrentLimit(40);
+        //deliveryBelt.setSmartCurrentLimit(40);
         deliveryWheel.setIdleMode(IdleMode.kBrake);
         deliveryWheel.setSmartCurrentLimit(40);
     }
@@ -45,7 +44,6 @@ public class Delivery extends SubsystemBase {
         ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "Breakbeam 2", deliverySensor2.get());
         ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "Breakbeam 3", deliverySensor3.get());
         ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "Breakbeam 4", deliverySensor4.get());
-        ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "Breakbeam 5", deliverySensor5.get());
     }
 
     /**
@@ -86,12 +84,11 @@ public class Delivery extends SubsystemBase {
      * @return An array of size 5 with the state of each breakbeam sensor
      */
     public boolean[] getBreakbeams() {
-        boolean[] states = new boolean[5];
+        boolean[] states = new boolean[4];
         states[0] = deliverySensor1.get();
         states[1] = deliverySensor2.get();
         states[2] = deliverySensor3.get();
         states[3] = deliverySensor4.get();
-        states[4] = deliverySensor5.get();
         return states;
     }
 }

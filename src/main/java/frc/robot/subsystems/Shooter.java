@@ -17,6 +17,7 @@ import frc.robot.Constants;
 import frc.robot.helpers.LimelightHelper;
 import frc.robot.helpers.ShuffleboardHelpers;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.*;
@@ -33,7 +34,7 @@ public class Shooter extends SubsystemBase {
     private final Encoder angleEnc = new Encoder(Constants.ANGLE_ENCODER_A, Constants.ANGLE_ENCODER_B);
 
     private final DutyCycleEncoder angleAbs = new DutyCycleEncoder(Constants.DUTY_CYCLE_SOURCE);
-
+    
 
     /**
      * Creates a new Shooter.
@@ -64,7 +65,7 @@ public class Shooter extends SubsystemBase {
      * @param speed The speed to set
      */
     public void setHood(double speed) {
-        hoodAdjust.set(speed);
+        hoodAdjust.set(ControlMode.Position, speed);
     }
 
     /**

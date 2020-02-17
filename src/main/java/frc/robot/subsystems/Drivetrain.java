@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.kinematics.DifferentialDriveOdometry;
 import com.ctre.phoenix.*;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.sensors.PigeonIMU;
 import frc.robot.commands.DriveDefault;
 import org.opencv.core.RotatedRect;
@@ -64,6 +65,12 @@ public class Drivetrain extends SubsystemBase {
         drivetrainLeft2.setInverted(false);
         drivetrainRight1.setInverted(false);
         drivetrainRight2.setInverted(false);
+
+        drivetrainLeft1.setNeutralMode(NeutralMode.Brake);
+        drivetrainLeft2.setNeutralMode(NeutralMode.Brake);
+        drivetrainRight1.setNeutralMode(NeutralMode.Brake);
+        drivetrainRight2.setNeutralMode(NeutralMode.Brake);
+
         drivetrainLeft1.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 10);
         drivetrainRight1.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 10);
         drivetrainLeft1.setSelectedSensorPosition(0);
