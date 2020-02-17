@@ -6,6 +6,7 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.commands;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.helpers.*;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -36,12 +37,12 @@ public class Climb extends CommandBase {
   @Override
   public void execute() {
     if(RobotContainer.XBController.getStartButton()){
-      climber.setClimb(.4, 1);
-      climber.setClimb(.4, 2);
+      climber.setClimb(.4, Constants.CLIMB_L);
+      climber.setClimb(.4, Constants.CLIMB_R);
     }
     else{
-      climber.setClimb(0, 1);
-      climber.setClimb(0, 2);
+      climber.setClimb(0, Constants.CLIMB_L);
+      climber.setClimb(0, Constants.CLIMB_R);
     }
     
   }
