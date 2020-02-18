@@ -50,14 +50,24 @@ public class DriveDefault extends CommandBase {
      * Get the lateral value for a stick side on XBox Controller
      */
     public double getLateral(GenericHID.Hand side) {
-        return RobotContainer.XBController1.getX(side);
+        if(RobotContainer.XBController1.getX(side) >= 0){
+            return Math.pow(RobotContainer.XBController1.getX(side), 2);
+        }
+        else{
+            return -Math.pow(RobotContainer.XBController1.getX(side), 2);
+        }
     }
 
     /**
      * Get the trigger value for a trigger side on XBox Controller
      */
     public double getTrigger(GenericHID.Hand side) {
-        return RobotContainer.XBController1.getTriggerAxis(side);
+        if(RobotContainer.XBController1.getTriggerAxis(side) >= 0){
+            return Math.pow(RobotContainer.XBController1.getTriggerAxis(side), 2);
+        }
+        else {
+            return -Math.pow(RobotContainer.XBController1.getTriggerAxis(side), 2);
+        }
     }
 
     /**
