@@ -154,6 +154,35 @@ public class IntakeSmartControl extends CommandBase {
     //     newBall = false; // Ball is in place
     //   }
     // }
+
+
+    if (!intake.getSwitch()) {
+      intake.setIntake(intakeSet);
+      triggerReset = true;
+    } else {
+      if (triggerReset) {
+        triggerReset = false;
+        triggerPosition = intake.getIntakePosition();
+      }
+      if (Math.abs(intake.getIntakePosition() - triggerPosition) >= feedOffset) {
+        intake.stopIntake();
+      }
+    }
+
+    if (delivery.getBreakbeams()[0]) {
+      delivery.stopDeliveryWheel();
+    } else {
+      delivery.setDeliveryWheel(wheelSet);
+    }
+
+    if (delivery.getBreakbeams()[0]) {
+      delivery.setDeliveryBelt(beltSet);
+    } else {
+      delivery.stopDeliveryBelt();
+    }
+    
+
+
   }
 
   // Called once the command ends or is interrupted.
