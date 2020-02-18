@@ -35,6 +35,10 @@ public class IntakeSmartControl extends CommandBase {
   private double wheelTriggerPosition;
   private double wheelFeedOffset;
 
+  private double feedOffset = 0.25;
+  private double triggerPosition;
+  private boolean triggerReset;
+
   /**
    * Creates a new IntakeSmartControl.
    */
