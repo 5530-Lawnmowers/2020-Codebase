@@ -20,11 +20,20 @@ public class IntakeSmartControl extends CommandBase {
   private double beltSet;
 
   private int furthestTrigger;
-  private double feedOffset = 0.25;
-  private double triggerPosition;
-  private boolean triggerReset;
+  private double intakeFeedOffset = 0.25;
+  private double intakeTriggerPosition;
+  private boolean intakeTriggerReset;
+
   private boolean newBall = false;
   private boolean beltGood = true;
+
+  private boolean beltTriggerReset;
+  private double beltTriggerPosition;
+  private double beltFeedOffset;
+
+  private boolean wheelTriggerReset;
+  private double wheelTriggerPosition;
+  private double wheelFeedOffset;
 
   /**
    * Creates a new IntakeSmartControl.
@@ -42,7 +51,9 @@ public class IntakeSmartControl extends CommandBase {
     intakeSet = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Set Intake");
     wheelSet = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Set Wheel");
     beltSet = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Set Belt");
-    feedOffset = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Feed Offset");
+    intakeFeedOffset = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Intake Feed Offset");
+    beltFeedOffset = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Belt Feed Offset");
+    wheelFeedOffset = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Wheel Feed Offset");
 
     ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "IntakeSmartControl", "Running");
 
@@ -55,6 +66,12 @@ public class IntakeSmartControl extends CommandBase {
     } else {
       furthestTrigger = 0;
     }
+
+    newBall = false;
+    beltGood = true;
+    beltTriggerReset = true;
+    intakeTriggerReset = true;
+    wheelTriggerReset = true;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -64,11 +81,11 @@ public class IntakeSmartControl extends CommandBase {
     // Intake control logic
     if (!intake.getSwitch()) { // If intake switch is not tripped
       intake.setIntake(intakeSet); // Run intake
-      triggerReset = true; // Allow the triggerPosition to be reset
+      intakeTriggerReset = true; // Allow the triggerPosition to be reset
     } else { // If intake switch is tripped
-      if (triggerReset) { // If triggerPosition reset is allowed
-        triggerPosition = intake.getIntakePosition(); // Reset triggerPosition
-        triggerReset = false; // Disallow reset until switch untripped
+      if (intakeTriggerReset) { // If triggerPosition reset is allowed
+        intakeTriggerPosition = intake.getIntakePosition(); // Reset intake trigger position
+        intakeTriggerReset = false; // Disallow reset until switch untripped
       } // If triggerPosition reset not allowed, do nothing (switch has yet to be let go)
       newBall = true; // New ball in the system not yet placed
       intake.setIntake(intakeSet); // If intake switch is tripped run intake at (maybe?) different level
@@ -77,18 +94,35 @@ public class IntakeSmartControl extends CommandBase {
 
     // Delivery Belt Logic
     if (furthestTrigger <= 3 && delivery.getBreakbeams()[furthestTrigger]) { // If new Breakbeam triggered
-      delivery.stopDeliveryBelt(); //Stop Belt
-      furthestTrigger++; // New target breakbeam
-      beltGood = true; //Belt is done
-    } else if (newBall && Math.abs(intake.getIntakePosition() - triggerPosition) >= feedOffset) { // If intake reach threshold
+      if (beltTriggerReset) { // If first time triggered
+        beltTriggerPosition = delivery.getDeliveryBeltPosition(); // Set new trigger position
+        beltTriggerReset = false; // Note not first time
+        ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "Belt Position Target", beltTriggerPosition + beltFeedOffset);
+        beltGood = true;
+      }
+      if (Math.abs(delivery.getDeliveryBeltPosition() - beltTriggerPosition) >= beltFeedOffset) { // If offset reached
+        delivery.stopDeliveryBelt(); //Stop Belt
+        furthestTrigger++; // New target breakbeam
+        beltGood = true; //Belt is done
+        beltTriggerReset = true;
+      }
+    } else if (!beltGood && newBall && Math.abs(intake.getIntakePosition() - intakeTriggerPosition) >= intakeFeedOffset) { // If intake reach threshold
       delivery.setDeliveryBelt(beltSet); // Run delivery
     } // Otherwise no change
 
     //Delivery Wheel Logic
     if (beltGood && delivery.getBreakbeams()[0]) { //If belt done and ball in position
-      delivery.stopDeliveryWheel(); //Stop wheel
-      newBall = false; //All in place
-    } else if (newBall && Math.abs(intake.getIntakePosition() - triggerPosition) >= feedOffset) { //If intake reach threshold
+      delivery.setDeliveryBelt(beltSet); // Move belt forward
+      if (wheelTriggerReset) {
+        wheelTriggerPosition = delivery.getDeliveryWheelPosition();
+        wheelTriggerReset = false;
+      }
+      if (Math.abs(delivery.getDeliveryWheelPosition() - wheelTriggerPosition) >= wheelFeedOffset) {
+        delivery.stopDeliveryWheel(); //Stop 
+        delivery.stopDeliveryBelt(); //All
+        newBall = false; //All in place
+      }
+    } else if (newBall && Math.abs(intake.getIntakePosition() - intakeTriggerPosition) >= intakeFeedOffset) { //If intake reach threshold
       delivery.setDeliveryWheel(wheelSet);
     }
 

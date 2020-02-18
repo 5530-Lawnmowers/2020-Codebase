@@ -44,6 +44,7 @@ public class Delivery extends SubsystemBase {
         ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "Breakbeam 2", deliverySensor2.get());
         ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "Breakbeam 3", deliverySensor3.get());
         ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "Breakbeam 4", deliverySensor4.get());
+        ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "Belt Position", getDeliveryBeltPosition());
     }
 
     /**
@@ -76,6 +77,22 @@ public class Delivery extends SubsystemBase {
      */
     public void stopDeliveryWheel() {
         deliveryWheel.stopMotor();
+    }
+
+    /**
+     * Gets the position of the belt motor
+     * @return encoder value of the motor
+     */
+    public double getDeliveryBeltPosition() {
+        return deliveryBelt.getEncoder().getPosition();
+    }
+
+    /**
+     * Gets the position of the wheel motor
+     * @return encoder value of the motor
+     */
+    public double getDeliveryWheelPosition() {
+        return deliveryWheel.getEncoder().getPosition();
     }
 
     /**
