@@ -66,6 +66,13 @@ public class Shooter extends SubsystemBase {
         hoodAdjust.set(ControlMode.Position, speed);
     }
 
+    /**
+     * Get the offset constant in the Y Direction
+     * <br>Used to adjust for air resistance and other factors
+     * @param offsetX The current Limelight offset in the X Direction
+     * @param offsetY The current Limelight offset in the Y Direction
+     * @return
+     */
     public double getOffsetConstY(double offsetX, double offsetY) {
         return 0;
     }
