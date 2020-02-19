@@ -7,12 +7,14 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.*;
 import frc.robot.Constants;
+import frc.robot.commands.TurretLimitInterrupt;
 import edu.wpi.first.wpilibj.DigitalInput;
 import frc.robot.helpers.LimelightHelper;
 import frc.robot.helpers.ShuffleboardHelpers;
@@ -57,19 +59,14 @@ public class Turret extends SubsystemBase {
      */
     public void setTurret(double speed) {
         turretSpin.set(ControlMode.PercentOutput, speed);
-        if (!ignoreSoftwareLimit) {
-            if (turretSpin.getSelectedSensorPosition() >= upperLimit && speed > 0) {
-                turretSpin.set(ControlMode.PercentOutput, -0.3);
-            } else if (turretSpin.getSelectedSensorPosition() <= lowerLimit && speed < 0) {
-                turretSpin.set(ControlMode.PercentOutput, 0.3);
-            }
-        }
         //Positive direction of encoder is positive speed
     }
 
     /**
+     * 
      * Moves the turret to a set position. If target position is outside of acceptable range,
      * turret moves to limit in that direction.
+     * @deprecated setTurret() is prefered as encoder values jump.
      *
      * @param targetPosition The position to set
      */
@@ -126,10 +123,10 @@ public class Turret extends SubsystemBase {
         upperLimit = cycleZero + 1536;
 
         if (!ignoreSoftwareLimit) {
-            if (turretSpin.getSelectedSensorPosition() >= upperLimit && turretSpin.get() > 0) {
-                turretSpin.stopMotor();
-            } else if (turretSpin.getSelectedSensorPosition() <= lowerLimit && turretSpin.get() < 0) {
-                turretSpin.stopMotor();
+            if (turretSpin.getSelectedSensorPosition() >= upperLimit) {
+                CommandScheduler.getInstance().schedule(new TurretLimitInterrupt(this, true));
+            } else if (turretSpin.getSelectedSensorPosition() <= lowerLimit) {
+                CommandScheduler.getInstance().schedule(new TurretLimitInterrupt(this, false));
             }
         }
 
