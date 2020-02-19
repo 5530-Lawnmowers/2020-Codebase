@@ -48,9 +48,6 @@ public class Turret extends SubsystemBase {
 
         resetCycleZero();
 
-        lowerLimit = cycleZero - 1536;
-        upperLimit = cycleZero + 1536;
-
         ShuffleboardHelpers.setWidgetValue("Turret", "Turret Zero", cycleZero);
         ShuffleboardHelpers.setWidgetValue("Turret", "Initial Position", turretSpin.getSelectedSensorPosition());
 
@@ -124,9 +121,6 @@ public class Turret extends SubsystemBase {
         // This method will be called once per scheduler run
         resetCycleZero();
 
-        lowerLimit = cycleZero - 1536;
-        upperLimit = cycleZero + 1536;
-
         if (!ignoreSoftwareLimit) {
             if (turretSpin.getSelectedSensorPosition() >= upperLimit) {
                 CommandScheduler.getInstance().schedule(new TurretLimitInterrupt(this, true));
@@ -153,7 +147,8 @@ public class Turret extends SubsystemBase {
     }
 
     /**
-     * Reset the encoder value of the zero-position. Use regularly as encoder ticks will jump.
+     * Reset the encoder value of the zero-position and resets the limits. 
+     * Use regularly as encoder ticks will jump.
      */
     private void resetCycleZero() {
         if (turretEncoderPositive() >= REL_ZERO && turretEncoderPositive() <= REL_ZERO + 2048) {
@@ -165,5 +160,8 @@ public class Turret extends SubsystemBase {
         } else if (turretEncoderPositive() >= (((REL_ZERO - 2048) % 4096) + 4096) % 4096) {
             cycleZero = turretSpin.getSelectedSensorPosition() + (4096 - turretEncoderPositive()) + REL_ZERO;
         }
+
+        lowerLimit = cycleZero - 1536;
+        upperLimit = cycleZero + 1536;
     }
 }
