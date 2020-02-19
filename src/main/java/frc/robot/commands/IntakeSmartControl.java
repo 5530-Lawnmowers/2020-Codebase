@@ -20,7 +20,7 @@ public class IntakeSmartControl extends CommandBase {
   private double beltSet;
 
   private int furthestTrigger;
-  private double intakeFeedOffset = 0.25;
+  private double intakeFeedOffset = 8;
   private double intakeTriggerPosition;
   private boolean intakeTriggerReset;
 
@@ -34,10 +34,6 @@ public class IntakeSmartControl extends CommandBase {
   private boolean wheelTriggerReset;
   private double wheelTriggerPosition;
   private double wheelFeedOffset;
-
-  private double feedOffset = 0.25;
-  private double triggerPosition;
-  private boolean triggerReset;
 
   /**
    * Creates a new IntakeSmartControl.
@@ -139,13 +135,13 @@ public class IntakeSmartControl extends CommandBase {
     // Second iteration, simpler, should accomplish same results
     if (!intake.getSwitch()) {
       intake.setIntake(intakeSet);
-      triggerReset = true;
+      intakeTriggerReset = true;
     } else {
-      if (triggerReset) {
-        triggerReset = false;
-        triggerPosition = intake.getIntakePosition();
+      if (intakeTriggerReset) {
+        intakeTriggerReset = false;
+        intakeTriggerPosition = intake.getIntakePosition();
       }
-      if (Math.abs(intake.getIntakePosition() - triggerPosition) >= feedOffset) {
+      if (Math.abs(intake.getIntakePosition() - intakeTriggerPosition) >= intakeFeedOffset) {
         intake.stopIntake();
       }
     }
@@ -156,14 +152,13 @@ public class IntakeSmartControl extends CommandBase {
       delivery.setDeliveryWheel(wheelSet);
     }
 
-    if (delivery.getBreakbeams()[0]) {
+    if (delivery.getBreakbeams()[3]) {
+      delivery.stopDeliveryBelt();
+    } else if (delivery.getBreakbeams()[0]) {
       delivery.setDeliveryBelt(beltSet);
     } else {
       delivery.stopDeliveryBelt();
     }
-    
-
-
   }
 
   // Called once the command ends or is interrupted.
@@ -179,7 +174,7 @@ public class IntakeSmartControl extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (delivery.getBreakbeams()[3]) {
+    if (delivery.getBreakbeams()[3] && delivery.getBreakbeams()[0] && intake.getSwitch()) {
       return true;
     }
     return false;
