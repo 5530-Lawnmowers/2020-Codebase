@@ -3,6 +3,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Shooter;
 import frc.robot.helpers.LimelightHelper;
+import frc.robot.helpers.ShuffleboardHelpers;
 
 public class AdjustHood extends CommandBase {
     private final Shooter shooter;
@@ -17,6 +18,7 @@ public class AdjustHood extends CommandBase {
      */
     @Override
     public void initialize() {
+        ShuffleboardHelpers.setWidgetValue("Shooter", "HoodAdjust", "Running");
     }
 
     /**
@@ -67,6 +69,6 @@ public class AdjustHood extends CommandBase {
      */
     @Override
     public void end(boolean interrupted) {
-
+        ShuffleboardHelpers.setWidgetValue("Shooter", "HoodAdjust", "Ended");
     }
 }
