@@ -150,6 +150,7 @@ public class Turret extends SubsystemBase {
      * Reset the encoder value of the zero-position and resets the limits. 
      * Use regularly as encoder ticks will jump.
      */
+    @SuppressWarnings("unused")
     private void resetCycleZero() {
         if (turretEncoderPositive() == REL_ZERO) {
             cycleZero = turretSpin.getSelectedSensorPosition();
