@@ -43,7 +43,7 @@ public class IntakeSmartControl extends CommandBase {
     intakeSet = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Set Intake");
     wheelSet = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Set Wheel");
     beltSet = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Set Belt");
-    intakeFeedOffset = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Feed Offset");
+    intakeFeedOffset = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Intake Feed Offset");
 
     ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "IntakeSmartControl", "Running");
 
