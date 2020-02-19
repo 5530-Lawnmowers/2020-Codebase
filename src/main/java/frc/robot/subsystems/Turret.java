@@ -130,8 +130,12 @@ public class Turret extends SubsystemBase {
         if (!ignoreSoftwareLimit) {
             if (turretSpin.getSelectedSensorPosition() >= upperLimit) {
                 CommandScheduler.getInstance().schedule(new TurretLimitInterrupt(this, true));
+                ShuffleboardHelpers.setWidgetValue("Turret", "TurretLimitInterrupt", "Interrupt Over");
             } else if (turretSpin.getSelectedSensorPosition() <= lowerLimit) {
                 CommandScheduler.getInstance().schedule(new TurretLimitInterrupt(this, false));
+                ShuffleboardHelpers.setWidgetValue("Turret", "TurretLimitInterrupt", "Interrupt Under");
+            } else {
+                ShuffleboardHelpers.setWidgetValue("Turret", "TurretLimitInterrupt", "Safe");
             }
         }
 
