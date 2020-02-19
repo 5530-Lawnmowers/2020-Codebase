@@ -78,7 +78,9 @@ public class RobotContainer {
         xb1x.toggleWhenPressed(new TurretAlign(turret));
         xb2back.whenPressed(new Climb(climber));
         xb1y.toggleWhenPressed(new IntakeSmartControl(intake, delivery));
-
+        //Other buttons in use
+        //DriveDefault: xb1 left trigger, xb1 right trigger, xb1 left stick
+        //TurretManual: xb1 left bumper, xb1 right bumper
     }
 
 
