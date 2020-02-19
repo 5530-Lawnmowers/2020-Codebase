@@ -21,6 +21,8 @@ import edu.wpi.first.wpilibj.GenericHID.RumbleType;
  * Add your docs here.
  */
 public class LimelightHelper {
+    private static final double D_HEIGHT = 23.25;
+
     public static double getRawY() {
         NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
         NetworkTableEntry ty = table.getEntry("ty");
@@ -42,23 +44,17 @@ public class LimelightHelper {
         return a;
     }
 
-    public static double getDistance() {
+    /**
+     * Gets the horizontal distance from the limelight to the target for shooting balls.
+     * <p> TODO: verify D_HEIGHT
+     * @param angleOffset the angle at which the limelight is mounted from the horizontal in degrees
+     * @return the distance to the target
+     */
+    public static double getDistance(double angleOffset) {
         NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
         NetworkTableEntry ty = table.getEntry("ty");
-        double y = ty.getDouble(0.0);
-        double distance = 23.2576688011 + Math.abs(y);
-        distance = Math.toRadians(distance);
-        distance = Math.tan(distance);
-        distance = 41 / distance;
-        return distance;
-    }
-
-    public static double getTargetX(double angle) {
-        return getDistance() * Math.cos(angle);
-    }
-
-    public static double getTargetY(double angle) {
-        return getDistance() * Math.sin(angle);
+        double theta = ty.getDouble(0.0) + angleOffset;
+        return D_HEIGHT / Math.tan(Math.toRadians(theta));
     }
 
     public static void updateRumble() {
