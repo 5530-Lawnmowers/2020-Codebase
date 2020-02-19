@@ -6,7 +6,7 @@ import frc.robot.helpers.LimelightHelper;
 
 public class AdjustHood extends CommandBase {
     private final Shooter shooter;
-
+    private final double THRESHOLD = 0.5;
     public AdjustHood(Shooter shooter) {
         this.shooter = shooter;
         addRequirements(shooter);
@@ -25,6 +25,15 @@ public class AdjustHood extends CommandBase {
      */
     @Override
     public void execute() {
+        double offsetX = LimelightHelper.getRawX();
+        double offsetY = LimelightHelper.getRawY();
+        double offsetConstY = shooter.getOffsetConstY(offsetX, offsetY);
+        if (offsetY + offsetConstY < -THRESHOLD)
+            shooter.setHood(-1);
+        else if (offsetY + offsetConstY > THRESHOLD)
+            shooter.setHood(1);
+        else
+            shooter.stopHood();
     }
 
     /**
