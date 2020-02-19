@@ -51,7 +51,7 @@ public class TurretAlign extends CommandBase {
         //Align via continous power set
         //turret.setTurret(kp * offset - kd * offsetVelocity);
         previousOffset = offset;
-        if (offset < MARGIN) {counter++;}
+        if (Math.abs(offset) < MARGIN) {counter++;}
     }
 
     // Called once the command ends or is interrupted.
