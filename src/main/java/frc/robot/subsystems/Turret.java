@@ -29,7 +29,7 @@ public class Turret extends SubsystemBase {
     private final DigitalInput hardStop2 = new DigitalInput(Constants.TURRET_S2);
 
     //Constants
-    private final int REL_ZERO = 189; //Forward-facing encoder reading mod 4096
+    private final int REL_ZERO = 1330; //Forward-facing encoder reading mod 4096
     private int cycleZero;     //Forward-facing encoder reading for this cycle
     private int lowerLimit;
     private int upperLimit;
@@ -68,7 +68,7 @@ public class Turret extends SubsystemBase {
      * 
      * Moves the turret to a set position. If target position is outside of acceptable range,
      * turret moves to limit in that direction.
-     * @deprecated setTurret() is prefered as encoder values jump.
+     * setTurret() is prefered as encoder values jump.
      *
      * @param targetPosition The position to set
      */
@@ -164,7 +164,7 @@ public class Turret extends SubsystemBase {
             cycleZero = turretSpin.getSelectedSensorPosition() + (4096 - turretEncoderPositive()) + REL_ZERO;
         }
 
-        lowerLimit = cycleZero - 1536;
-        upperLimit = cycleZero + 1536;
+        lowerLimit = cycleZero - 512;
+        upperLimit = cycleZero + 512;
     }
 }

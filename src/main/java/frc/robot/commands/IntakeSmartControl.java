@@ -43,7 +43,7 @@ public class IntakeSmartControl extends CommandBase {
     intakeSet = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Set Intake");
     wheelSet = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Set Wheel");
     beltSet = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Set Belt");
-    feedOffset = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Feed Offset");
+    intakeFeedOffset = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Feed Offset");
 
     ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "IntakeSmartControl", "Running");
 
@@ -59,7 +59,7 @@ public class IntakeSmartControl extends CommandBase {
 
     newBall = false;
     beltGood = true;
-    triggerReset = true;
+    intakeTriggerReset = true;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
