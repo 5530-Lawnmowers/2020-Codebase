@@ -151,13 +151,15 @@ public class Turret extends SubsystemBase {
      * Use regularly as encoder ticks will jump.
      */
     private void resetCycleZero() {
-        if (turretEncoderPositive() >= REL_ZERO && turretEncoderPositive() <= REL_ZERO + 2048) {
+        if (turretEncoderPositive() == REL_ZERO) {
+            cycleZero = turretSpin.getSelectedSensorPosition();
+        } else if (turretEncoderPositive() > REL_ZERO && turretEncoderPositive() <= REL_ZERO + 2048) {
             cycleZero = turretSpin.getSelectedSensorPosition() - (turretEncoderPositive() - REL_ZERO);
-        } else if (turretEncoderPositive() <= (REL_ZERO + 2048) % 4096) {
+        } else if (REL_ZERO % 4096 > 2048 && turretEncoderPositive() < (REL_ZERO + 2048) % 4096) {
             cycleZero = turretSpin.getSelectedSensorPosition() - turretEncoderPositive() - (4096 - REL_ZERO);
-        } else if (turretEncoderPositive() <= REL_ZERO && turretEncoderPositive() >= REL_ZERO - 2048) {
+        } else if (turretEncoderPositive() < REL_ZERO && turretEncoderPositive() >= REL_ZERO - 2048) {
             cycleZero = turretSpin.getSelectedSensorPosition() + (REL_ZERO - turretEncoderPositive());
-        } else if (turretEncoderPositive() >= (((REL_ZERO - 2048) % 4096) + 4096) % 4096) {
+        } else if (REL_ZERO % 4096 < 2048 && turretEncoderPositive() > (((REL_ZERO - 2048) % 4096) + 4096) % 4096) {
             cycleZero = turretSpin.getSelectedSensorPosition() + (4096 - turretEncoderPositive()) + REL_ZERO;
         }
 
