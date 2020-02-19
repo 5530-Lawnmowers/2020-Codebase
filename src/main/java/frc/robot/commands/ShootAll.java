@@ -14,20 +14,22 @@ import frc.robot.subsystems.*;
 public class ShootAll extends CommandBase {
     private Delivery delivery;
     private Shooter shooter;
+    private Intake intake;
     private double accelSpeed = 1.0;
     private double shootSpeed = 0.9;
-    private double feedSpeed = 0.8;
+    private double feedSpeed = 1.0;
     private final double TARGET_VELOCITY = 4850;
     private final double THRESHOLD_VELOCITY = 4650;
 
     /**
      * Creates a new ShootAll.
      */
-    public ShootAll(Delivery delivery, Shooter shooter) {
+    public ShootAll(Delivery delivery, Shooter shooter, Intake intake) {
         // Use addRequirements() here to declare subsystem dependencies.
         addRequirements(delivery, shooter);
         this.shooter = shooter;
         this.delivery = delivery;
+        this.intake = intake;
     }
 
     // Called when the command is initially scheduled.
@@ -40,21 +42,28 @@ public class ShootAll extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        /**
+        
          //If speed too low, stop feed and accelerate at max power
          //If speed close to desired, stop feed and reduce speed to hold power
          //If speed at or above desired, feed ball
-         if (shooter.getShooterVelocity() < THRESHOLD_VELOCITY) {
-         shooter.setShooter(accelSpeed);
-         delivery.stopDeliveryBelt();
-         } else if (shooter.getShooterVelocity() >= THRESHOLD_VELOCITY && shooter.getShooterVelocity() < TARGET_VELOCITY) {
-         shooter.setShooter(shootSpeed);
-         delivery.stopDeliveryBelt();
-         } else if (shooter.getShooterVelocity() >= TARGET_VELOCITY) {
-         delivery.setDeliveryBelt(feedSpeed);
-         }
-         */
-        shooter.setShooter(shootSpeed); //Test just shoot
+        if (shooter.getShooterVelocity() < THRESHOLD_VELOCITY) {
+            shooter.setShooter(accelSpeed);
+            delivery.stopDeliveryBelt();
+        } else if (shooter.getShooterVelocity() >= THRESHOLD_VELOCITY && shooter.getShooterVelocity() < TARGET_VELOCITY) {
+            shooter.setShooter(shootSpeed);
+            delivery.stopDeliveryBelt();
+        } else if (shooter.getShooterVelocity() >= TARGET_VELOCITY) {
+            delivery.setDeliveryBelt(feedSpeed);
+        }
+
+        //Deliver 5th ball in intake to belt system
+        if (!delivery.getBreakbeams()[0] && intake.getSwitch()) {
+            delivery.setDeliveryWheel(0.6);
+        } else {
+            delivery.stopDeliveryWheel();
+        }
+         
+        //shooter.setShooter(shootSpeed); //Test just shoot
 
         ShuffleboardHelpers.setWidgetValue("Shooter", "Shooter Velocity", shooter.getShooterVelocity());
     }
