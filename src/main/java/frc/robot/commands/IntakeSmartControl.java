@@ -98,7 +98,6 @@ public class IntakeSmartControl extends CommandBase {
     //   if (beltTriggerReset) { // If first time triggered
     //     beltTriggerPosition = delivery.getDeliveryBeltPosition(); // Set new trigger position
     //     beltTriggerReset = false; // Note not first time
-    //     ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "Belt Position Target", beltTriggerPosition + beltFeedOffset);
     //     beltGood = true;
     //   }
     //   if (Math.abs(delivery.getDeliveryBeltPosition() - beltTriggerPosition) >= beltFeedOffset) { // If offset reached

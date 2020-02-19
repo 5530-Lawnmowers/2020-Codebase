@@ -49,8 +49,6 @@ public class Robot extends TimedRobot {
         SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Breakbeam Intake", true));
         SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Intake Feed Offset", 8));
         SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Belt Feed Offset", 1));
-        SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Belt Position", 0));
-        SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Belt Position Target", 0));
         SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Wheel Feed Offset", 5));
 
 
