@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.*;
 import frc.robot.Constants;
 import frc.robot.commands.TurretLimitInterrupt;
@@ -38,6 +39,7 @@ public class Turret extends SubsystemBase {
      * Creates a new Turret.
      */
     public Turret() {
+        turretSpin.setNeutralMode(NeutralMode.Brake);
         turretSpin.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 10);
         turretSpin.config_kF(0, .05, 10);
         turretSpin.config_kP(0, .01, 10);
