@@ -21,7 +21,6 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.*;
-import edu.wpi.first.wpilibj.controller.PIDController;
 
 
 public class Shooter extends SubsystemBase {
@@ -29,7 +28,6 @@ public class Shooter extends SubsystemBase {
     private final CANSparkMax shooter2 = new CANSparkMax(Constants.SHOOTER_2, CANSparkMaxLowLevel.MotorType.kBrushless);
 
     private final WPI_TalonSRX hoodAdjust = new WPI_TalonSRX(Constants.ADJUST);
-    private final PIDController hoodController = new PIDController(.01, .007, .007, 10);
 
     private final Encoder angleEnc = new Encoder(Constants.ANGLE_ENCODER_A, Constants.ANGLE_ENCODER_B);
 
@@ -66,17 +64,6 @@ public class Shooter extends SubsystemBase {
      */
     public void setHood(double speed) {
         hoodAdjust.set(ControlMode.Position, speed);
-    }
-
-    /**
-     * Adjust the hood to a new target
-     *
-     * @return The calculated speed the hood should be set to based on the current Limelight offset
-     */
-    public double hoodControllerCalculate() {
-        double offsetX = LimelightHelper.getRawX();
-        double offsetY = LimelightHelper.getRawY();
-        return hoodController.calculate(offsetY, getOffsetConstY(offsetX, offsetY));
     }
 
     public double getOffsetConstY(double offsetX, double offsetY) {
