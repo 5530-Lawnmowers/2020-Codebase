@@ -26,6 +26,7 @@ public class AdjustHood extends CommandBase {
      */
     @Override
     public void execute() {
+        if (Math.abs(LimelightHelper.getRawY()) < 0.001) return;
         shooter.setHood(-shooter.hoodControllerCalculate());
     }
 
