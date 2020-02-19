@@ -38,8 +38,8 @@ public class RobotContainer {
 
     public static JoystickButton xb1a = new JoystickButton(XBController1, 1);
     public static JoystickButton xb1b = new JoystickButton(XBController1, 2);
-    public static JoystickButton xb1lb = new JoystickButton(XBController1, 5);
-    public static JoystickButton xb1rb = new JoystickButton(XBController1, 6);
+    //public static JoystickButton xb1lb = new JoystickButton(XBController1, 5); Used by turret default command
+    //public static JoystickButton xb1rb = new JoystickButton(XBController1, 6); Used by turret default command
     public static JoystickButton xb1y = new JoystickButton(XBController1, 4);
     public static JoystickButton xb1x = new JoystickButton(XBController1, 3);
     //public static JoystickButton xbstart = new JoystickButton(XBController, 8);

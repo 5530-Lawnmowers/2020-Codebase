@@ -15,6 +15,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.*;
 import frc.robot.Constants;
 import frc.robot.commands.TurretLimitInterrupt;
+import frc.robot.commands.TurretManual;
 import edu.wpi.first.wpilibj.DigitalInput;
 import frc.robot.helpers.LimelightHelper;
 import frc.robot.helpers.ShuffleboardHelpers;
@@ -50,6 +51,8 @@ public class Turret extends SubsystemBase {
 
         ShuffleboardHelpers.setWidgetValue("Turret", "Turret Zero", cycleZero);
         ShuffleboardHelpers.setWidgetValue("Turret", "Initial Position", turretSpin.getSelectedSensorPosition());
+
+        setDefaultCommand(new TurretManual(this));
     }
 
     /**
