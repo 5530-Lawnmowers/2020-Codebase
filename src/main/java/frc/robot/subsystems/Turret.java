@@ -41,11 +41,7 @@ public class Turret extends SubsystemBase {
         turretSpin.config_kI(0, .007, 10);
         turretSpin.config_kD(0, .007, 10);
 
-        if (((turretSpin.getSelectedSensorPosition() % 4096) + 4096) % 4096 > REL_ZERO + 2048) {
-            cycleZero = (((turretSpin.getSelectedSensorPosition() / 4096) + 1) * 4096) + REL_ZERO;
-        } else {
-            cycleZero = ((turretSpin.getSelectedSensorPosition() / 4096) * 4096) + REL_ZERO;
-        }
+        resetCycleZero();
 
         lowerLimit = cycleZero - 1536;
         upperLimit = cycleZero + 1536;
@@ -124,11 +120,7 @@ public class Turret extends SubsystemBase {
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
-        if (((turretSpin.getSelectedSensorPosition() % 4096) + 4096) % 4096 > REL_ZERO + 2048) {
-            cycleZero = (((turretSpin.getSelectedSensorPosition() / 4096) + 1) * 4096) + REL_ZERO;
-        } else {
-            cycleZero = ((turretSpin.getSelectedSensorPosition() / 4096) * 4096) + REL_ZERO;
-        }
+        resetCycleZero();
 
         lowerLimit = cycleZero - 1536;
         upperLimit = cycleZero + 1536;
@@ -144,5 +136,28 @@ public class Turret extends SubsystemBase {
         ShuffleboardHelpers.setWidgetValue("Turret", "Turret Zero", cycleZero);
         ShuffleboardHelpers.setWidgetValue("Turret", "Position", turretSpin.getSelectedSensorPosition());
         ShuffleboardHelpers.setWidgetValue("Turret", "Offset X", LimelightHelper.getRawX());
+    }
+
+    /**
+     * Gets the positive form of the encoder reading mod 4096
+     * @return turret position positive mod 4096
+     */
+    private int turretEncoderPositive() {
+        return ((turretSpin.getSelectedSensorPosition() % 4096) + 4096) % 4096;
+    }
+
+    /**
+     * Reset the encoder value of the zero-position. Use regularly as encoder ticks will jump.
+     */
+    private void resetCycleZero() {
+        if (turretEncoderPositive() >= REL_ZERO && turretEncoderPositive() <= REL_ZERO + 2048) {
+            cycleZero = turretSpin.getSelectedSensorPosition() - (turretEncoderPositive() - REL_ZERO);
+        } else if (turretEncoderPositive() <= (REL_ZERO + 2048) % 4096) {
+            cycleZero = turretSpin.getSelectedSensorPosition() - turretEncoderPositive() - (4096 - REL_ZERO);
+        } else if (turretEncoderPositive() <= REL_ZERO && turretEncoderPositive() >= REL_ZERO - 2048) {
+            cycleZero = turretSpin.getSelectedSensorPosition() + (REL_ZERO - turretEncoderPositive());
+        } else if (turretEncoderPositive() >= (((REL_ZERO - 2048) % 4096) + 4096) % 4096) {
+            cycleZero = turretSpin.getSelectedSensorPosition() + (4096 - turretEncoderPositive()) + REL_ZERO;
+        }
     }
 }
