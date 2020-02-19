@@ -14,9 +14,11 @@ import frc.robot.helpers.ShuffleboardHelpers;
 
 public class TurretAlign extends CommandBase {
     private Turret turret;
-    private final int MARGIN = 1;
+    private final int MARGIN = 3;
     private double previousOffset;
-    private final double kp = .01;
+    private double offset;
+    private int counter;
+    private final double kp = .03;
     private final double kd = 0;
 
 
@@ -33,24 +35,23 @@ public class TurretAlign extends CommandBase {
     @Override
     public void initialize() {
         int currentPosition = turret.getEncoderValue();
-        double offset = LimelightHelper.getRawX();
-        turret.setPosition(currentPosition + (int) Math.round(offset * 4096 / 360)); //Instant set
-
+        counter = 0;
+        offset = LimelightHelper.getRawX();
         previousOffset = offset;
-
         ShuffleboardHelpers.setWidgetValue("Turret", "TurretAlign", "Running");
+
+        turret.setPosition(currentPosition + (int) Math.round(offset * 4096 / 360)); //Instant set
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        /**
-         //Align via continous power set
-         double offset = LimelightHelper.getRawX();
-         double offsetVelocity = Math.abs(offset - previousOffset);
-         turret.setTurret(kp * offset - kd * offsetVelocity);
-         previousOffset = offset;
-         */
+        offset = LimelightHelper.getRawX();
+        double offsetVelocity = Math.abs(offset - previousOffset);
+        //Align via continous power set
+        //turret.setTurret(kp * offset - kd * offsetVelocity);
+        previousOffset = offset;
+        if (Math.abs(offset) < MARGIN) {counter++;}
     }
 
     // Called once the command ends or is interrupted.
@@ -63,6 +64,9 @@ public class TurretAlign extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
+        if (counter > 10) {
+            return true;
+        }
         return false;
     }
 }

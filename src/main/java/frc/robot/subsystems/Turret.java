@@ -7,12 +7,16 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.*;
 import frc.robot.Constants;
+import frc.robot.commands.TurretLimitInterrupt;
+import frc.robot.commands.TurretManual;
 import edu.wpi.first.wpilibj.DigitalInput;
 import frc.robot.helpers.LimelightHelper;
 import frc.robot.helpers.ShuffleboardHelpers;
@@ -35,23 +39,19 @@ public class Turret extends SubsystemBase {
      * Creates a new Turret.
      */
     public Turret() {
+        turretSpin.setNeutralMode(NeutralMode.Brake);
         turretSpin.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 10);
         turretSpin.config_kF(0, .05, 10);
         turretSpin.config_kP(0, .01, 10);
         turretSpin.config_kI(0, .007, 10);
         turretSpin.config_kD(0, .007, 10);
 
-        if (((turretSpin.getSelectedSensorPosition() % 4096) + 4096) % 4096 > REL_ZERO + 2048) {
-            cycleZero = (((turretSpin.getSelectedSensorPosition() / 4096) + 1) * 4096) + REL_ZERO;
-        } else {
-            cycleZero = ((turretSpin.getSelectedSensorPosition() / 4096) * 4096) + REL_ZERO;
-        }
-
-        lowerLimit = cycleZero - 1536;
-        upperLimit = cycleZero + 1536;
+        resetCycleZero();
 
         ShuffleboardHelpers.setWidgetValue("Turret", "Turret Zero", cycleZero);
         ShuffleboardHelpers.setWidgetValue("Turret", "Initial Position", turretSpin.getSelectedSensorPosition());
+
+        setDefaultCommand(new TurretManual(this));
     }
 
     /**
@@ -61,19 +61,14 @@ public class Turret extends SubsystemBase {
      */
     public void setTurret(double speed) {
         turretSpin.set(ControlMode.PercentOutput, speed);
-        if (!ignoreSoftwareLimit) {
-            if (turretSpin.getSelectedSensorPosition() >= upperLimit && speed > 0) {
-                turretSpin.set(ControlMode.PercentOutput, -0.3);
-            } else if (turretSpin.getSelectedSensorPosition() <= lowerLimit && speed < 0) {
-                turretSpin.set(ControlMode.PercentOutput, 0.3);
-            }
-        }
         //Positive direction of encoder is positive speed
     }
 
     /**
+     * 
      * Moves the turret to a set position. If target position is outside of acceptable range,
      * turret moves to limit in that direction.
+     * @deprecated setTurret() is prefered as encoder values jump.
      *
      * @param targetPosition The position to set
      */
@@ -124,25 +119,52 @@ public class Turret extends SubsystemBase {
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
-        if (((turretSpin.getSelectedSensorPosition() % 4096) + 4096) % 4096 > REL_ZERO + 2048) {
-            cycleZero = (((turretSpin.getSelectedSensorPosition() / 4096) + 1) * 4096) + REL_ZERO;
-        } else {
-            cycleZero = ((turretSpin.getSelectedSensorPosition() / 4096) * 4096) + REL_ZERO;
-        }
-
-        lowerLimit = cycleZero - 1536;
-        upperLimit = cycleZero + 1536;
+        resetCycleZero();
 
         if (!ignoreSoftwareLimit) {
-            if (turretSpin.getSelectedSensorPosition() >= upperLimit && turretSpin.get() > 0) {
-                turretSpin.stopMotor();
-            } else if (turretSpin.getSelectedSensorPosition() <= lowerLimit && turretSpin.get() < 0) {
-                turretSpin.stopMotor();
+            if (turretSpin.getSelectedSensorPosition() >= upperLimit) {
+                CommandScheduler.getInstance().schedule(new TurretLimitInterrupt(this, true));
+                ShuffleboardHelpers.setWidgetValue("Turret", "TurretLimitInterrupt", "Interrupt Over");
+            } else if (turretSpin.getSelectedSensorPosition() <= lowerLimit) {
+                CommandScheduler.getInstance().schedule(new TurretLimitInterrupt(this, false));
+                ShuffleboardHelpers.setWidgetValue("Turret", "TurretLimitInterrupt", "Interrupt Under");
+            } else {
+                ShuffleboardHelpers.setWidgetValue("Turret", "TurretLimitInterrupt", "Safe");
             }
         }
 
         ShuffleboardHelpers.setWidgetValue("Turret", "Turret Zero", cycleZero);
         ShuffleboardHelpers.setWidgetValue("Turret", "Position", turretSpin.getSelectedSensorPosition());
         ShuffleboardHelpers.setWidgetValue("Turret", "Offset X", LimelightHelper.getRawX());
+    }
+
+    /**
+     * Gets the positive form of the encoder reading mod 4096
+     * @return turret position positive mod 4096
+     */
+    private int turretEncoderPositive() {
+        return ((turretSpin.getSelectedSensorPosition() % 4096) + 4096) % 4096;
+    }
+
+    /**
+     * Reset the encoder value of the zero-position and resets the limits. 
+     * Use regularly as encoder ticks will jump.
+     */
+    @SuppressWarnings("unused")
+    private void resetCycleZero() {
+        if (turretEncoderPositive() == REL_ZERO) {
+            cycleZero = turretSpin.getSelectedSensorPosition();
+        } else if (turretEncoderPositive() > REL_ZERO && turretEncoderPositive() <= REL_ZERO + 2048) {
+            cycleZero = turretSpin.getSelectedSensorPosition() - (turretEncoderPositive() - REL_ZERO);
+        } else if (REL_ZERO % 4096 > 2048 && turretEncoderPositive() < (REL_ZERO + 2048) % 4096) {
+            cycleZero = turretSpin.getSelectedSensorPosition() - turretEncoderPositive() - (4096 - REL_ZERO);
+        } else if (turretEncoderPositive() < REL_ZERO && turretEncoderPositive() >= REL_ZERO - 2048) {
+            cycleZero = turretSpin.getSelectedSensorPosition() + (REL_ZERO - turretEncoderPositive());
+        } else if (REL_ZERO % 4096 < 2048 && turretEncoderPositive() > (((REL_ZERO - 2048) % 4096) + 4096) % 4096) {
+            cycleZero = turretSpin.getSelectedSensorPosition() + (4096 - turretEncoderPositive()) + REL_ZERO;
+        }
+
+        lowerLimit = cycleZero - 1536;
+        upperLimit = cycleZero + 1536;
     }
 }

@@ -8,8 +8,11 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import frc.robot.helpers.ShuffleboardHelpers;
 import frc.robot.subsystems.*;
+import frc.robot.RobotContainer;
 
 public class TurretManual extends CommandBase {
     private Turret turret;
@@ -26,22 +29,28 @@ public class TurretManual extends CommandBase {
 
     // Called when the command is initially scheduled.
     @Override
-    public void initialize() {
-        turretSpeed = (double) ShuffleboardHelpers.getWidgetValue("Turret", "Set Turret");
-        ShuffleboardHelpers.setWidgetValue("Turret", "TurretManual", "Running");
-        turret.setTurret(turretSpeed);
+    public void initialize() { 
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
+        ShuffleboardHelpers.setWidgetValue("Turret", "TurretManual", "Running");
+        turretSpeed = (double) ShuffleboardHelpers.getWidgetValue("Turret", "Set Turret");
+        if (RobotContainer.XBController2.getBumper(Hand.kRight)) {
+            turret.setTurret(turretSpeed);
+        } else if (RobotContainer.XBController2.getBumper(Hand.kLeft)) {
+            turret.setTurret(-turretSpeed);
+        } else {
+            turret.stopTurret();
+        }
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
         ShuffleboardHelpers.setWidgetValue("Turret", "TurretManual", "Ended");
-        turret.stopTurret();
+        //turret.stopTurret();
     }
 
     // Returns true when the command should end.

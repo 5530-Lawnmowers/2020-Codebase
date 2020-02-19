@@ -44,7 +44,6 @@ public class Delivery extends SubsystemBase {
         ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "Breakbeam 2", deliverySensor2.get());
         ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "Breakbeam 3", deliverySensor3.get());
         ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "Breakbeam 4", deliverySensor4.get());
-        ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "Belt Position", getDeliveryBeltPosition());
     }
 
     /**
