@@ -28,6 +28,7 @@ public class AdjustHood extends CommandBase {
         double offsetX = LimelightHelper.getRawX();
         double offsetY = LimelightHelper.getRawY();
         double offsetConstY = shooter.getOffsetConstY(offsetX, offsetY);
+        if (shooter.getAngleAbs() > 1.732 || shooter.getAngleAbs() < 0.634) return;
         if (offsetY + offsetConstY < -THRESHOLD)
             shooter.setHood(-1);
         else if (offsetY + offsetConstY > THRESHOLD)
