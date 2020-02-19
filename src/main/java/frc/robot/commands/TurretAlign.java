@@ -40,7 +40,7 @@ public class TurretAlign extends CommandBase {
         previousOffset = offset;
         ShuffleboardHelpers.setWidgetValue("Turret", "TurretAlign", "Running");
 
-        turret.setPosition(currentPosition + (int) Math.round(offset * 4096 / 360)); //Instant set
+        //turret.setPosition(currentPosition + (int) Math.round(offset * 4096 / 360)); //Instant set
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -49,9 +49,9 @@ public class TurretAlign extends CommandBase {
         offset = LimelightHelper.getRawX();
         double offsetVelocity = Math.abs(offset - previousOffset);
         //Align via continous power set
-        //turret.setTurret(kp * offset - kd * offsetVelocity);
+        turret.setTurret(kp * offset - kd * offsetVelocity);
         previousOffset = offset;
-        if (Math.abs(offset) < MARGIN) {counter++;}
+        //if (Math.abs(offset) < MARGIN) {counter++;}
     }
 
     // Called once the command ends or is interrupted.
@@ -64,9 +64,9 @@ public class TurretAlign extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        if (counter > 10) {
-            return true;
-        }
+        //if (counter > 10) {
+        //    return true;
+        //}
         return false;
     }
 }

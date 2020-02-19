@@ -16,7 +16,7 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.*;
 import frc.robot.Constants;
 import frc.robot.commands.TurretLimitInterrupt;
-import frc.robot.commands.TurretManual;
+import frc.robot.commands.TurretAlign;
 import edu.wpi.first.wpilibj.DigitalInput;
 import frc.robot.helpers.LimelightHelper;
 import frc.robot.helpers.ShuffleboardHelpers;
@@ -51,7 +51,7 @@ public class Turret extends SubsystemBase {
         ShuffleboardHelpers.setWidgetValue("Turret", "Turret Zero", cycleZero);
         ShuffleboardHelpers.setWidgetValue("Turret", "Initial Position", turretSpin.getSelectedSensorPosition());
 
-        setDefaultCommand(new TurretManual(this));
+        setDefaultCommand(new TurretAlign(this));
     }
 
     /**
@@ -164,7 +164,7 @@ public class Turret extends SubsystemBase {
             cycleZero = turretSpin.getSelectedSensorPosition() + (4096 - turretEncoderPositive()) + REL_ZERO;
         }
 
-        lowerLimit = cycleZero - 512;
-        upperLimit = cycleZero + 512;
+        lowerLimit = cycleZero - 1024;
+        upperLimit = cycleZero + 1024;
     }
 }
