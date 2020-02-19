@@ -74,10 +74,12 @@ public class RobotContainer {
      */
     private void configureButtonBindings() {
         xb1a.toggleWhenPressed(new IntakeRun(delivery, intake));
-        xb1b.toggleWhenPressed(new ShootAll(delivery, shooter, intake));
-        xb1x.toggleWhenPressed(new TurretAlign(turret));
-        xb2back.whenPressed(new Climb(climber));
         xb1y.toggleWhenPressed(new IntakeSmartControl(intake, delivery));
+
+        xb2b.toggleWhenPressed(new ShootAll(delivery, shooter, intake));
+        xb2x.toggleWhenPressed(new TurretAlign(turret));
+        xb2back.whenPressed(new Climb(climber));
+
         //Other buttons in use
         //DriveDefault: xb1 left trigger, xb1 right trigger, xb1 left stick
         //TurretManual: xb1 left bumper, xb1 right bumper

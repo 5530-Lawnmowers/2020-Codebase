@@ -37,9 +37,9 @@ public class TurretManual extends CommandBase {
     public void execute() {
         ShuffleboardHelpers.setWidgetValue("Turret", "TurretManual", "Running");
         turretSpeed = (double) ShuffleboardHelpers.getWidgetValue("Turret", "Set Turret");
-        if (RobotContainer.XBController1.getBumper(Hand.kRight)) {
+        if (RobotContainer.XBController2.getBumper(Hand.kRight)) {
             turret.setTurret(turretSpeed);
-        } else if (RobotContainer.XBController1.getBumper(Hand.kLeft)) {
+        } else if (RobotContainer.XBController2.getBumper(Hand.kLeft)) {
             turret.setTurret(-turretSpeed);
         } else {
             turret.stopTurret();
