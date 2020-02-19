@@ -26,7 +26,7 @@ public class AdjustHood extends CommandBase {
      */
     @Override
     public void execute() {
-        shooter.setHood(shooter.hoodControllerCalculate());
+        shooter.setHood(-shooter.hoodControllerCalculate());
     }
 
     /**
