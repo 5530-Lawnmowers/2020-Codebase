@@ -29,13 +29,17 @@ public class Hood extends SubsystemBase {
 
     @Override
     public void periodic() {
-        ShuffleboardHelpers.setWidgetValue("Shooter", "Hood Position", angleAbs.get());
+        ShuffleboardHelpers.setWidgetValue("Hood", "Hood Position", angleAbs.get());
         resetLimits();
 
         if (getAngleAbs() > upperLimit) {
             CommandScheduler.getInstance().schedule(new HoodLimitInterrupt(this, true));
+            ShuffleboardHelpers.setWidgetValue("Hood", "HoodLimitInterrupt", "Interrupt Over");
         } else if (getAngleAbs() < lowerLimit) {
             CommandScheduler.getInstance().schedule(new HoodLimitInterrupt(this, false));
+            ShuffleboardHelpers.setWidgetValue("Hood", "HoodLimitInterrupt", "Interrupt Under");
+        } else {
+            ShuffleboardHelpers.setWidgetValue("Hood", "HoodLimitInterrupt", "Safe");
         }
     }
 

@@ -17,7 +17,7 @@ public class HoodAdjust extends CommandBase {
      */
     @Override
     public void initialize() {
-        ShuffleboardHelpers.setWidgetValue("Shooter", "HoodAdjust", "Running");
+        ShuffleboardHelpers.setWidgetValue("Hood", "HoodAdjust", "Running");
     }
 
     /**
@@ -65,6 +65,6 @@ public class HoodAdjust extends CommandBase {
      */
     @Override
     public void end(boolean interrupted) {
-        ShuffleboardHelpers.setWidgetValue("Shooter", "HoodAdjust", "Ended");
+        ShuffleboardHelpers.setWidgetValue("Hood", "HoodAdjust", "Ended");
     }
 }
