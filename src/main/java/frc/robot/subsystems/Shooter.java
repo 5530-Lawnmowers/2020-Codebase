@@ -28,7 +28,7 @@ public class Shooter extends SubsystemBase {
     private final CANSparkMax shooter1 = new CANSparkMax(Constants.SHOOTER_1, CANSparkMaxLowLevel.MotorType.kBrushless);
     private final CANSparkMax shooter2 = new CANSparkMax(Constants.SHOOTER_2, CANSparkMaxLowLevel.MotorType.kBrushless);
 
-    private final WPI_TalonSRX hoodAdjust = new WPI_TalonSRX(Constants.ADJUST);
+    private final WPI_TalonSRX hoodAdjust = new WPI_TalonSRX(Constants.ANGLE);
     private final PIDController hoodController = new PIDController(.01, 0, 0, 10);
 
     private final DutyCycleEncoder angleAbs = new DutyCycleEncoder(Constants.DUTY_CYCLE_SOURCE);
