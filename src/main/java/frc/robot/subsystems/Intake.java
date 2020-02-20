@@ -21,7 +21,7 @@ import edu.wpi.first.wpilibj.Servo;
 public class Intake extends SubsystemBase {
     //Intake has 2 motors: 2 NEO motors on the intake (Spark)
     private final CANSparkMax intake = new CANSparkMax(Constants.INTAKE, CANSparkMaxLowLevel.MotorType.kBrushless);
-    private final Servo releaseServo = new Servo(6);
+    private final Servo releaseServo = new Servo(Constants.INTAKE_RELEASE);
 
     private final DigitalInput intakeSwitch = new DigitalInput(Constants.INTAKE_SWITCH);
 

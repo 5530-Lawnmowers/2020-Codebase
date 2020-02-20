@@ -68,6 +68,13 @@ public final class Constants {
     //Spinner Servos
     public static final int SPIN_ACT = 0;      //Servo
 
+    //Climb Release Servos
+    public static final int CLIMB_RELEASE_R = 7; //Servo
+    public static final int CLIMB_RELEASE_L = 8; //Servo
+
+    //Intake Release Servo
+    public static final int INTAKE_RELEASE = 6; //Servo
+
     //Spinner color sensor
     public static final I2C.Port I2C_PORT = I2C.Port.kOnboard;
 
