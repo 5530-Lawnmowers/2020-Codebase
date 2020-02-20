@@ -18,8 +18,8 @@ public class ShootAll extends CommandBase {
     private double accelSpeed = 1.0;
     private double shootSpeed = 0.9;
     private double feedSpeed = 1.0;
-    private final double TARGET_VELOCITY = 4850;
-    private final double THRESHOLD_VELOCITY = 4650;
+    private final double TARGET_VELOCITY = 5000;
+    private final double THRESHOLD_VELOCITY = 4900;
 
     /**
      * Creates a new ShootAll.
