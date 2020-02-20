@@ -78,7 +78,7 @@ public class RobotContainer {
 
         xb2a.toggleWhenPressed(new ShootManual(shooter));
         xb2b.toggleWhenPressed(new ShootAll(delivery, shooter, intake));
-        xb2x.toggleWhenPressed(new TurretAlign(turret));
+        //xb2x.toggleWhenPressed(new TurretAlign(turret));
         xb2back.whenPressed(new Climb(climber));
 
         //Other buttons in use

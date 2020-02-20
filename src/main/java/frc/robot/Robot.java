@@ -62,6 +62,11 @@ public class Robot extends TimedRobot {
         SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("TurretLimitInterrupt", "Init"));
         SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("Offset X", 0));
         SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("Initial Position", 0));
+        SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("kP", 0.3));
+        SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("kD", 0));
+
+
+
 
         Shuffleboard.getTab("Shooter");
         SQLHelper.stageWidget(Shuffleboard.getTab("Shooter").add("Hood Position", 0));

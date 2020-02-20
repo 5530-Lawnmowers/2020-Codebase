@@ -18,8 +18,8 @@ public class TurretAlign extends CommandBase {
     private double previousOffset;
     private double offset;
     private int counter;
-    private final double kp = .03;
-    private final double kd = 0;
+    private double kp = .03;
+    private double kd = 0;
 
 
     /**
@@ -48,6 +48,8 @@ public class TurretAlign extends CommandBase {
     public void execute() {
         offset = LimelightHelper.getRawX();
         double offsetVelocity = Math.abs(offset - previousOffset);
+        kp = (double) ShuffleboardHelpers.getWidgetValue("Turret", "kP");
+        kd = (double) ShuffleboardHelpers.getWidgetValue("Turret", "kD");
         //Align via continous power set
         turret.setTurret(kp * offset - kd * offsetVelocity);
         previousOffset = offset;
