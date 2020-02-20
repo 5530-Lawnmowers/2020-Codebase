@@ -5,11 +5,11 @@ import frc.robot.subsystems.Shooter;
 import frc.robot.helpers.LimelightHelper;
 import frc.robot.helpers.ShuffleboardHelpers;
 
-public class AdjustHood extends CommandBase {
-    private final Shooter shooter;
-    public AdjustHood(Shooter shooter) {
-        this.shooter = shooter;
-        addRequirements(shooter);
+public class HoodAdjust extends CommandBase {
+    private final Hood hood;
+    public HoodAdjust(Hood hood) {
+        this.hood = hood;
+        addRequirements(hood);
     }
 
     /**
@@ -26,8 +26,11 @@ public class AdjustHood extends CommandBase {
      */
     @Override
     public void execute() {
-        if (Math.abs(LimelightHelper.getRawY()) < 0.001) return;
-        shooter.setHood(-shooter.hoodControllerCalculate());
+        if (Math.abs(LimelightHelper.getRawY()) < 0.001) {
+            hood.stopHood();
+            return;
+        }
+        hood.setHood(-hood.hoodControllerCalculate());
     }
 
     /**

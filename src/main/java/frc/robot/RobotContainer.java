@@ -35,6 +35,7 @@ public class RobotContainer {
     private final Spinner spinner = new Spinner();
     private final Delivery delivery = new Delivery();
     private final Turret turret = new Turret();
+    private final Hood hood = new Hood();
 
     public static JoystickButton xb1a = new JoystickButton(XBController1, 1);
     public static JoystickButton xb1b = new JoystickButton(XBController1, 2);
