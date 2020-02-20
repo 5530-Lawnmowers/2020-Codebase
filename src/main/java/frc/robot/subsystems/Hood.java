@@ -5,8 +5,11 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.DutyCycleEncoder;
 import edu.wpi.first.wpilibj.controller.PIDController;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.commands.HoodAdjust;
+import frc.robot.commands.HoodLimitInterrupt;
 import frc.robot.helpers.LimelightHelper;
 import frc.robot.helpers.ShuffleboardHelpers;
 
@@ -21,12 +24,19 @@ public class Hood extends SubsystemBase {
 
     public Hood() {
         resetLimits();
+        setDefaultCommand(new HoodAdjust(this));
     }
 
     @Override
     public void periodic() {
         ShuffleboardHelpers.setWidgetValue("Shooter", "Hood Position", angleAbs.get());
         resetLimits();
+
+        if (getAngleAbs() > upperLimit) {
+            CommandScheduler.getInstance().schedule(new HoodLimitInterrupt(this, true));
+        } else if (getAngleAbs() < lowerLimit) {
+            CommandScheduler.getInstance().schedule(new HoodLimitInterrupt(this, false));
+        }
     }
 
     /**
