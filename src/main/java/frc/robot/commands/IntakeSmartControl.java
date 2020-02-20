@@ -23,6 +23,7 @@ public class IntakeSmartControl extends CommandBase {
   private double intakeFeedOffset = 8;
   private double intakeTriggerPosition;
   private boolean intakeTriggerReset;
+  private boolean finalBall;
 
   private boolean newBall = false;
   private boolean beltGood = true;
@@ -60,6 +61,7 @@ public class IntakeSmartControl extends CommandBase {
     newBall = false;
     beltGood = true;
     intakeTriggerReset = true;
+    finalBall = false;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -130,6 +132,9 @@ public class IntakeSmartControl extends CommandBase {
       }
       if (Math.abs(intake.getIntakePosition() - intakeTriggerPosition) >= intakeFeedOffset) {
         intake.stopIntake();
+        if (delivery.getBreakbeams()[0] && delivery.getBreakbeams()[3]) {
+          finalBall = true;
+        }
       }
     }
 
@@ -161,9 +166,6 @@ public class IntakeSmartControl extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (delivery.getBreakbeams()[3] && delivery.getBreakbeams()[0] && intake.getSwitch()) {
-      return true;
-    }
-    return false;
+    return finalBall;
   }
 }
