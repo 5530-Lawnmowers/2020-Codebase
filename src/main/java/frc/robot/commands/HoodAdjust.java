@@ -26,11 +26,13 @@ public class HoodAdjust extends CommandBase {
      */
     @Override
     public void execute() {
-        if (Math.abs(LimelightHelper.getRawY()) < 0.001) {
-            hood.stopHood();
-            return;
+        if (hood.getAngleAbs() > hood.getUpperLimit()) {
+
         }
-        hood.setHood(-hood.hoodControllerCalculate());
+        if (LimelightHelper.getRawA() > 0)
+            hood.setHood(-hood.hoodControllerCalculate());
+        else
+            hood.stopHood();
     }
 
     /**
