@@ -14,7 +14,7 @@ import frc.robot.helpers.LimelightHelper;
 import frc.robot.helpers.ShuffleboardHelpers;
 
 public class Hood extends SubsystemBase {
-    private final WPI_TalonSRX hoodAdjust = new WPI_TalonSRX(Constants.ADJUST);
+    private final WPI_TalonSRX hoodAdjust = new WPI_TalonSRX(Constants.ANGLE);
     private final PIDController hoodController = new PIDController(.05, 0, 0, 10);
 
     private final DutyCycleEncoder angleAbs = new DutyCycleEncoder(Constants.DUTY_CYCLE_SOURCE);
