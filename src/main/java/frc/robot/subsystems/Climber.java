@@ -16,8 +16,8 @@ import frc.robot.RobotContainer;
 import com.ctre.phoenix.motorcontrol.can.*;
 
 public class Climber extends SubsystemBase {
-    private final Servo leftRelease = new Servo(8);
-    private final Servo rightRelease = new Servo(7);
+    private final Servo leftRelease = new Servo(Constants.CLIMB_RELEASE_L);
+    private final Servo rightRelease = new Servo(Constants.CLIMB_RELEASE_R);
 
     private final WPI_TalonSRX climbLeft = new WPI_TalonSRX(Constants.CLIMB_L);
     private final WPI_TalonSRX climbRight = new WPI_TalonSRX(Constants.CLIMB_R);

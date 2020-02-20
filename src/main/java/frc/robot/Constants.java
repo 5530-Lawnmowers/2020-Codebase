@@ -43,33 +43,37 @@ public final class Constants {
     //Shooter motors
     public static final int SHOOTER_1 = 1; //SparkMAX
     public static final int SHOOTER_2 = 5; //SparkMAX
-    public static final int ANGLE = 15;    //UNKNOWN
-    public static final int TURRET = 16;   //UNKNOWN
-
-    //Delivery sensors
-    public static final int DELIVERY_S1 = 0;
-    public static final int DELIVERY_S2 = 1;
-    public static final int DELIVERY_S3 = 2;
-    public static final int DELIVERY_S4 = 3;
-
-    //Intake sensor
-    public static final int INTAKE_SWITCH = 4;
-
-    //Turret sensors
-    public static final int TURRET_S1 = 6;
-    public static final int TURRET_S2 = 7;
-
-    //Shooter Encoder
-    public static final int ANGLE_ENCODER_A = 8;
-    public static final int ANGLE_ENCODER_B = 10;
-
-    public static final int DUTY_CYCLE_SOURCE = 5;
+    public static final int ANGLE = 15;    //Talon
+    public static final int TURRET = 16;   //Talon
 
     //Spinner motors
     public static final int SPIN = 6;
+    
+    //Delivery sensors
+    public static final int DELIVERY_S1 = 0; //DIO
+    public static final int DELIVERY_S2 = 1; //DIO
+    public static final int DELIVERY_S3 = 2; //DIO
+    public static final int DELIVERY_S4 = 3; //DIO
+
+    //Intake sensor
+    public static final int INTAKE_SWITCH = 4; //DIO
+
+    //Turret sensors
+    public static final int TURRET_S1 = 6; //DIO?
+    public static final int TURRET_S2 = 7; //DIO?
+
+    //Shooter Encoder
+    public static final int DUTY_CYCLE_SOURCE = 5; //DIO
 
     //Spinner Servos
     public static final int SPIN_ACT = 0;      //Servo
+
+    //Climb Release Servos
+    public static final int CLIMB_RELEASE_R = 7; //Servo
+    public static final int CLIMB_RELEASE_L = 8; //Servo
+
+    //Intake Release Servo
+    public static final int INTAKE_RELEASE = 6; //Servo
 
     //Spinner color sensor
     public static final I2C.Port I2C_PORT = I2C.Port.kOnboard;

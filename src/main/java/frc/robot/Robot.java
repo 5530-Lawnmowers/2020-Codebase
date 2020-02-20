@@ -38,7 +38,7 @@ public class Robot extends TimedRobot {
     public void robotInit() {
         Shuffleboard.getTab("Intake and Delivery");
         SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Set Intake", -0.4));
-        SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Set Wheel", 0.6));
+        SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Set Wheel", 0.5));
         SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Set Belt", 0.8));
         SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("IntakeRun", "Init"));
         SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("IntakeSmartControl", "Init"));
@@ -62,6 +62,13 @@ public class Robot extends TimedRobot {
         SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("TurretLimitInterrupt", "Init"));
         SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("Offset X", 0));
         SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("Initial Position", 0));
+        SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("kP", 0.3));
+        SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("kD", 0));
+        SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("TurretDefault", "Init"));
+
+
+
+
 
         Shuffleboard.getTab("Shooter");
         SQLHelper.stageWidget(Shuffleboard.getTab("Shooter").add("Hood Position", 0));
