@@ -49,12 +49,14 @@ public class TurretDefault extends CommandBase {
       turret.setTurret(manualSet);
     } else if (RobotContainer.XBController2.getBumper(Hand.kLeft)) { //Manual counter-clockwise
       turret.setTurret(-manualSet);
-    } else { //Default to auto-align
+    } else if (LimelightHelper.getRawA() > 0) { //Default to auto-align
       double offsetVelocity = Math.abs(offset - previousOffset);
       kP = (double) ShuffleboardHelpers.getWidgetValue("Turret", "kP");
       kD = (double) ShuffleboardHelpers.getWidgetValue("Turret", "kD");
       //Align via continous power set
       turret.setTurret(kP * offset - kD * offsetVelocity);
+    } else {
+      turret.stopTurret();
     }
 
     previousOffset = offset;
