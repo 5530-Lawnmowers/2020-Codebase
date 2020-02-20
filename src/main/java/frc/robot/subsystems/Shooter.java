@@ -35,8 +35,8 @@ public class Shooter extends SubsystemBase {
      * @param speed The speed to set
      */
     public void setShooter(double speed) {
-        shooter1.set(speed);
-        shooter2.set(-speed);
+        shooter1.set(-speed);
+        shooter2.set(speed);
     }
 
     /**
@@ -48,6 +48,6 @@ public class Shooter extends SubsystemBase {
     }
 
     public double getShooterVelocity() {
-        return shooter1.getEncoder().getVelocity();
+        return shooter2.getEncoder().getVelocity();
     }
 }
