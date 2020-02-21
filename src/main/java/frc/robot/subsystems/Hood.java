@@ -34,7 +34,7 @@ public class Hood extends SubsystemBase {
     @Override
     public void periodic() {
         ShuffleboardHelpers.setWidgetValue("Hood", "Hood Position", angleAbs.get());
-        resetLimits();
+        //resetLimits();
 
         if (!ignoreSoftwareLimits) {
             if (getAngleAbs() > upperLimit) {
