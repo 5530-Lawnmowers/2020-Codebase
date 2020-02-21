@@ -12,24 +12,24 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.subsystems.*;
 
 public class HoodLimitInterrupt extends InstantCommand {
-  private Hood hood;
-  private boolean goUp;
-  private double recoverSpeed = 0.3;
+    private Hood hood;
+    private boolean goUp;
+    private double recoverSpeed = 0.3;
 
-  public HoodLimitInterrupt(Hood hood, boolean overLimit) {
-    // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(hood);
-    this.hood = hood;
-    goUp = overLimit;
-  }
-
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {
-    if (goUp) {
-      hood.setHood(-recoverSpeed);
-    } else {
-      hood.setHood(recoverSpeed);
+    public HoodLimitInterrupt(Hood hood, boolean overLimit) {
+        // Use addRequirements() here to declare subsystem dependencies.
+        addRequirements(hood);
+        this.hood = hood;
+        goUp = overLimit;
     }
-  }
+
+    // Called when the command is initially scheduled.
+    @Override
+    public void initialize() {
+        if (goUp) {
+            hood.setHood(-recoverSpeed);
+        } else {
+            hood.setHood(recoverSpeed);
+        }
+    }
 }

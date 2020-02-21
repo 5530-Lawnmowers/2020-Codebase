@@ -67,6 +67,7 @@ public class Intake extends SubsystemBase {
 
     /**
      * Get the position of the motor
+     *
      * @return position of the intake encoder
      */
     public double getIntakePosition() {

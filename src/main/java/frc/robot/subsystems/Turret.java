@@ -65,7 +65,6 @@ public class Turret extends SubsystemBase {
     }
 
     /**
-     * 
      * Moves the turret to a set position. If target position is outside of acceptable range,
      * turret moves to limit in that direction.
      * setTurret() is prefered as encoder values jump.
@@ -140,6 +139,7 @@ public class Turret extends SubsystemBase {
 
     /**
      * Gets the positive form of the encoder reading mod 4096
+     *
      * @return turret position positive mod 4096
      */
     private int turretEncoderPositive() {
@@ -147,7 +147,7 @@ public class Turret extends SubsystemBase {
     }
 
     /**
-     * Reset the encoder value of the zero-position and resets the limits. 
+     * Reset the encoder value of the zero-position and resets the limits.
      * Use regularly as encoder ticks will jump.
      */
     @SuppressWarnings("unused")

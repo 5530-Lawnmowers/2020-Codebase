@@ -49,7 +49,7 @@ public class RobotContainer {
     public static JoystickButton xb1back = new JoystickButton(XBController1, 7);
     public static JoystickButton xb1lstick = new JoystickButton(XBController1, 9);
     public static JoystickButton xb1rstick = new JoystickButton(XBController1, 10);
-    
+
     public static JoystickButton xb2a = new JoystickButton(XBController2, 1);
     public static JoystickButton xb2b = new JoystickButton(XBController2, 2);
     public static JoystickButton xb2lb = new JoystickButton(XBController2, 5);
@@ -91,14 +91,12 @@ public class RobotContainer {
         //HoodManual: xb2 left stick button, xb2 right stick button
     }
 
-
     /**
      * Use this to pass the autonomous command to the main {@link Robot} class.
      *
      * @return the command to run in autonomous
      */
 
-    
     public Command getAutonomousCommand() {
         // An ExampleCommand will run in autonomous
         return autonTest;

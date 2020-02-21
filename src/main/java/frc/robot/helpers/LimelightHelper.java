@@ -47,6 +47,7 @@ public class LimelightHelper {
     /**
      * Gets the horizontal distance from the limelight to the target for shooting balls.
      * <p> TODO: verify D_HEIGHT
+     *
      * @param angleOffset the angle at which the limelight is mounted from the horizontal in degrees
      * @return the distance to the target
      */
@@ -61,16 +62,12 @@ public class LimelightHelper {
         if (getRawA() > 0) {
             //RobotContainer.XBController1.setRumble(RumbleType.kRightRumble, 1);
             RobotContainer.XBController1.setRumble(RumbleType.kLeftRumble, 0);
-        }
-        else if(TimerHelper.getEndgame()) {
+        } else if (TimerHelper.getEndgame()) {
             //RobotContainer.XBController1.setRumble(RumbleType.kRightRumble, 1);
             //RobotContainer.XBController1.setRumble(RumbleType.kLeftRumble, 1);
-        }
-        else{
+        } else {
             RobotContainer.XBController1.setRumble(RumbleType.kRightRumble, 0);
             RobotContainer.XBController1.setRumble(RumbleType.kLeftRumble, 0);
         }
-
-
     }
 }

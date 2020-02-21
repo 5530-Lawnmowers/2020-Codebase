@@ -51,7 +51,7 @@ public class Robot extends TimedRobot {
         SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Intake Feed Offset", 8));
         SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Belt Feed Offset", 1));
         SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Wheel Feed Offset", 5));
-        
+
         Shuffleboard.getTab("Turret");
         SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("Position", 0));
         SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("Turret Zero", 0));
@@ -75,7 +75,7 @@ public class Robot extends TimedRobot {
         SQLHelper.stageWidget(Shuffleboard.getTab("Hood").add("Hood Position", 0));
         SQLHelper.stageWidget(Shuffleboard.getTab("Hood").add("HoodAlign", "Init"));
         SQLHelper.stageWidget(Shuffleboard.getTab("Hood").add("HoodLimitInterrupt", "Init"));
-        SQLHelper.stageWidget(Shuffleboard.getTab("Hood").add("HoodManual", "Init"));  
+        SQLHelper.stageWidget(Shuffleboard.getTab("Hood").add("HoodManual", "Init"));
 
         Shuffleboard.getTab("Hood").add("Hood Offset", 0);
         // Instantiate our RobotContainer.  This will perform all our button bindings, and put our

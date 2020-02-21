@@ -22,7 +22,6 @@ public class Climber extends SubsystemBase {
     private final WPI_TalonSRX climbLeft = new WPI_TalonSRX(Constants.CLIMB_L);
     private final WPI_TalonSRX climbRight = new WPI_TalonSRX(Constants.CLIMB_R);
 
-
     /**
      * Creates a new Climber.
      */
@@ -30,7 +29,6 @@ public class Climber extends SubsystemBase {
         rightRelease.set(1);
         leftRelease.set(0);
     }
-    
 
     @Override
     public void periodic() {
@@ -59,9 +57,8 @@ public class Climber extends SubsystemBase {
         climbRight.stopMotor();
     }
 
-    public void realeaseArm() {
+    public void releaseArm() {
         rightRelease.set(0);
         leftRelease.set(1);
     }
-
 }
