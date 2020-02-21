@@ -28,8 +28,10 @@ public class HoodAdjust extends CommandBase {
      */
     @Override
     public void execute() {
-        double offset = 0; //Determine this via testing/math (getRawA() -> offset)
-
+        double offset = hood.getOffsetConstY(0, 0); //From shuffleboard
+                                                    //Eventually should be a function of getRawA()
+        
+        //TODO: only run if getRawA() is above a certain size (determine empirically)
         if (LimelightHelper.getRawY() > 0 + offset) {
             if (LimelightHelper.getRawY() < 3 + offset) {
                 hood.setHood(LimelightHelper.getRawY() * -0.3);

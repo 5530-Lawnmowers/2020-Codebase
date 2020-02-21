@@ -51,6 +51,7 @@ public class TurretAlign extends CommandBase {
         kp = (double) ShuffleboardHelpers.getWidgetValue("Turret", "kP");
         kd = (double) ShuffleboardHelpers.getWidgetValue("Turret", "kD");
         //Align via continous power set
+        //TODO: only run if getRawA() is above a certain size (determine empirically)
         turret.setTurret(kp * offset - kd * offsetVelocity);
         previousOffset = offset;
         //if (Math.abs(offset) < MARGIN) {counter++;}
