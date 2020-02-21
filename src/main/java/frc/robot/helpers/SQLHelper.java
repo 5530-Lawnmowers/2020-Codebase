@@ -337,7 +337,7 @@ public class SQLHelper {
      * @throws SQLException
      */
     public static String backupTable() throws SQLException {
-        if (status == null || status == "initialized") return "Zoinks, Scoob!";
+        if (status == null || status == "initialized") return null;
         Statement stmnt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
         String time = new java.util.Date().toString();
         stmnt.execute("USE DEBUG_PLATFORM");
@@ -362,7 +362,7 @@ public class SQLHelper {
      * @param timestamp The timestamp of this call
      * @throws SQLException
      */
-    public static void mySQLperiodic(int timestamp) throws SQLException {
+    public static void mySQLperiodic(int timestamp) throws SQLException, NullPointerException {
         status = "running";
         if (!compareLast()) {
             row.moveToInsertRow();
@@ -381,7 +381,7 @@ public class SQLHelper {
      * @return <b>true</b> if they are equal, <b>false</b> if they are not
      * @throws SQLException
      */
-    public static boolean compareLast() throws SQLException {
+    public static boolean compareLast() throws SQLException, NullPointerException {
         if (row != null && !row.isClosed()) row.getStatement().close();
         Statement stmnt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
         row = stmnt.executeQuery("SELECT * FROM `NETWORK_TABLES`");
