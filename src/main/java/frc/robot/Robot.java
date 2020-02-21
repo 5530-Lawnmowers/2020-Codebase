@@ -66,28 +66,17 @@ public class Robot extends TimedRobot {
         SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("kD", 0));
         SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("TurretDefault", "Init"));
 
-
-
-
-
         Shuffleboard.getTab("Shooter");
         SQLHelper.stageWidget(Shuffleboard.getTab("Shooter").add("Shooter Velocity", 0));
         SQLHelper.stageWidget(Shuffleboard.getTab("Shooter").add("Set Shoot Speed", 1.0));
         SQLHelper.stageWidget(Shuffleboard.getTab("Shooter").add("ShootAll", "Init"));
         SQLHelper.stageWidget(Shuffleboard.getTab("Shooter").add("ShootManual", "Init"));
 
-
         Shuffleboard.getTab("Hood");
         SQLHelper.stageWidget(Shuffleboard.getTab("Hood").add("Hood Position", 0));
         SQLHelper.stageWidget(Shuffleboard.getTab("Hood").add("HoodAdjust", "Init"));
         SQLHelper.stageWidget(Shuffleboard.getTab("Hood").add("HoodLimitInterrupt", "Init"));
-
-
-
-
-
-
-        
+        SQLHelper.stageWidget(Shuffleboard.getTab("Hood").add("HoodManual", "Init"));  
 
         // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
         // autonomous chooser on the dashboard.
