@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.Climb;
 import frc.robot.helpers.LimelightHelper;
 import frc.robot.helpers.SQLHelper;
+import frc.robot.helpers.ShuffleboardHelpers;
 import frc.robot.subsystems.Climber;
 
 import java.sql.SQLException;
@@ -50,9 +51,7 @@ public class Robot extends TimedRobot {
         SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Intake Feed Offset", 8));
         SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Belt Feed Offset", 1));
         SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Wheel Feed Offset", 5));
-
-
-
+        
         Shuffleboard.getTab("Turret");
         SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("Position", 0));
         SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("Turret Zero", 0));
@@ -66,29 +65,18 @@ public class Robot extends TimedRobot {
         SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("kD", 0));
         SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("TurretDefault", "Init"));
 
-
-
-
-
         Shuffleboard.getTab("Shooter");
         SQLHelper.stageWidget(Shuffleboard.getTab("Shooter").add("Shooter Velocity", 0));
         SQLHelper.stageWidget(Shuffleboard.getTab("Shooter").add("Set Shoot Speed", 1.0));
         SQLHelper.stageWidget(Shuffleboard.getTab("Shooter").add("ShootAll", "Init"));
         SQLHelper.stageWidget(Shuffleboard.getTab("Shooter").add("ShootManual", "Init"));
 
-
         Shuffleboard.getTab("Hood");
         SQLHelper.stageWidget(Shuffleboard.getTab("Hood").add("Hood Position", 0));
         SQLHelper.stageWidget(Shuffleboard.getTab("Hood").add("HoodAdjust", "Init"));
         SQLHelper.stageWidget(Shuffleboard.getTab("Hood").add("HoodLimitInterrupt", "Init"));
 
-
-
-
-
-
-        
-
+        Shuffleboard.getTab("Hood").add("Hood Offset", 0);
         // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
         // autonomous chooser on the dashboard.
         m_robotContainer = new RobotContainer();
