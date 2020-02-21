@@ -12,6 +12,7 @@ import frc.robot.subsystems.*;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
@@ -35,6 +36,8 @@ public class RobotContainer {
     private final Delivery delivery = new Delivery();
     private final Turret turret = new Turret();
     private final Hood hood = new Hood();
+
+    private final AutonSimple autonTest = new AutonSimple(drivetrain, intake, delivery, shooter, hood, turret);
 
     public static JoystickButton xb1a = new JoystickButton(XBController1, 1);
     public static JoystickButton xb1b = new JoystickButton(XBController1, 2);
@@ -95,9 +98,9 @@ public class RobotContainer {
      * @return the command to run in autonomous
      */
 
-    /*
+    
     public Command getAutonomousCommand() {
         // An ExampleCommand will run in autonomous
-        return m_autoCommand;
-    }*/
+        return autonTest;
+    }
 }
