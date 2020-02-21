@@ -27,9 +27,9 @@ public class HoodLimitInterrupt extends InstantCommand {
   @Override
   public void initialize() {
     if (goUp) {
-      hood.setHood(-recoverSpeed);
-    } else {
       hood.setHood(recoverSpeed);
+    } else {
+      hood.setHood(-recoverSpeed);
     }
   }
 }
