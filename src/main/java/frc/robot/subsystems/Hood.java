@@ -71,7 +71,7 @@ public class Hood extends SubsystemBase {
      * @return
      */
     public double getOffsetConstY(double offsetX, double offsetY) {
-        return 0;
+        return (double) ShuffleboardHelpers.getWidgetValue("Hood", "Hood Offset");
     }
 
     /**
