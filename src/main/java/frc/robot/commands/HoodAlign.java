@@ -7,7 +7,7 @@ import frc.robot.helpers.ShuffleboardHelpers;
 
 public class HoodAlign extends CommandBase {
     private final Hood hood;
-    private final double MARGIN = 1;
+    private final double MARGIN = 0.2;
     private double counter;
 
     /**
@@ -32,27 +32,11 @@ public class HoodAlign extends CommandBase {
         //Eventually should be a function of getRawA()
 
         //TODO: only run if getRawA() is above a certain size (determine empirically)
-        if (LimelightHelper.getRawY() > 0 + offset) {
-            if (LimelightHelper.getRawY() < 5 + offset) {
-                hood.setHood(LimelightHelper.getRawY() * 0.2);
-            } else {
-                hood.setHood(1.0);
-            }
-        } else if (LimelightHelper.getRawY() < 0 + offset) {
-            if (LimelightHelper.getRawY() > -5 + offset) {
-                hood.setHood(LimelightHelper.getRawY() * 0.2);
-            } else {
-                hood.setHood(-1.0);
-            }
-        }
-
-        if (Math.abs(LimelightHelper.getRawY() - offset) < 1) {
-            hood.stopHood();
-        }
-
         if (Math.abs(LimelightHelper.getRawY() - offset) <= MARGIN) {
+            hood.stopHood();
             counter++;
         } else {
+            hood.setHood(-hood.hoodControllerCalculate());
             counter = 0;
         }
     }

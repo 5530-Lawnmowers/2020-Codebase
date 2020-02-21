@@ -15,12 +15,12 @@ import frc.robot.helpers.ShuffleboardHelpers;
 
 public class Hood extends SubsystemBase {
     private final WPI_TalonSRX hoodAdjust = new WPI_TalonSRX(Constants.ANGLE);
-    private final PIDController hoodController = new PIDController(.05, 0, 0, 10);
+    private final PIDController hoodController = new PIDController(.4, 0, 0, 10);
 
     private final DutyCycleEncoder angleAbs = new DutyCycleEncoder(Constants.DUTY_CYCLE_SOURCE);
 
-    private final double LOW = 0.75;
-    private final double HIGH = 0.50;
+    private final double LOW = 0.5;
+    private final double HIGH = 0.25;
 
     private double upperLimit;
     private double lowerLimit;
@@ -34,7 +34,7 @@ public class Hood extends SubsystemBase {
     @Override
     public void periodic() {
         ShuffleboardHelpers.setWidgetValue("Hood", "Hood Position", angleAbs.get());
-        //resetLimits();
+        resetLimits();
 
         if (!ignoreSoftwareLimits) {
             if (getAngleAbs() > upperLimit) {
