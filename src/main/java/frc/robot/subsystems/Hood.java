@@ -107,6 +107,9 @@ public class Hood extends SubsystemBase {
             lowerLimit = Math.floor(getAngleAbs()) + LOW;
             upperLimit = Math.floor(getAngleAbs()) + HIGH;
         }
+
+        ShuffleboardHelpers.setWidgetValue("Hood", "Upper Limit", upperLimit);
+        ShuffleboardHelpers.setWidgetValue("Hood", "Lower Limit", lowerLimit);
     }
 
     public double getUpperLimit() {
