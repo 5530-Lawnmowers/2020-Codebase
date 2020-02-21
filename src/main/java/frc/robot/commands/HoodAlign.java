@@ -36,16 +36,16 @@ public class HoodAlign extends CommandBase {
         
         //TODO: only run if getRawA() is above a certain size (determine empirically)
         if (LimelightHelper.getRawY() > 0 + offset) {
-            if (LimelightHelper.getRawY() < 3 + offset) {
-                hood.setHood(LimelightHelper.getRawY() * -0.3);
+            if (LimelightHelper.getRawY() < 5 + offset) {
+                hood.setHood(LimelightHelper.getRawY() * 0.2);
             } else {
-                hood.setHood(-1.0);
+                hood.setHood(1.0);
             }
         } else if (LimelightHelper.getRawY() < 0 + offset) {
-            if (LimelightHelper.getRawY() > -3 + offset) {
-                hood.setHood(LimelightHelper.getRawY() * 0.3);
+            if (LimelightHelper.getRawY() > -5 + offset) {
+                hood.setHood(LimelightHelper.getRawY() * 0.2);
             } else {
-                hood.stopHood();
+                hood.setHood(-1.0);
             }
         }
 
