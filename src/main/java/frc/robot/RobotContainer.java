@@ -78,14 +78,14 @@ public class RobotContainer {
 
         xb2a.toggleWhenPressed(new ShootManual(shooter));
         xb2b.toggleWhenPressed(new ShootAll(delivery, shooter, intake));
-        //xb2x.toggleWhenPressed(new TurretAlign(turret));
         xb2x.toggleWhenPressed(new TurretAlign(turret));
         xb2x.toggleWhenPressed(new HoodAdjust(hood));
         xb2back.whenPressed(new Climb(climber));
 
         //Other buttons in use
         //DriveDefault: xb1 left trigger, xb1 right trigger, xb1 left stick
-        //TurretManual: xb1 left bumper, xb1 right bumper
+        //TurretManual: xb2 left bumper, xb2 right bumper
+        //HoodManual: xb2 left stick button, xb2 right stick button
     }
 
 
