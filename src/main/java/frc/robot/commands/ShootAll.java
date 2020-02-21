@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Robot;
 import frc.robot.helpers.ShuffleboardHelpers;
 import frc.robot.subsystems.*;
 
@@ -82,6 +83,9 @@ public class ShootAll extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return false;
+        boolean[] breakbeams = delivery.getBreakbeams();
+        for (boolean beam : breakbeams)
+            if (beam) return false;
+        return Robot.auton;
     }
 }

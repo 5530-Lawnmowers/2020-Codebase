@@ -49,7 +49,7 @@ public class Drivetrain extends SubsystemBase {
 
     public static double StartingPose;
 
-    public static float WheelCircumfrance = (float) 18.8495559215;
+    public static float WheelCircumfrance = (float) .160;//in m
     public static DifferentialDriveOdometry DDO = new DifferentialDriveOdometry(new Rotation2d());
     public static PigeonIMU pigeon = new PigeonIMU(15);
     public static Rotation2d heading = new Rotation2d();

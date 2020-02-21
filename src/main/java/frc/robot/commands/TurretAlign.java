@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.*;
+import frc.robot.Robot;
 import frc.robot.helpers.LimelightHelper;
 import frc.robot.helpers.ShuffleboardHelpers;
 
@@ -74,7 +75,12 @@ public class TurretAlign extends CommandBase {
         //if (counter > 10) {
         //    return true;
         //}
+        if(Robot.auton && isAligned()) {
+            return true;
+
+        }
         return false;
+
     }
 
     public boolean isAligned() {

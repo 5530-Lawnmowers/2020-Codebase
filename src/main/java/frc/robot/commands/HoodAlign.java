@@ -2,6 +2,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Hood;
+import frc.robot.Robot;
 import frc.robot.helpers.LimelightHelper;
 import frc.robot.helpers.ShuffleboardHelpers;
 
@@ -55,6 +56,9 @@ public class HoodAlign extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
+        if(Robot.auton && isAligned()){
+            return true;
+        }
         return false;
     }
 }
