@@ -103,7 +103,7 @@ public class Hood extends SubsystemBase {
                 lowerLimit = Math.floor(getAngleAbs()) + LOW - 1;
                 upperLimit = Math.floor(getAngleAbs()) + HIGH;
             }
-        } else { 
+        } else {
             lowerLimit = Math.floor(getAngleAbs()) + LOW;
             upperLimit = Math.floor(getAngleAbs()) + HIGH;
         }

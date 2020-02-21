@@ -42,10 +42,9 @@ public class ShootAll extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        
-         //If speed too low, stop feed and accelerate at max power
-         //If speed close to desired, stop feed and reduce speed to hold power
-         //If speed at or above desired, feed ball
+        //If speed too low, stop feed and accelerate at max power
+        //If speed close to desired, stop feed and reduce speed to hold power
+        //If speed at or above desired, feed ball
         if (shooter.getShooterVelocity() < THRESHOLD_VELOCITY) {
             shooter.setShooter(accelSpeed);
             delivery.stopDeliveryBelt();
@@ -64,7 +63,7 @@ public class ShootAll extends CommandBase {
             delivery.stopDeliveryWheel();
             intake.stopIntake();
         }
-         
+
         //shooter.setShooter(shootSpeed); //Test just shoot
 
         ShuffleboardHelpers.setWidgetValue("Shooter", "Shooter Velocity", shooter.getShooterVelocity());

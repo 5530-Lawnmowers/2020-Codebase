@@ -15,62 +15,62 @@ import frc.robot.helpers.ShuffleboardHelpers;
 import frc.robot.subsystems.*;
 
 public class TurretDefault extends CommandBase {
-  private Turret turret;
-  private double kP;
-  private double kD;
-  private double manualSet;
-  private double offset;
-  private double previousOffset;
+    private Turret turret;
+    private double kP;
+    private double kD;
+    private double manualSet;
+    private double offset;
+    private double previousOffset;
 
-  /**
-   * Creates a new TurretDefault.
-   */
-  public TurretDefault(Turret turret) {
-    // Use addRequirements() here to declare subsystem dependencies.
-    this.turret = turret;
-    addRequirements(turret);
-  }
-
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {
-    offset = LimelightHelper.getRawX();
-    previousOffset = offset;
-    ShuffleboardHelpers.setWidgetValue("Turret", "TurretDefault", "Running");
-  }
-
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
-    offset = LimelightHelper.getRawX();
-    manualSet = (double) ShuffleboardHelpers.getWidgetValue("Turret", "Set Turret");
-
-    if (RobotContainer.XBController2.getBumper(Hand.kRight)) { //Manual clockwise
-      turret.setTurret(manualSet);
-    } else if (RobotContainer.XBController2.getBumper(Hand.kLeft)) { //Manual counter-clockwise
-      turret.setTurret(-manualSet);
-    } else if (LimelightHelper.getRawA() > 0) { //Default to auto-align
-      double offsetVelocity = Math.abs(offset - previousOffset);
-      kP = (double) ShuffleboardHelpers.getWidgetValue("Turret", "kP");
-      kD = (double) ShuffleboardHelpers.getWidgetValue("Turret", "kD");
-      //Align via continous power set
-      turret.setTurret(kP * offset - kD * offsetVelocity);
-    } else {
-      turret.stopTurret();
+    /**
+     * Creates a new TurretDefault.
+     */
+    public TurretDefault(Turret turret) {
+        // Use addRequirements() here to declare subsystem dependencies.
+        this.turret = turret;
+        addRequirements(turret);
     }
 
-    previousOffset = offset;
-  }
+    // Called when the command is initially scheduled.
+    @Override
+    public void initialize() {
+        offset = LimelightHelper.getRawX();
+        previousOffset = offset;
+        ShuffleboardHelpers.setWidgetValue("Turret", "TurretDefault", "Running");
+    }
 
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {
-    ShuffleboardHelpers.setWidgetValue("Turret", "TurretDefault", "Interrupted");
-  }
+    // Called every time the scheduler runs while the command is scheduled.
+    @Override
+    public void execute() {
+        offset = LimelightHelper.getRawX();
+        manualSet = (double) ShuffleboardHelpers.getWidgetValue("Turret", "Set Turret");
 
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return false;
-  }
+        if (RobotContainer.XBController2.getBumper(Hand.kRight)) { //Manual clockwise
+            turret.setTurret(manualSet);
+        } else if (RobotContainer.XBController2.getBumper(Hand.kLeft)) { //Manual counter-clockwise
+            turret.setTurret(-manualSet);
+        } else if (LimelightHelper.getRawA() > 0) { //Default to auto-align
+            double offsetVelocity = Math.abs(offset - previousOffset);
+            kP = (double) ShuffleboardHelpers.getWidgetValue("Turret", "kP");
+            kD = (double) ShuffleboardHelpers.getWidgetValue("Turret", "kD");
+            //Align via continous power set
+            turret.setTurret(kP * offset - kD * offsetVelocity);
+        } else {
+            turret.stopTurret();
+        }
+
+        previousOffset = offset;
+    }
+
+    // Called once the command ends or is interrupted.
+    @Override
+    public void end(boolean interrupted) {
+        ShuffleboardHelpers.setWidgetValue("Turret", "TurretDefault", "Interrupted");
+    }
+
+    // Returns true when the command should end.
+    @Override
+    public boolean isFinished() {
+        return false;
+    }
 }

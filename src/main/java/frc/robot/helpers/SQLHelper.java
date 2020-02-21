@@ -210,94 +210,6 @@ public class SQLHelper {
     }
 
     /**
-     * Get a String array of a column's values
-     *
-     * @param title Title of the column to get
-     * @return A String array list of column values
-     * @throws SQLException
-     * @throws ClassCastException if the data type is not of type <b>String</b>
-     */
-    public static ArrayList<String> getStringCol(String title) throws SQLException {
-        ResultSet set = getColumn(title);
-        Class<?> type = getType(title);
-        if (type != String.class) {
-            throw new ClassCastException();
-        }
-        ArrayList<String> arr = new ArrayList<>();
-        while (set.next()) {
-            arr.add(set.getString(1));
-        }
-        set.getStatement().close();
-        return arr;
-    }
-
-    /**
-     * Get an Integer array of a column's values
-     *
-     * @param title Title of the column to get
-     * @return An Integer array list of column values
-     * @throws SQLException
-     * @throws ClassCastException if the data type is not of type <b>int</b>
-     */
-    public static ArrayList<Integer> getIntCol(String title) throws SQLException {
-        ResultSet set = getColumn(title);
-        Class<?> type = getType(title);
-        if (type != Integer.class) {
-            throw new ClassCastException();
-        }
-        ArrayList<Integer> arr = new ArrayList<>();
-        while (set.next()) {
-            arr.add(set.getInt(1));
-        }
-        set.getStatement().close();
-        return arr;
-    }
-
-    /**
-     * Get a Double array of a column's values
-     *
-     * @param title Title of the column to get
-     * @return A Double array list of column values
-     * @throws SQLException
-     * @throws ClassCastException if the data type is not of type <b>double</b>
-     */
-    public static ArrayList<Double> getDoubleCol(String title) throws SQLException {
-        ResultSet set = getColumn(title);
-        Class<?> type = getType(title);
-        if (type != Double.class) {
-            throw new ClassCastException();
-        }
-        ArrayList<Double> arr = new ArrayList<>();
-        while (set.next()) {
-            arr.add(set.getDouble(1));
-        }
-        set.getStatement().close();
-        return arr;
-    }
-
-    /**
-     * Get a Boolean array of a column's values
-     *
-     * @param title Title of the column to get
-     * @return A Boolean array list of column values
-     * @throws SQLException
-     * @throws ClassCastException if the data type is not of type <b>boolean</b>
-     */
-    public static ArrayList<Boolean> getBooleanCol(String title) throws SQLException {
-        ResultSet set = getColumn(title);
-        Class<?> type = getType(title);
-        if (type != Boolean.class) {
-            throw new ClassCastException();
-        }
-        ArrayList<Boolean> arr = new ArrayList<>();
-        while (set.next()) {
-            arr.add(set.getBoolean(1));
-        }
-        set.getStatement().close();
-        return arr;
-    }
-
-    /**
      * Update a column's value in the insert row
      *
      * @param column Title of the column to get
@@ -337,7 +249,7 @@ public class SQLHelper {
      * @throws SQLException
      */
     public static String backupTable() throws SQLException {
-        if (status == null || status == "initialized") return "Zoinks, Scoob!";
+        if (status == null || status == "initialized") return null;
         Statement stmnt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
         String time = new java.util.Date().toString();
         stmnt.execute("USE DEBUG_PLATFORM");
@@ -362,7 +274,7 @@ public class SQLHelper {
      * @param timestamp The timestamp of this call
      * @throws SQLException
      */
-    public static void mySQLperiodic(int timestamp) throws SQLException {
+    public static void mySQLperiodic(int timestamp) throws SQLException, NullPointerException {
         status = "running";
         if (!compareLast()) {
             row.moveToInsertRow();
@@ -381,7 +293,7 @@ public class SQLHelper {
      * @return <b>true</b> if they are equal, <b>false</b> if they are not
      * @throws SQLException
      */
-    public static boolean compareLast() throws SQLException {
+    public static boolean compareLast() throws SQLException, NullPointerException {
         if (row != null && !row.isClosed()) row.getStatement().close();
         Statement stmnt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
         row = stmnt.executeQuery("SELECT * FROM `NETWORK_TABLES`");

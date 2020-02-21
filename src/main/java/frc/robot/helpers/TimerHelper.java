@@ -6,6 +6,7 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.helpers;
+
 import edu.wpi.first.wpilibj.Timer;
 
 /**
@@ -14,15 +15,14 @@ import edu.wpi.first.wpilibj.Timer;
 public class TimerHelper {
     public static Timer timer = new Timer();
 
-    public static double getTimeLeft(){
+    public static double getTimeLeft() {
         return Timer.getMatchTime();
     }
 
-    public static boolean getEndgame(){
-        if (Timer.getMatchTime() <= 30){
+    public static boolean getEndgame() {
+        if (Timer.getMatchTime() <= 30) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }

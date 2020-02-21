@@ -48,7 +48,7 @@ public final class Constants {
 
     //Spinner motors
     public static final int SPIN = 6;
-    
+
     //Delivery sensors
     public static final int DELIVERY_S1 = 0; //DIO
     public static final int DELIVERY_S2 = 1; //DIO

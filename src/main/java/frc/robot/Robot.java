@@ -51,7 +51,7 @@ public class Robot extends TimedRobot {
         SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Intake Feed Offset", 8));
         SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Belt Feed Offset", 1));
         SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Wheel Feed Offset", 5));
-        
+
         Shuffleboard.getTab("Turret");
         SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("Position", 0));
         SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("Turret Zero", 0));
@@ -112,7 +112,7 @@ public class Robot extends TimedRobot {
             timer.stop();
             SQLHelper.backupTable();
             SQLHelper.closeConnection();
-        } catch (SQLException e) {
+        } catch (SQLException | NullPointerException e) {
             e.printStackTrace();
         }
     }
@@ -138,7 +138,7 @@ public class Robot extends TimedRobot {
                 SQLHelper.initTable();
                 timer.start();
             }
-        } catch (SQLException e) {
+        } catch (SQLException | NullPointerException e) {
             e.printStackTrace();
         }
     }
@@ -150,7 +150,7 @@ public class Robot extends TimedRobot {
     public void autonomousPeriodic() {
         try {
             SQLHelper.mySQLperiodic((int) timer.get());
-        } catch (SQLException e) {
+        } catch (SQLException | NullPointerException e) {
             e.printStackTrace();
         }
     }
@@ -170,7 +170,7 @@ public class Robot extends TimedRobot {
                 SQLHelper.initTable();
                 timer.start();
             }
-        } catch (SQLException e) {
+        } catch (SQLException | NullPointerException e) {
             e.printStackTrace();
         }
     }
@@ -181,13 +181,11 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopPeriodic() {
         LimelightHelper.updateRumble();
-        /*
         try {
             SQLHelper.mySQLperiodic((int) (timer.get() * 1000));
-        } catch (SQLException e) {
+        } catch (SQLException | NullPointerException e) {
             e.printStackTrace();
         }
-        */
     }
 
     @Override

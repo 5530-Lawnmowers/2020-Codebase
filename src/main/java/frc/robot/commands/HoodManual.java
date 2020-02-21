@@ -14,46 +14,45 @@ import frc.robot.subsystems.*;
 import frc.robot.RobotContainer;
 
 public class HoodManual extends CommandBase {
+    private Hood hood;
+    private double hoodSpeed = 0.8;
 
-  private Hood hood;
-  private double hoodSpeed = 0.8;
-
-  /**
-   * Creates a new HoodManual.
-   */
-  public HoodManual(Hood hood) {
-    // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(hood);
-    this.hood = hood;
-  }
-
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {
-  }
-
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
-    ShuffleboardHelpers.setWidgetValue("Hood", "HoodManual", "Running");
-    if (RobotContainer.XBController2.getStickButton(Hand.kLeft)) {
-      hood.setHood(-hoodSpeed);
-    } else if (RobotContainer.XBController2.getStickButton(Hand.kRight)) {
-      hood.setHood(hoodSpeed);
-    } else {
-      hood.stopHood();
+    /**
+     * Creates a new HoodManual.
+     */
+    public HoodManual(Hood hood) {
+        // Use addRequirements() here to declare subsystem dependencies.
+        addRequirements(hood);
+        this.hood = hood;
     }
-  }
 
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {
-    ShuffleboardHelpers.setWidgetValue("Hood", "HoodManual", "Ended");
-  }
+    // Called when the command is initially scheduled.
+    @Override
+    public void initialize() {
+    }
 
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return false;
-  }
+    // Called every time the scheduler runs while the command is scheduled.
+    @Override
+    public void execute() {
+        ShuffleboardHelpers.setWidgetValue("Hood", "HoodManual", "Running");
+        if (RobotContainer.XBController2.getStickButton(Hand.kLeft)) {
+            hood.setHood(hoodSpeed);
+        } else if (RobotContainer.XBController2.getStickButton(Hand.kRight)) {
+            hood.setHood(-hoodSpeed);
+        } else {
+            hood.stopHood();
+        }
+    }
+
+    // Called once the command ends or is interrupted.
+    @Override
+    public void end(boolean interrupted) {
+        ShuffleboardHelpers.setWidgetValue("Hood", "HoodManual", "Ended");
+    }
+
+    // Returns true when the command should end.
+    @Override
+    public boolean isFinished() {
+        return false;
+    }
 }

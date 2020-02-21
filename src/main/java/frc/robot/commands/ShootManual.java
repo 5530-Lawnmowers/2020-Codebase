@@ -12,42 +12,42 @@ import frc.robot.helpers.ShuffleboardHelpers;
 import frc.robot.subsystems.*;
 
 public class ShootManual extends CommandBase {
-  private Shooter shooter;
-  private double setSpeed = 1.0;
+    private Shooter shooter;
+    private double setSpeed = 1.0;
 
-  /**
-   * Creates a new ShootManual.
-   */
-  public ShootManual(Shooter shooter) {
-    // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(shooter);
-    this.shooter = shooter;
-  }
+    /**
+     * Creates a new ShootManual.
+     */
+    public ShootManual(Shooter shooter) {
+        // Use addRequirements() here to declare subsystem dependencies.
+        addRequirements(shooter);
+        this.shooter = shooter;
+    }
 
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {
-    setSpeed = (double) ShuffleboardHelpers.getWidgetValue("Shooter", "Set Shoot Speed");
-    ShuffleboardHelpers.setWidgetValue("Shooter", "ShootManual", "Running");
-    shooter.setShooter(setSpeed);
-  }
+    // Called when the command is initially scheduled.
+    @Override
+    public void initialize() {
+        setSpeed = (double) ShuffleboardHelpers.getWidgetValue("Shooter", "Set Shoot Speed");
+        ShuffleboardHelpers.setWidgetValue("Shooter", "ShootManual", "Running");
+        shooter.setShooter(setSpeed);
+    }
 
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
-    ShuffleboardHelpers.setWidgetValue("Shooter", "Shooter Velocity", shooter.getShooterVelocity());
-  }
+    // Called every time the scheduler runs while the command is scheduled.
+    @Override
+    public void execute() {
+        ShuffleboardHelpers.setWidgetValue("Shooter", "Shooter Velocity", shooter.getShooterVelocity());
+    }
 
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {
-    shooter.stopShooter();
-    ShuffleboardHelpers.setWidgetValue("Shooter", "ShootManual", "Ended");
-  }
+    // Called once the command ends or is interrupted.
+    @Override
+    public void end(boolean interrupted) {
+        shooter.stopShooter();
+        ShuffleboardHelpers.setWidgetValue("Shooter", "ShootManual", "Ended");
+    }
 
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return false;
-  }
+    // Returns true when the command should end.
+    @Override
+    public boolean isFinished() {
+        return false;
+    }
 }

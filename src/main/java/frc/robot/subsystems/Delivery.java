@@ -80,6 +80,7 @@ public class Delivery extends SubsystemBase {
 
     /**
      * Gets the position of the belt motor
+     *
      * @return encoder value of the motor
      */
     public double getDeliveryBeltPosition() {
@@ -88,6 +89,7 @@ public class Delivery extends SubsystemBase {
 
     /**
      * Gets the position of the wheel motor
+     *
      * @return encoder value of the motor
      */
     public double getDeliveryWheelPosition() {
