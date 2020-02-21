@@ -37,9 +37,9 @@ public class HoodManual extends CommandBase {
   public void execute() {
     ShuffleboardHelpers.setWidgetValue("Hood", "HoodManual", "Running");
     if (RobotContainer.XBController2.getStickButton(Hand.kLeft)) {
-      hood.setHood(hoodSpeed);
-    } else if (RobotContainer.XBController2.getStickButton(Hand.kRight)) {
       hood.setHood(-hoodSpeed);
+    } else if (RobotContainer.XBController2.getStickButton(Hand.kRight)) {
+      hood.setHood(hoodSpeed);
     } else {
       hood.stopHood();
     }
