@@ -49,6 +49,10 @@ public class HoodAlign extends CommandBase {
             }
         }
 
+        if (Math.abs(LimelightHelper.getRawY() - offset) < 1) {
+            hood.stopHood();
+        }
+
         if (Math.abs(LimelightHelper.getRawY() - offset) <= MARGIN) {
             counter++;
         } else {
