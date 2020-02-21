@@ -63,12 +63,7 @@ public class DriveDefault extends CommandBase {
      * Get the trigger value for a trigger side on XBox Controller
      */
     public double getTrigger(GenericHID.Hand side) {
-        if(RobotContainer.XBController1.getTriggerAxis(side) >= 0){
-            return Math.pow(RobotContainer.XBController1.getTriggerAxis(side), 2);
-        }
-        else {
-            return -Math.pow(RobotContainer.XBController1.getTriggerAxis(side), 2);
-        }
+        return RobotContainer.XBController1.getTriggerAxis(side) * Math.abs(RobotContainer.XBController1.getTriggerAxis(side));
     }
 
     /**
