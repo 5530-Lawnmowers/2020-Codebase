@@ -19,6 +19,9 @@ public class Hood extends SubsystemBase {
 
     private final DutyCycleEncoder angleAbs = new DutyCycleEncoder(Constants.DUTY_CYCLE_SOURCE);
 
+    private final double LOW = 0.45;
+    private final double HIGH = 0.38;
+
     private double upperLimit;
     private double lowerLimit;
     private boolean ignoreSoftwareLimits;
@@ -89,14 +92,20 @@ public class Hood extends SubsystemBase {
         return angleAbs.get();
     }
 
+    @SuppressWarnings("unused")
     private void resetLimits() {
         double frac = getAngleAbs() - Math.floor(getAngleAbs());
-        if (frac > 0.45) {
-            lowerLimit = Math.floor(getAngleAbs()) + 0.45;
-            upperLimit = Math.floor(getAngleAbs()) + 1.38;
-        } else {
-            lowerLimit = Math.floor(getAngleAbs()) - 0.55;
-            upperLimit = Math.floor(getAngleAbs()) + 0.38;
+        if (LOW > HIGH) {
+            if (frac > LOW) {
+                lowerLimit = Math.floor(getAngleAbs()) + LOW;
+                upperLimit = Math.floor(getAngleAbs()) + 1 + HIGH;
+            } else {
+                lowerLimit = Math.floor(getAngleAbs()) + LOW - 1;
+                upperLimit = Math.floor(getAngleAbs()) + HIGH;
+            }
+        } else { 
+            lowerLimit = Math.floor(getAngleAbs()) + LOW;
+            upperLimit = Math.floor(getAngleAbs()) + HIGH;
         }
     }
 
