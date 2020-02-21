@@ -24,7 +24,7 @@ public class Hood extends SubsystemBase {
 
     private double upperLimit;
     private double lowerLimit;
-    private boolean ignoreSoftwareLimits;
+    private boolean ignoreSoftwareLimits = true;
 
     public Hood() {
         resetLimits();
