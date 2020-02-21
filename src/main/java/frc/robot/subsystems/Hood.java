@@ -96,7 +96,7 @@ public class Hood extends SubsystemBase {
     private void resetLimits() {
         double frac = getAngleAbs() - Math.floor(getAngleAbs());
         if (LOW > HIGH) {
-            if (frac > LOW) {
+            if (frac > LOW - 0.1) {
                 lowerLimit = Math.floor(getAngleAbs()) + LOW;
                 upperLimit = Math.floor(getAngleAbs()) + 1 + HIGH;
             } else {
