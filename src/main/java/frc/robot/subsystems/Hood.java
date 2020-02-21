@@ -24,7 +24,6 @@ public class Hood extends SubsystemBase {
 
     public Hood() {
         resetLimits();
-        setDefaultCommand(new HoodAdjust(this));
     }
 
     @Override
