@@ -73,7 +73,7 @@ public class Robot extends TimedRobot {
 
         Shuffleboard.getTab("Hood");
         SQLHelper.stageWidget(Shuffleboard.getTab("Hood").add("Hood Position", 0));
-        SQLHelper.stageWidget(Shuffleboard.getTab("Hood").add("HoodAdjust", "Init"));
+        SQLHelper.stageWidget(Shuffleboard.getTab("Hood").add("HoodAlign", "Init"));
         SQLHelper.stageWidget(Shuffleboard.getTab("Hood").add("HoodLimitInterrupt", "Init"));
         SQLHelper.stageWidget(Shuffleboard.getTab("Hood").add("HoodManual", "Init"));  
 

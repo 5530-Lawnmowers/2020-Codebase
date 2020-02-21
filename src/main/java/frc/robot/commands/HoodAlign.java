@@ -5,13 +5,13 @@ import frc.robot.subsystems.Hood;
 import frc.robot.helpers.LimelightHelper;
 import frc.robot.helpers.ShuffleboardHelpers;
 
-public class HoodAdjust extends CommandBase {
+public class HoodAlign extends CommandBase {
 
     private final Hood hood;
     private final double MARGIN = 1;
     private double counter;
 
-    public HoodAdjust(Hood hood) {
+    public HoodAlign(Hood hood) {
         this.hood = hood;
         addRequirements(hood);
     }
@@ -21,7 +21,7 @@ public class HoodAdjust extends CommandBase {
      */
     @Override
     public void initialize() {
-        ShuffleboardHelpers.setWidgetValue("Hood", "HoodAdjust", "Running");
+        ShuffleboardHelpers.setWidgetValue("Hood", "HoodAlign", "Running");
         counter = 0;
     }
 
@@ -86,7 +86,7 @@ public class HoodAdjust extends CommandBase {
      */
     @Override
     public void end(boolean interrupted) {
-        ShuffleboardHelpers.setWidgetValue("Hood", "HoodAdjust", "Ended");
+        ShuffleboardHelpers.setWidgetValue("Hood", "HoodAlign", "Ended");
         hood.stopHood();
     }
 
