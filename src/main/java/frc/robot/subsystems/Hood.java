@@ -8,8 +8,8 @@ import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.commands.HoodAdjust;
 import frc.robot.commands.HoodLimitInterrupt;
+import frc.robot.commands.HoodManual;
 import frc.robot.helpers.LimelightHelper;
 import frc.robot.helpers.ShuffleboardHelpers;
 
@@ -21,9 +21,11 @@ public class Hood extends SubsystemBase {
 
     private double upperLimit;
     private double lowerLimit;
+    private boolean ignoreSoftwareLimits;
 
     public Hood() {
         resetLimits();
+        setDefaultCommand(new HoodManual(this));
     }
 
     @Override
@@ -31,14 +33,16 @@ public class Hood extends SubsystemBase {
         ShuffleboardHelpers.setWidgetValue("Hood", "Hood Position", angleAbs.get());
         resetLimits();
 
-        if (getAngleAbs() > upperLimit) {
-            CommandScheduler.getInstance().schedule(new HoodLimitInterrupt(this, true));
-            ShuffleboardHelpers.setWidgetValue("Hood", "HoodLimitInterrupt", "Interrupt Over");
-        } else if (getAngleAbs() < lowerLimit) {
-            CommandScheduler.getInstance().schedule(new HoodLimitInterrupt(this, false));
-            ShuffleboardHelpers.setWidgetValue("Hood", "HoodLimitInterrupt", "Interrupt Under");
-        } else {
-            ShuffleboardHelpers.setWidgetValue("Hood", "HoodLimitInterrupt", "Safe");
+        if (!ignoreSoftwareLimits) {
+            if (getAngleAbs() > upperLimit) {
+                CommandScheduler.getInstance().schedule(new HoodLimitInterrupt(this, true));
+                ShuffleboardHelpers.setWidgetValue("Hood", "HoodLimitInterrupt", "Interrupt Over");
+            } else if (getAngleAbs() < lowerLimit) {
+                CommandScheduler.getInstance().schedule(new HoodLimitInterrupt(this, false));
+                ShuffleboardHelpers.setWidgetValue("Hood", "HoodLimitInterrupt", "Interrupt Under");
+            } else {
+                ShuffleboardHelpers.setWidgetValue("Hood", "HoodLimitInterrupt", "Safe");
+            }
         }
     }
 
