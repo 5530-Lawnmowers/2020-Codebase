@@ -76,6 +76,9 @@ public class Robot extends TimedRobot {
         SQLHelper.stageWidget(Shuffleboard.getTab("Hood").add("HoodAlign", "Init"));
         SQLHelper.stageWidget(Shuffleboard.getTab("Hood").add("HoodLimitInterrupt", "Init"));
         SQLHelper.stageWidget(Shuffleboard.getTab("Hood").add("HoodManual", "Init"));  
+        SQLHelper.stageWidget(Shuffleboard.getTab("Hood").add("Lower Limit", 0));  
+        SQLHelper.stageWidget(Shuffleboard.getTab("Hood").add("Upper Limit", 0));  
+
 
         Shuffleboard.getTab("Hood").add("Hood Offset", 0);
         // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
