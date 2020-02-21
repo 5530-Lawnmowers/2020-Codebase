@@ -6,7 +6,9 @@ import frc.robot.helpers.LimelightHelper;
 import frc.robot.helpers.ShuffleboardHelpers;
 
 public class HoodAdjust extends CommandBase {
+
     private final Hood hood;
+
     public HoodAdjust(Hood hood) {
         this.hood = hood;
         addRequirements(hood);
@@ -26,13 +28,21 @@ public class HoodAdjust extends CommandBase {
      */
     @Override
     public void execute() {
-        if (hood.getAngleAbs() > hood.getUpperLimit()) {
+        double offset = 0; //Determine this via testing/math (getRawA() -> offset)
 
+        if (LimelightHelper.getRawY() > 0 + offset) {
+            if (LimelightHelper.getRawY() < 3 + offset) {
+                hood.setHood(LimelightHelper.getRawY() * -0.3);
+            } else {
+                hood.setHood(-1.0);
+            }
+        } else if (LimelightHelper.getRawY() < 0 + offset) {
+            if (LimelightHelper.getRawY() > -3 + offset) {
+                hood.setHood(LimelightHelper.getRawY() * 0.3);
+            } else {
+                hood.stopHood();
+            }
         }
-        if (LimelightHelper.getRawA() > 0)
-            hood.setHood(-hood.hoodControllerCalculate());
-        else
-            hood.stopHood();
     }
 
     /**
@@ -51,7 +61,6 @@ public class HoodAdjust extends CommandBase {
      */
     @Override
     public boolean isFinished() {
-        // TODO: Make this return true when this Command no longer needs to run execute()
         return false;
     }
 
@@ -66,5 +75,6 @@ public class HoodAdjust extends CommandBase {
     @Override
     public void end(boolean interrupted) {
         ShuffleboardHelpers.setWidgetValue("Hood", "HoodAdjust", "Ended");
+        hood.stopHood();
     }
 }

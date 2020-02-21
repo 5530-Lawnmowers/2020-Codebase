@@ -140,8 +140,10 @@ public class IntakeSmartControl extends CommandBase {
 
     if (delivery.getBreakbeams()[0]) {
       delivery.stopDeliveryWheel();
-    } else {
+    } else if (intake.getSwitch()) {
       delivery.setDeliveryWheel(wheelSet);
+    } else {
+      delivery.setDeliveryWheel(wheelSet - 0.2);
     }
 
     if (delivery.getBreakbeams()[3]) {

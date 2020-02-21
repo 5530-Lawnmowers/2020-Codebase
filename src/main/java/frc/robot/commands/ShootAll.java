@@ -16,10 +16,10 @@ public class ShootAll extends CommandBase {
     private Shooter shooter;
     private Intake intake;
     private double accelSpeed = 1.0;
-    private double shootSpeed = 0.9;
+    private double shootSpeed = 1.0;
     private double feedSpeed = 1.0;
     private final double TARGET_VELOCITY = 5000;
-    private final double THRESHOLD_VELOCITY = 4900;
+    private final double THRESHOLD_VELOCITY = 4800;
 
     /**
      * Creates a new ShootAll.
@@ -36,7 +36,7 @@ public class ShootAll extends CommandBase {
     @Override
     public void initialize() {
         ShuffleboardHelpers.setWidgetValue("Shooter", "ShootAll", "Runnning");
-        shootSpeed = (double) ShuffleboardHelpers.getWidgetValue("Shooter", "Set Shoot Speed"); //Test
+        //shootSpeed = (double) ShuffleboardHelpers.getWidgetValue("Shooter", "Set Shoot Speed"); //Test
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -59,8 +59,10 @@ public class ShootAll extends CommandBase {
         //Deliver 5th ball in intake to belt system
         if (!delivery.getBreakbeams()[0] && intake.getSwitch()) {
             delivery.setDeliveryWheel(0.6);
+            intake.setIntake(0.4);
         } else {
             delivery.stopDeliveryWheel();
+            intake.stopIntake();
         }
          
         //shooter.setShooter(shootSpeed); //Test just shoot
@@ -72,7 +74,9 @@ public class ShootAll extends CommandBase {
     @Override
     public void end(boolean interrupted) {
         delivery.stopDeliveryBelt();
+        delivery.stopDeliveryWheel();
         shooter.stopShooter();
+        intake.stopIntake();
         ShuffleboardHelpers.setWidgetValue("Shooter", "ShootAll", "Ended");
     }
 
