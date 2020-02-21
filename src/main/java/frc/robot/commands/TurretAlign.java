@@ -14,7 +14,7 @@ import frc.robot.helpers.ShuffleboardHelpers;
 
 public class TurretAlign extends CommandBase {
     private Turret turret;
-    private final int MARGIN = 3;
+    private final int MARGIN = 1;
     private double previousOffset;
     private double offset;
     private int counter;
@@ -54,7 +54,11 @@ public class TurretAlign extends CommandBase {
         //TODO: only run if getRawA() is above a certain size (determine empirically)
         turret.setTurret(kp * offset - kd * offsetVelocity);
         previousOffset = offset;
-        //if (Math.abs(offset) < MARGIN) {counter++;}
+        if (Math.abs(offset) < MARGIN) {
+            counter++;
+        } else {
+            counter = 0;
+        }
     }
 
     // Called once the command ends or is interrupted.
@@ -71,5 +75,9 @@ public class TurretAlign extends CommandBase {
         //    return true;
         //}
         return false;
+    }
+
+    public boolean isAligned() {
+        return counter > 10;
     }
 }

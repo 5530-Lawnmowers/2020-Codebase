@@ -8,6 +8,8 @@ import frc.robot.helpers.ShuffleboardHelpers;
 public class HoodAdjust extends CommandBase {
 
     private final Hood hood;
+    private final double MARGIN = 1;
+    private double counter;
 
     public HoodAdjust(Hood hood) {
         this.hood = hood;
@@ -20,6 +22,7 @@ public class HoodAdjust extends CommandBase {
     @Override
     public void initialize() {
         ShuffleboardHelpers.setWidgetValue("Hood", "HoodAdjust", "Running");
+        counter = 0;
     }
 
     /**
@@ -45,6 +48,13 @@ public class HoodAdjust extends CommandBase {
                 hood.stopHood();
             }
         }
+
+        if (Math.abs(LimelightHelper.getRawY() - offset) <= MARGIN) {
+            counter++;
+        } else {
+            counter = 0;
+        }
+
     }
 
     /**
@@ -78,5 +88,9 @@ public class HoodAdjust extends CommandBase {
     public void end(boolean interrupted) {
         ShuffleboardHelpers.setWidgetValue("Hood", "HoodAdjust", "Ended");
         hood.stopHood();
+    }
+
+    public boolean isAligned() {
+        return counter > 10;
     }
 }
