@@ -12,6 +12,8 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.Climb;
 import frc.robot.helpers.LimelightHelper;
 import frc.robot.helpers.SQLHelper;
@@ -30,6 +32,7 @@ public class Robot extends TimedRobot {
     private Command m_autonomousCommand;
     private Timer timer = new Timer();
     private RobotContainer m_robotContainer;
+    public static boolean auton = false;
 
     /**
      * This function is run when the robot is first started up and should be used for any
@@ -126,6 +129,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void autonomousInit() {
+        auton = true;
         m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
         // schedule the autonomous command (example)
@@ -141,6 +145,7 @@ public class Robot extends TimedRobot {
         } catch (SQLException | NullPointerException e) {
             e.printStackTrace();
         }
+        
     }
 
     /**
@@ -148,6 +153,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void autonomousPeriodic() {
+        auton = true;
         try {
             SQLHelper.mySQLperiodic((int) timer.get());
         } catch (SQLException | NullPointerException e) {
@@ -157,6 +163,7 @@ public class Robot extends TimedRobot {
 
     @Override
     public void teleopInit() {
+        auton = false;
         // This makes sure that the autonomous stops running when
         // teleop starts running. If you want the autonomous to
         // continue until interrupted by another command, remove
@@ -180,6 +187,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void teleopPeriodic() {
+        auton = false;
         LimelightHelper.updateRumble();
         try {
             SQLHelper.mySQLperiodic((int) (timer.get() * 1000));
