@@ -2,6 +2,7 @@ package frc.robot.commands;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
@@ -12,6 +13,7 @@ import frc.robot.subsystems.Drivetrain;
 public class DriveDefault extends CommandBase {
     private final Drivetrain drivetrain;
     public static double oldTriggerR;
+    public static boolean driveFast = false;
     public static double oldTriggerL;
     private static double driveWeight = 0.85;
 
@@ -53,11 +55,16 @@ public class DriveDefault extends CommandBase {
     /**
      * Get the lateral value for a stick side on XBox Controller
      */
-    public double getLateral(GenericHID.Hand side) {
-        GenericHID.Hand opposite = side.equals(GenericHID.Hand.kLeft) ? GenericHID.Hand.kRight : GenericHID.Hand.kLeft;
-        if (Math.abs(RobotContainer.XBController1.getX(side)) < 0.001)
-            return RobotContainer.XBController1.getX(opposite);
-        return RobotContainer.XBController1.getX(side);
+    public double getLateral() {
+        if (Math.abs(RobotContainer.XBController1.getX(Hand.kLeft)) > 0.001) {
+            driveWeight = 0.85;
+            return RobotContainer.XBController1.getX(Hand.kLeft);
+        }
+        if (Math.abs(RobotContainer.XBController1.getX(Hand.kRight)) > 0.001) {
+            driveWeight = 0.25;
+            return RobotContainer.XBController1.getX(Hand.kRight);
+        }
+        return 0;
     }
 
     /**
@@ -118,10 +125,7 @@ public class DriveDefault extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        driveWeight = 0.85;
-        if (RobotContainer.XBController1.getBumper(GenericHID.Hand.kLeft))
-            driveWeight = (double) ShuffleboardHelpers.getWidgetValue("Drivetrain", "Precision Weight");
-        setSpeeds(getLateral(GenericHID.Hand.kLeft), getTrigger(GenericHID.Hand.kRight), getTrigger(GenericHID.Hand.kLeft));
+        setSpeeds(getLateral(), getTrigger(GenericHID.Hand.kRight), getTrigger(GenericHID.Hand.kLeft));
     }
 
     // Called once the command ends or is interrupted.
