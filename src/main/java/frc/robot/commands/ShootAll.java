@@ -22,6 +22,8 @@ public class ShootAll extends CommandBase {
     private final double TARGET_VELOCITY = 4500;
     private final double THRESHOLD_VELOCITY = 4450;
 
+    private int counter = 0;
+
     /**
      * Creates a new ShootAll.
      */
@@ -37,12 +39,14 @@ public class ShootAll extends CommandBase {
     @Override
     public void initialize() {
         ShuffleboardHelpers.setWidgetValue("Shooter", "ShootAll", "Runnning");
+        counter = 0;
         //shootSpeed = (double) ShuffleboardHelpers.getWidgetValue("Shooter", "Set Shoot Speed"); //Test
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
+
         //If speed too low, stop feed and accelerate at max power
         //If speed close to desired, stop feed and reduce speed to hold power
         //If speed at or above desired, feed ball
@@ -68,6 +72,14 @@ public class ShootAll extends CommandBase {
         //shooter.setShooter(shootSpeed); //Test just shoot
 
         ShuffleboardHelpers.setWidgetValue("Shooter", "Shooter Velocity", shooter.getShooterVelocity());
+
+        boolean change = true;
+        boolean[] breakbeams = delivery.getBreakbeams();
+        for (boolean beam : breakbeams)
+            if (beam) change = false;
+        if (change) {
+            counter++;
+        }
     }
 
     // Called once the command ends or is interrupted.
@@ -78,14 +90,16 @@ public class ShootAll extends CommandBase {
         shooter.stopShooter();
         intake.stopIntake();
         ShuffleboardHelpers.setWidgetValue("Shooter", "ShootAll", "Ended");
+        if (interrupted) {
+            ShuffleboardHelpers.setWidgetValue("Shooter", "ShootAll", "Interrupted");
+        }
     }
 
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        boolean[] breakbeams = delivery.getBreakbeams();
-        for (boolean beam : breakbeams)
-            if (beam) return false;
-        return Robot.auton;
+        //return false;
+
+        return Robot.auton && counter > 50;
     }
 }
