@@ -49,7 +49,7 @@ public class Drivetrain extends SubsystemBase {
 
     public static double StartingPose;
 
-    public static float WheelCircumfrance = (float) .160;//in m
+    public static float WheelCircumference = (float) .160;//in m
     public static DifferentialDriveOdometry DDO = new DifferentialDriveOdometry(new Rotation2d());
     public static PigeonIMU pigeon = new PigeonIMU(15);
     public static Rotation2d heading = new Rotation2d();
@@ -194,14 +194,14 @@ public class Drivetrain extends SubsystemBase {
     public double getDistanceLeft() {
         leftDistance = (float) (drivetrainLeft1.getSelectedSensorPosition());
         leftDistance = leftDistance / 2048;
-        leftDistance = leftDistance * WheelCircumfrance;
+        leftDistance = leftDistance * WheelCircumference;
         return leftDistance;
     }
 
     public double getDistanceRight() {
         rightDistance = (float) (drivetrainRight1.getSelectedSensorPosition());
         rightDistance = rightDistance / 2048;
-        rightDistance = rightDistance * WheelCircumfrance;
+        rightDistance = rightDistance * WheelCircumference;
         return leftDistance;
     }
 
