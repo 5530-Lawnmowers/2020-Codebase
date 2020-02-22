@@ -28,6 +28,7 @@ public class SimpleForward extends CommandBase {
   @Override
   public void initialize() {
     counter = 0;
+    drivetrain.setBrakeMode(true);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -48,6 +49,7 @@ public class SimpleForward extends CommandBase {
     drivetrain.setDrivetrainMotor(0, Constants.DT_L2);
     drivetrain.setDrivetrainMotor(0, Constants.DT_R1);
     drivetrain.setDrivetrainMotor(0, Constants.DT_R2);
+    drivetrain.setBrakeMode(true); //Change as needed
   }
 
   // Returns true when the command should end.
