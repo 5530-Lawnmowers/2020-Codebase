@@ -109,6 +109,24 @@ public class Drivetrain extends SubsystemBase {
         // This method will be called once per scheduler run
     }
 
+    /**
+     * Sers the neutral mode for all drivetrain motors
+     * @param brake {@code true} to set drivetrain to brake, {@code false} to set drivetrain to coast
+     */
+    public void setBrakeMode(boolean brake) {
+        if (brake) {
+            drivetrainLeft1.setNeutralMode(NeutralMode.Brake);
+            drivetrainLeft2.setNeutralMode(NeutralMode.Brake);
+            drivetrainRight1.setNeutralMode(NeutralMode.Brake);
+            drivetrainRight2.setNeutralMode(NeutralMode.Brake);
+        } else {
+            drivetrainLeft1.setNeutralMode(NeutralMode.Coast);
+            drivetrainLeft2.setNeutralMode(NeutralMode.Coast);
+            drivetrainRight1.setNeutralMode(NeutralMode.Coast);
+            drivetrainRight1.setNeutralMode(NeutralMode.Coast);
+        }
+    }
+
     //Drive test only
     public void testDrive(double throttle, double turn) {
         if (Math.abs(throttle) > 1)
