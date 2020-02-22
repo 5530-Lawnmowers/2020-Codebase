@@ -39,10 +39,10 @@ public class Climb extends CommandBase {
     @Override
     public void execute() {
         if (RobotContainer.XBController2.getStartButton()) {
-            climber.setClimb(1, Constants.CLIMB_L);
+            climber.setClimb(-1, Constants.CLIMB_L);
             climber.setClimb(1, Constants.CLIMB_R);
         } else {
-            climber.setClimb(RobotContainer.XBController2.getTriggerAxis(Hand.kLeft), Constants.CLIMB_L);
+            climber.setClimb(-RobotContainer.XBController2.getTriggerAxis(Hand.kLeft), Constants.CLIMB_L);
             climber.setClimb(RobotContainer.XBController2.getTriggerAxis(Hand.kRight), Constants.CLIMB_R);
         }
 
