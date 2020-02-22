@@ -79,6 +79,8 @@ public class ShootAll extends CommandBase {
             if (beam) change = false;
         if (change) {
             counter++;
+        } else {
+            counter = 0;
         }
     }
 
