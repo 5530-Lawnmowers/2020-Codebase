@@ -25,6 +25,10 @@ public class IntakeSmartControl extends CommandBase {
     private boolean intakeTriggerReset;
     private boolean finalBall;
 
+    private double beltFeedOffset = 1;
+    private double beltTriggerPosition;
+    private boolean beltTriggerReset;
+
     private boolean newBall = false;
     private boolean beltGood = true;
 
@@ -45,6 +49,7 @@ public class IntakeSmartControl extends CommandBase {
         wheelSet = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Set Wheel");
         beltSet = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Set Belt");
         intakeFeedOffset = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Intake Feed Offset");
+        beltFeedOffset = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivey", "Belt Feed Offset");
 
         ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "IntakeSmartControl", "Running");
 
@@ -150,8 +155,16 @@ public class IntakeSmartControl extends CommandBase {
             delivery.stopDeliveryBelt();
         } else if (delivery.getBreakbeams()[0]) {
             delivery.setDeliveryBelt(beltSet);
+            beltTriggerReset = true;
         } else {
-            delivery.stopDeliveryBelt();
+            if (beltTriggerReset) {
+                beltTriggerPosition = delivery.getDeliveryBeltPosition();
+                beltTriggerReset = false;
+            }
+            if (Math.abs(delivery.getDeliveryBeltPosition() - beltTriggerPosition) > beltFeedOffset) {
+                delivery.stopDeliveryBelt();
+            }
+            //delivery.stopDeliveryBelt(); //comment this line back in and rest of else block out to revert
         }
     }
 
