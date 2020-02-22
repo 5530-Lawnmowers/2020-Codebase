@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
+import frc.robot.helpers.ShuffleboardHelpers;
 import frc.robot.subsystems.Drivetrain;
 
 
@@ -117,6 +118,9 @@ public class DriveDefault extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
+        driveWeight = 0.85;
+        if (RobotContainer.XBController1.getBumper(GenericHID.Hand.kLeft))
+            driveWeight = (double) ShuffleboardHelpers.getWidgetValue("Drivetrain", "Precision Weight");
         setSpeeds(getLateral(GenericHID.Hand.kLeft), getTrigger(GenericHID.Hand.kRight), getTrigger(GenericHID.Hand.kLeft));
     }
 
