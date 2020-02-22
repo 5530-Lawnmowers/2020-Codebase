@@ -15,6 +15,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.*;
 import frc.robot.Constants;
+import frc.robot.Robot;
 import frc.robot.commands.TurretLimitInterrupt;
 import frc.robot.commands.TurretManual;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -120,7 +121,7 @@ public class Turret extends SubsystemBase {
         // This method will be called once per scheduler run
         resetCycleZero();
 
-        if (!ignoreSoftwareLimit) {
+        if (!ignoreSoftwareLimit && !Robot.auton) {
             if (turretSpin.getSelectedSensorPosition() >= upperLimit) {
                 CommandScheduler.getInstance().schedule(new TurretLimitInterrupt(this, true));
                 ShuffleboardHelpers.setWidgetValue("Turret", "TurretLimitInterrupt", "Interrupt Over");
