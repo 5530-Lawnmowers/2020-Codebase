@@ -56,7 +56,7 @@ public class DriveDefault extends CommandBase {
     public double getLateral(GenericHID.Hand side) {
         GenericHID.Hand opposite = side.equals(GenericHID.Hand.kLeft) ? GenericHID.Hand.kRight : GenericHID.Hand.kLeft;
         if (Math.abs(RobotContainer.XBController1.getX(side)) < 0.001)
-            return RobotContainer.XBController1.getX(opposite);
+            return RobotContainer.XBController1.getX(opposite)/2;
         return RobotContainer.XBController1.getX(side);
     }
 
