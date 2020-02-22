@@ -66,10 +66,10 @@ public class Drivetrain extends SubsystemBase {
         drivetrainRight1.setInverted(false);
         drivetrainRight2.setInverted(false);
 
-        drivetrainLeft1.setNeutralMode(NeutralMode.Brake);
-        drivetrainLeft2.setNeutralMode(NeutralMode.Brake);
-        drivetrainRight1.setNeutralMode(NeutralMode.Brake);
-        drivetrainRight2.setNeutralMode(NeutralMode.Brake);
+        drivetrainLeft1.setNeutralMode(NeutralMode.Coast);
+        drivetrainLeft2.setNeutralMode(NeutralMode.Coast);
+        drivetrainRight1.setNeutralMode(NeutralMode.Coast);
+        drivetrainRight2.setNeutralMode(NeutralMode.Coast);
 
         drivetrainLeft1.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 10);
         drivetrainRight1.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 10);
