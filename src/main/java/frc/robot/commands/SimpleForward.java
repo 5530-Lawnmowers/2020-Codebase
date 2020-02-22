@@ -20,6 +20,7 @@ public class SimpleForward extends CommandBase {
 
   public SimpleForward(Drivetrain drivetrain) {
     this.drivetrain = drivetrain;
+    addRequirements(drivetrain);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -32,10 +33,10 @@ public class SimpleForward extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    drivetrain.setDrivetrainMotor(.5, Constants.DT_L1);
-    drivetrain.setDrivetrainMotor(.5, Constants.DT_L2);
-    drivetrain.setDrivetrainMotor(-.5, Constants.DT_R1);
-    drivetrain.setDrivetrainMotor(-.5, Constants.DT_R2);
+    drivetrain.setDrivetrainMotor(-.25, Constants.DT_L1);
+    drivetrain.setDrivetrainMotor(-.25, Constants.DT_L2);
+    drivetrain.setDrivetrainMotor(.25, Constants.DT_R1);
+    drivetrain.setDrivetrainMotor(.25, Constants.DT_R2);
     
     counter++;
   }
@@ -54,7 +55,7 @@ public class SimpleForward extends CommandBase {
   public boolean isFinished() {
     //if(drivetrain.getDistanceRight() >= -.5){
 
-    return counter >= 25;
+    return counter >= 50;
     //return false;
   }
 }
