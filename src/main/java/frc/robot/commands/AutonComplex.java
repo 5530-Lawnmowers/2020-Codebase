@@ -8,11 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.subsystems.Delivery;
-import frc.robot.subsystems.Hood;
-import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.Shooter;
-import frc.robot.subsystems.Turret;
+import frc.robot.subsystems.*;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -21,9 +17,9 @@ public class AutonComplex extends SequentialCommandGroup {
   /**
    * Creates a new AutonComplex.
    */
-  public AutonComplex(Hood hood, Turret turret, Shooter shooter, Delivery delivery, Intake intake) {
+  public AutonComplex(Hood hood, Turret turret, Shooter shooter, Delivery delivery, Intake intake, Drivetrain drivetrain) {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
-    addCommands(new AlignAll(hood, turret), new ShootAll(delivery, shooter, intake));
+    addCommands(new AlignAll(hood, turret), new ShootAll(delivery, shooter, intake), new SimpleForward(drivetrain));
   }
 }
