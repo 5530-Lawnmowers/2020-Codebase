@@ -15,7 +15,7 @@ import frc.robot.helpers.ShuffleboardHelpers;
 
 public class TurretAlign extends CommandBase {
     private Turret turret;
-    private final int MARGIN = 1;
+    private final int MARGIN = 2;
     private double previousOffset;
     private double offset;
     private int counter;
