@@ -12,9 +12,9 @@ import frc.robot.helpers.ShuffleboardHelpers;
 import frc.robot.subsystems.*;
 
 public class IntakeRun extends CommandBase {
-    private double beltSet = -0.4;
-    private double wheelSet = -0.4;
-    private double intakeSet = 0.4;
+    private double beltSet = 1.0;
+    private double wheelSet = -0;
+    private double intakeSet = 0;
     private Delivery delivery;
     private Intake intake;
 
@@ -48,7 +48,7 @@ public class IntakeRun extends CommandBase {
     public void initialize() {
         //intakeSet = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Set Intake");
         //wheelSet = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Set Wheel");
-        //beltSet = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Set Belt");
+        //beltSet = - (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Set Belt");
         ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "IntakeRun", "Running");
         intake.setIntake(intakeSet);
         delivery.setDeliveryBelt(beltSet);

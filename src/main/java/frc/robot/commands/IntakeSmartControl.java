@@ -15,9 +15,9 @@ public class IntakeSmartControl extends CommandBase {
     private Intake intake;
     private Delivery delivery;
 
-    private double intakeSet;
-    private double wheelSet;
-    private double beltSet;
+    private double intakeSet = -0.4;
+    private double wheelSet = 0.7;
+    private double beltSet = 0.4;
 
     private int furthestTrigger;
     private double intakeFeedOffset = 8;
@@ -45,11 +45,11 @@ public class IntakeSmartControl extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        intakeSet = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Set Intake");
-        wheelSet = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Set Wheel");
-        beltSet = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Set Belt");
+        //intakeSet = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Set Intake");
+        //wheelSet = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Set Wheel");
+        //beltSet = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Set Belt");
         intakeFeedOffset = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Intake Feed Offset");
-        beltFeedOffset = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivey", "Belt Feed Offset");
+        beltFeedOffset = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Belt Feed Offset");
 
         ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "IntakeSmartControl", "Running");
 

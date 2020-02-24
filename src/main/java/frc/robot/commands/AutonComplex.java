@@ -20,6 +20,6 @@ public class AutonComplex extends SequentialCommandGroup {
   public AutonComplex(Hood hood, Turret turret, Shooter shooter, Delivery delivery, Intake intake, Drivetrain drivetrain) {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
-    addCommands(new SimpleForward(drivetrain), new AlignAll(hood, turret), new ShootAll(delivery, shooter, intake));
+    addCommands(/*new SimpleForward(drivetrain),*/ new AlignAll(hood, turret), new ShootAll(delivery, shooter, intake));
   }
 }

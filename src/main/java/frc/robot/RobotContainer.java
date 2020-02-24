@@ -76,13 +76,13 @@ public class RobotContainer {
      * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
      */
     private void configureButtonBindings() {
-        xb1a.toggleWhenPressed(new IntakeRun(delivery, intake));
+        xb2y.whenHeld(new IntakeRun(delivery, intake));
         xb1y.toggleWhenPressed(new IntakeSmartControl(intake, delivery));
 
         xb2a.toggleWhenPressed(new ShootManual(shooter));
-        xb1b.toggleWhenPressed(new ShootAll(delivery, shooter, intake));
-        xb2x.toggleWhenPressed(new TurretAlign(turret));
-        xb2x.toggleWhenPressed(new HoodAlign(hood));
+        xb2b.whenHeld(new ShootAll(delivery, shooter, intake));
+        xb2x.whenHeld(new TurretAlign(turret));
+        xb2x.whenHeld(new HoodAlign(hood));
         xb2back.whenPressed(new Climb(climber));
 
         //Other buttons in use
@@ -100,5 +100,9 @@ public class RobotContainer {
     public Command getAutonomousCommand() {
         // An ExampleCommand will run in autonomous
         return autonTest;
+    }
+
+    public void setDrivetrainMode(boolean brake) {
+        drivetrain.setBrakeMode(brake);
     }
 }
