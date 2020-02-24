@@ -26,27 +26,43 @@ public class Hood extends SubsystemBase {
     private double lowerLimit;
     private boolean ignoreSoftwareLimits = true;
 
+    private double iterationSet = 0; // New limit code
+
     public Hood() {
-        resetLimits();
+        //resetLimits();
         setDefaultCommand(new HoodManual(this));
+        
+        iterationSet = 0; // New limit code
     }
 
     @Override
     public void periodic() {
         ShuffleboardHelpers.setWidgetValue("Hood", "Hood Position", angleAbs.get());
-        resetLimits();
+        //resetLimits();
 
         if (!ignoreSoftwareLimits) {
-            if (getAngleAbs() > upperLimit) {
-                CommandScheduler.getInstance().schedule(new HoodLimitInterrupt(this, true));
+            // if (getAngleAbs() > upperLimit) {
+            //     CommandScheduler.getInstance().schedule(new HoodLimitInterrupt(this, true));
+            //     ShuffleboardHelpers.setWidgetValue("Hood", "HoodLimitInterrupt", "Interrupt Over");
+            // } else if (getAngleAbs() < lowerLimit) {
+            //     CommandScheduler.getInstance().schedule(new HoodLimitInterrupt(this, false));
+            //     ShuffleboardHelpers.setWidgetValue("Hood", "HoodLimitInterrupt", "Interrupt Under");
+            // } else {
+            //     ShuffleboardHelpers.setWidgetValue("Hood", "HoodLimitInterrupt", "Safe");
+            // }
+
+            if (positionFrac() > HIGH && positionFrac() < HIGH + 0.1) {
                 ShuffleboardHelpers.setWidgetValue("Hood", "HoodLimitInterrupt", "Interrupt Over");
-            } else if (getAngleAbs() < lowerLimit) {
-                CommandScheduler.getInstance().schedule(new HoodLimitInterrupt(this, false));
+                iterationSet = 0.3;
+            } else if (positionFrac() < LOW && positionFrac() > LOW - 0.1) {
                 ShuffleboardHelpers.setWidgetValue("Hood", "HoodLimitInterrupt", "Interrupt Under");
+                iterationSet = -0.3;
             } else {
                 ShuffleboardHelpers.setWidgetValue("Hood", "HoodLimitInterrupt", "Safe");
             }
         }
+
+        hoodAdjust.set(ControlMode.PercentOutput, iterationSet); // New limit code
     }
 
     /**
@@ -55,7 +71,8 @@ public class Hood extends SubsystemBase {
      * @param speed The speed to set
      */
     public void setHood(double speed) {
-        hoodAdjust.set(ControlMode.PercentOutput, speed);
+        //hoodAdjust.set(ControlMode.PercentOutput, speed);
+        iterationSet = speed; // New limit code
     }
 
     /**
@@ -85,7 +102,8 @@ public class Hood extends SubsystemBase {
      * Stops the hood motor
      */
     public void stopHood() {
-        hoodAdjust.stopMotor();
+        //hoodAdjust.stopMotor();
+        iterationSet = 0; // New limit code
     }
 
     public double getAngleAbs() {
@@ -110,6 +128,10 @@ public class Hood extends SubsystemBase {
 
         ShuffleboardHelpers.setWidgetValue("Hood", "Upper Limit", upperLimit);
         ShuffleboardHelpers.setWidgetValue("Hood", "Lower Limit", lowerLimit);
+    }
+
+    private double positionFrac() {
+        return getAngleAbs() - Math.floor(getAngleAbs());
     }
 
     public double getUpperLimit() {
