@@ -17,6 +17,9 @@ public class Shooter extends SubsystemBase {
     private final CANSparkMax shooter1 = new CANSparkMax(Constants.SHOOTER_1, CANSparkMaxLowLevel.MotorType.kBrushless);
     private final CANSparkMax shooter2 = new CANSparkMax(Constants.SHOOTER_2, CANSparkMaxLowLevel.MotorType.kBrushless);
 
+    public final CANPIDController shooterPID1 = shooter1.getPIDController();
+    public final CANPIDController shooterPID2 = shooter2.getPIDController();
+
     /**
      * Creates a new Shooter.
      */
