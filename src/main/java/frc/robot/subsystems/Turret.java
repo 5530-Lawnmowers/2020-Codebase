@@ -36,6 +36,9 @@ public class Turret extends SubsystemBase {
     private int upperLimit;
     private boolean ignoreSoftwareLimit = false;
 
+    //Perhaps necessary for software limits
+    private double iterationSet = 0;
+
     /**
      * Creates a new Turret.
      */
@@ -47,10 +50,13 @@ public class Turret extends SubsystemBase {
         turretSpin.config_kI(0, .007, 10);
         turretSpin.config_kD(0, .007, 10);
 
-        resetCycleZero();
+        turretSpin.configFeedbackNotContinuous(true, 10); // New limit code
+        //resetCycleZero();
 
         ShuffleboardHelpers.setWidgetValue("Turret", "Turret Zero", cycleZero);
         ShuffleboardHelpers.setWidgetValue("Turret", "Initial Position", turretSpin.getSelectedSensorPosition());
+
+        iterationSet = 0; // New limit code
 
         setDefaultCommand(new TurretManual(this));
     }
@@ -61,7 +67,8 @@ public class Turret extends SubsystemBase {
      * @param speed The speed to set
      */
     public void setTurret(double speed) {
-        turretSpin.set(ControlMode.PercentOutput, speed);
+        iterationSet = speed; // New limit code
+        //turretSpin.set(ControlMode.PercentOutput, speed);
         //Positive direction of encoder is positive speed
     }
 
@@ -86,7 +93,8 @@ public class Turret extends SubsystemBase {
      * Stops the turret motor
      */
     public void stopTurret() {
-        turretSpin.stopMotor();
+        iterationSet = 0; // New limit code
+        //turretSpin.stopMotor();
     }
 
     /**
@@ -119,21 +127,32 @@ public class Turret extends SubsystemBase {
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
-        resetCycleZero();
+        //resetCycleZero();
 
         if (!ignoreSoftwareLimit && !Robot.auton) {
-            if (turretSpin.getSelectedSensorPosition() >= upperLimit) {
-                CommandScheduler.getInstance().schedule(new TurretLimitInterrupt(this, true));
+            // if (turretSpin.getSelectedSensorPosition() >= upperLimit) {
+            //     CommandScheduler.getInstance().schedule(new TurretLimitInterrupt(this, true));
+            //     ShuffleboardHelpers.setWidgetValue("Turret", "TurretLimitInterrupt", "Interrupt Over");
+            // } else if (turretSpin.getSelectedSensorPosition() <= lowerLimit) {
+            //     CommandScheduler.getInstance().schedule(new TurretLimitInterrupt(this, false));
+            //     ShuffleboardHelpers.setWidgetValue("Turret", "TurretLimitInterrupt", "Interrupt Under");
+            // } else {
+            //     ShuffleboardHelpers.setWidgetValue("Turret", "TurretLimitInterrupt", "Safe");
+            // }
+            if (getEncoderValue() >= REL_ZERO + 1024 && getEncoderValue() <= REL_ZERO + 2048) {
+                iterationSet = -.1;
                 ShuffleboardHelpers.setWidgetValue("Turret", "TurretLimitInterrupt", "Interrupt Over");
-            } else if (turretSpin.getSelectedSensorPosition() <= lowerLimit) {
-                CommandScheduler.getInstance().schedule(new TurretLimitInterrupt(this, false));
+            } else if (getEncoderValue() <= REL_ZERO - 1024 && getEncoderValue() > REL_ZERO + 2048) {
+                iterationSet = .1;
                 ShuffleboardHelpers.setWidgetValue("Turret", "TurretLimitInterrupt", "Interrupt Under");
             } else {
                 ShuffleboardHelpers.setWidgetValue("Turret", "TurretLimitInterrupt", "Safe");
             }
         }
 
-        ShuffleboardHelpers.setWidgetValue("Turret", "Turret Zero", cycleZero);
+        turretSpin.set(iterationSet); // New limit code
+
+        //ShuffleboardHelpers.setWidgetValue("Turret", "Turret Zero", cycleZero);
         ShuffleboardHelpers.setWidgetValue("Turret", "Position", turretSpin.getSelectedSensorPosition());
         ShuffleboardHelpers.setWidgetValue("Turret", "Offset X", LimelightHelper.getRawX());
     }
