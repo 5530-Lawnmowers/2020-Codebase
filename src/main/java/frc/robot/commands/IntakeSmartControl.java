@@ -45,9 +45,9 @@ public class IntakeSmartControl extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        //intakeSet = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Set Intake");
-        //wheelSet = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Set Wheel");
-        //beltSet = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Set Belt");
+        intakeSet = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Set Intake");
+        wheelSet = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Set Wheel");
+        beltSet = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Set Belt");
         intakeFeedOffset = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Intake Feed Offset");
         beltFeedOffset = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Belt Feed Offset");
 
