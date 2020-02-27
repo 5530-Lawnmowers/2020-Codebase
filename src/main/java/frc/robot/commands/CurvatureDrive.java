@@ -65,7 +65,7 @@ public class CurvatureDrive extends CommandBase {
     // Define necessary inputs
     double throttle = accelerator - decelerator;
     double turn = deadband(RobotContainer.XBController1.getX(Hand.kLeft), kDeadband);
-    boolean quickTurn = RobotContainer.XBController1.getBumper(Hand.kLeft);
+    boolean quickTurn = RobotContainer.XBController1.getAButton();
 
     boolean overPower;
     double angularPower;

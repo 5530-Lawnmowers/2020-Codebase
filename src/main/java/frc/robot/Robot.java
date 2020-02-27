@@ -172,7 +172,7 @@ public class Robot extends TimedRobot {
         if (m_autonomousCommand != null) {
             m_autonomousCommand.cancel();
         }
-        m_robotContainer.setDrivetrainMode(true);
+        m_robotContainer.setDrivetrainMode(false);
         //if true then robot will brake
         try {
             if (!SQLHelper.isOpen()) {
