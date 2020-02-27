@@ -43,7 +43,7 @@ public class CurvatureDrive extends CommandBase {
     oldTriggerR = deadband(RobotContainer.XBController1.getTriggerAxis(Hand.kRight), kDeadband);
 
     // Drivetrain to coast
-    drivetrain.setBrakeMode(false);
+    drivetrain.setBrakeMode(true);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
