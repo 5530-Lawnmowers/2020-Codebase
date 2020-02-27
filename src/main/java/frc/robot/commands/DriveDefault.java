@@ -56,8 +56,18 @@ public class DriveDefault extends CommandBase {
     public double getLateral(GenericHID.Hand side) {
         GenericHID.Hand opposite = side.equals(GenericHID.Hand.kLeft) ? GenericHID.Hand.kRight : GenericHID.Hand.kLeft;
         if (Math.abs(RobotContainer.XBController1.getX(side)) < 0.001)
-            return RobotContainer.XBController1.getX(opposite)/2;
-        return RobotContainer.XBController1.getX(side);
+            return deadband(RobotContainer.XBController1.getX(opposite), 0.15);
+        return deadband(RobotContainer.XBController1.getX(side), 0.15);
+    }
+
+    /**
+     * Takes care of deadbanding
+     * @param input the input value
+     * @param threshold the deadband value
+     * @return {@code 0} if input is within deadband, {@code input} otherwise
+     */
+    private double deadband(double input, double threshold) {
+        return Math.abs(input) > threshold ? input : 0;
     }
 
     /**
