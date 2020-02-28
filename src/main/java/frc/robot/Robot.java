@@ -197,7 +197,7 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopPeriodic() {
         auton = false;
-        LimelightHelper.updateRumble();
+        //LimelightHelper.updateRumble();
         /*
         try {
             SQLHelper.mySQLperiodic((int) (timer.get() * 1000));
