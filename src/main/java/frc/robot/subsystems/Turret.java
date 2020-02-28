@@ -151,6 +151,7 @@ public class Turret extends SubsystemBase {
         }
 
         turretSpin.set(iterationSet); // New limit code
+        iterationSet = 0; // New limit code
 
         //ShuffleboardHelpers.setWidgetValue("Turret", "Turret Zero", cycleZero);
         ShuffleboardHelpers.setWidgetValue("Turret", "Position", turretSpin.getSelectedSensorPosition());

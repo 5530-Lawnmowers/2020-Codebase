@@ -63,6 +63,7 @@ public class Hood extends SubsystemBase {
         }
 
         hoodAdjust.set(ControlMode.PercentOutput, iterationSet); // New limit code
+        iterationSet = 0; // New limit code
     }
 
     /**
