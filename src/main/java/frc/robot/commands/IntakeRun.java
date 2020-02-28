@@ -49,7 +49,7 @@ public class IntakeRun extends CommandBase {
         //intakeSet = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Set Intake");
         //wheelSet = (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Set Wheel");
         //beltSet = - (double) ShuffleboardHelpers.getWidgetValue("Intake and Delivery", "Set Belt");
-        ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "IntakeRun", "Running");
+        //ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "IntakeRun", "Running");
         intake.setIntake(intakeSet);
         delivery.setDeliveryBelt(beltSet);
         delivery.setDeliveryWheel(wheelSet);
@@ -74,7 +74,7 @@ public class IntakeRun extends CommandBase {
         intake.stopIntake();
         delivery.stopDeliveryBelt();
         delivery.stopDeliveryWheel();
-        ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "IntakeRun", "Ended");
+        //ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "IntakeRun", "Ended");
     }
 
     // Returns true when the command should end.

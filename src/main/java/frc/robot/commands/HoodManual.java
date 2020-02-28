@@ -34,7 +34,7 @@ public class HoodManual extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        ShuffleboardHelpers.setWidgetValue("Hood", "HoodManual", "Running");
+        //ShuffleboardHelpers.setWidgetValue("Hood", "HoodManual", "Running");
         if (RobotContainer.XBController2.getStickButton(Hand.kLeft)) {
             hood.setHood(hoodSpeed);
         } else if (RobotContainer.XBController2.getStickButton(Hand.kRight)) {
@@ -47,7 +47,7 @@ public class HoodManual extends CommandBase {
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        ShuffleboardHelpers.setWidgetValue("Hood", "HoodManual", "Ended");
+        //ShuffleboardHelpers.setWidgetValue("Hood", "HoodManual", "Ended");
     }
 
     // Returns true when the command should end.

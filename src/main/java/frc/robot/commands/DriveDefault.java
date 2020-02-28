@@ -130,7 +130,7 @@ public class DriveDefault extends CommandBase {
     public void execute() {
         driveWeight = 0.85;
         if (RobotContainer.XBController1.getBumper(GenericHID.Hand.kLeft))
-            driveWeight = (double) ShuffleboardHelpers.getWidgetValue("Drivetrain", "Precision Weight");
+            driveWeight = 0.25; //(double) ShuffleboardHelpers.getWidgetValue("Drivetrain", "Precision Weight");
         setSpeeds(getLateral(GenericHID.Hand.kLeft), getTrigger(GenericHID.Hand.kRight), getTrigger(GenericHID.Hand.kLeft));
     }
 

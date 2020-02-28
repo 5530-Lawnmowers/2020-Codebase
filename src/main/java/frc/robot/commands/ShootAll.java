@@ -38,7 +38,7 @@ public class ShootAll extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        ShuffleboardHelpers.setWidgetValue("Shooter", "ShootAll", "Runnning");
+        //ShuffleboardHelpers.setWidgetValue("Shooter", "ShootAll", "Runnning");
         counter = 0;
         //shootSpeed = (double) ShuffleboardHelpers.getWidgetValue("Shooter", "Set Shoot Speed"); //Test
     }
@@ -91,9 +91,9 @@ public class ShootAll extends CommandBase {
         delivery.stopDeliveryWheel();
         shooter.stopShooter();
         intake.stopIntake();
-        ShuffleboardHelpers.setWidgetValue("Shooter", "ShootAll", "Ended");
+        //ShuffleboardHelpers.setWidgetValue("Shooter", "ShootAll", "Ended");
         if (interrupted) {
-            ShuffleboardHelpers.setWidgetValue("Shooter", "ShootAll", "Interrupted");
+            //ShuffleboardHelpers.setWidgetValue("Shooter", "ShootAll", "Interrupted");
         }
     }
 

@@ -39,7 +39,7 @@ public class TurretAlign extends CommandBase {
         counter = 0;
         offset = LimelightHelper.getRawX();
         previousOffset = offset;
-        ShuffleboardHelpers.setWidgetValue("Turret", "TurretAlign", "Running");
+        //ShuffleboardHelpers.setWidgetValue("Turret", "TurretAlign", "Running");
 
         //turret.setPosition(currentPosition + (int) Math.round(offset * 4096 / 360)); //Instant set
     }
@@ -49,8 +49,8 @@ public class TurretAlign extends CommandBase {
     public void execute() {
         offset = LimelightHelper.getRawX();
         double offsetVelocity = Math.abs(offset - previousOffset);
-        kp = (double) ShuffleboardHelpers.getWidgetValue("Turret", "kP");
-        kd = (double) ShuffleboardHelpers.getWidgetValue("Turret", "kD");
+        //kp = (double) ShuffleboardHelpers.getWidgetValue("Turret", "kP");
+        //kd = (double) ShuffleboardHelpers.getWidgetValue("Turret", "kD");
         //Align via continous power set
         //TODO: only run if getRawA() is above a certain size (determine empirically)
         turret.setTurret(kp * offset - kd * offsetVelocity);
@@ -66,7 +66,7 @@ public class TurretAlign extends CommandBase {
     @Override
     public void end(boolean interrupted) {
         turret.stopTurret();
-        ShuffleboardHelpers.setWidgetValue("Turret", "TurretAlign", "Ended");
+        //ShuffleboardHelpers.setWidgetValue("Turret", "TurretAlign", "Ended");
     }
 
     // Returns true when the command should end.

@@ -53,8 +53,8 @@ public class Turret extends SubsystemBase {
         turretSpin.configFeedbackNotContinuous(true, 10); // New limit code
         //resetCycleZero();
 
-        ShuffleboardHelpers.setWidgetValue("Turret", "Turret Zero", cycleZero);
-        ShuffleboardHelpers.setWidgetValue("Turret", "Initial Position", turretSpin.getSelectedSensorPosition());
+        //ShuffleboardHelpers.setWidgetValue("Turret", "Turret Zero", cycleZero);
+        //ShuffleboardHelpers.setWidgetValue("Turret", "Initial Position", turretSpin.getSelectedSensorPosition());
 
         iterationSet = 0; // New limit code
 
@@ -141,12 +141,12 @@ public class Turret extends SubsystemBase {
             // }
             if (getEncoderValue() >= REL_ZERO + 1024 && getEncoderValue() <= REL_ZERO + 2048) {
                 iterationSet = -.1;
-                ShuffleboardHelpers.setWidgetValue("Turret", "TurretLimitInterrupt", "Interrupt Over");
+                //ShuffleboardHelpers.setWidgetValue("Turret", "TurretLimitInterrupt", "Interrupt Over");
             } else if (getEncoderValue() <= REL_ZERO - 1024 && getEncoderValue() > REL_ZERO + 2048) {
                 iterationSet = .1;
-                ShuffleboardHelpers.setWidgetValue("Turret", "TurretLimitInterrupt", "Interrupt Under");
+                //ShuffleboardHelpers.setWidgetValue("Turret", "TurretLimitInterrupt", "Interrupt Under");
             } else {
-                ShuffleboardHelpers.setWidgetValue("Turret", "TurretLimitInterrupt", "Safe");
+                //ShuffleboardHelpers.setWidgetValue("Turret", "TurretLimitInterrupt", "Safe");
             }
         }
 
@@ -154,8 +154,8 @@ public class Turret extends SubsystemBase {
         iterationSet = 0; // New limit code
 
         //ShuffleboardHelpers.setWidgetValue("Turret", "Turret Zero", cycleZero);
-        ShuffleboardHelpers.setWidgetValue("Turret", "Position", turretSpin.getSelectedSensorPosition());
-        ShuffleboardHelpers.setWidgetValue("Turret", "Offset X", LimelightHelper.getRawX());
+        //ShuffleboardHelpers.setWidgetValue("Turret", "Position", turretSpin.getSelectedSensorPosition());
+        //ShuffleboardHelpers.setWidgetValue("Turret", "Offset X", LimelightHelper.getRawX());
     }
 
     /**

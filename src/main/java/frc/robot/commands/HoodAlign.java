@@ -22,7 +22,7 @@ public class HoodAlign extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        ShuffleboardHelpers.setWidgetValue("Hood", "HoodAlign", "Running");
+        //ShuffleboardHelpers.setWidgetValue("Hood", "HoodAlign", "Running");
         counter = 0;
     }
 
@@ -49,7 +49,7 @@ public class HoodAlign extends CommandBase {
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        ShuffleboardHelpers.setWidgetValue("Hood", "HoodAlign", "Ended");
+        //ShuffleboardHelpers.setWidgetValue("Hood", "HoodAlign", "Ended");
         hood.stopHood();
     }
 

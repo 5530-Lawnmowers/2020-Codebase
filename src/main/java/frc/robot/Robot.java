@@ -41,50 +41,48 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
         Shuffleboard.getTab("Intake and Delivery");
-        SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Set Intake", -0.4));
-        SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Set Wheel", 0.5));
-        SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Set Belt", 0.8));
-        SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("IntakeRun", "Init"));
-        SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("IntakeSmartControl", "Init"));
-        SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Breakbeam 1", true));
-        SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Breakbeam 2", true));
-        SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Breakbeam 3", true));
-        SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Breakbeam 4", true));
-        SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Breakbeam Intake", true));
-        SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Intake Feed Offset", 8));
-        SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Belt Feed Offset", 1));
-        SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Wheel Feed Offset", 5));
+        //SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Set Intake", -0.4));
+        //SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Set Wheel", 0.5));
+        //SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Set Belt", 0.8));
+        //SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("IntakeRun", "Init"));
+        //SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("IntakeSmartControl", "Init"));
+        Shuffleboard.getTab("Intake and Delivery").add("Breakbeam 1", true);
+        //SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Breakbeam 2", true));
+        //SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Breakbeam 3", true));
+        Shuffleboard.getTab("Intake and Delivery").add("Breakbeam 4", true);
+        Shuffleboard.getTab("Intake and Delivery").add("Breakbeam Intake", true);
+        //SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Intake Feed Offset", 8));
+        //SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Belt Feed Offset", 1));
+        //SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Wheel Feed Offset", 5));
 
-        Shuffleboard.getTab("Turret");
-        SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("Position", 0));
-        SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("Turret Zero", 0));
-        SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("Set Turret", 0.3));
-        SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("TurretManual", "Init"));
-        SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("TurretAlign", "Init"));
-        SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("TurretLimitInterrupt", "Init"));
-        SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("Offset X", 0));
-        SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("Initial Position", 0));
-        SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("kP", 0.03));
-        SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("kD", 0));
-        SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("TurretDefault", "Init"));
+        //Shuffleboard.getTab("Turret");
+        //SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("Position", 0));
+        //SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("Turret Zero", 0));
+        //SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("Set Turret", 0.3));
+        //SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("TurretManual", "Init"));
+        //SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("TurretAlign", "Init"));
+        //SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("TurretLimitInterrupt", "Init"));
+        //SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("Offset X", 0));
+        //SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("Initial Position", 0));
+        //SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("kP", 0.03));
+        //SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("kD", 0));
+        //SQLHelper.stageWidget(Shuffleboard.getTab("Turret").add("TurretDefault", "Init"));
 
-        Shuffleboard.getTab("Shooter");
-        SQLHelper.stageWidget(Shuffleboard.getTab("Shooter").add("Shooter Velocity", 0));
-        SQLHelper.stageWidget(Shuffleboard.getTab("Shooter").add("Set Shoot Speed", 1.0));
-        SQLHelper.stageWidget(Shuffleboard.getTab("Shooter").add("ShootAll", "Init"));
-        SQLHelper.stageWidget(Shuffleboard.getTab("Shooter").add("ShootManual", "Init"));
+        Shuffleboard.getTab("Shooter").add("Shooter Velocity", 0);
+        //SQLHelper.stageWidget(Shuffleboard.getTab("Shooter").add("Set Shoot Speed", 1.0));
+        //SQLHelper.stageWidget(Shuffleboard.getTab("Shooter").add("ShootAll", "Init"));
+        //SQLHelper.stageWidget(Shuffleboard.getTab("Shooter").add("ShootManual", "Init"));
 
-        Shuffleboard.getTab("Hood");
-        SQLHelper.stageWidget(Shuffleboard.getTab("Hood").add("Hood Position", 0));
-        SQLHelper.stageWidget(Shuffleboard.getTab("Hood").add("HoodAlign", "Init"));
-        SQLHelper.stageWidget(Shuffleboard.getTab("Hood").add("HoodLimitInterrupt", "Init"));
-        SQLHelper.stageWidget(Shuffleboard.getTab("Hood").add("HoodManual", "Init"));  
-        SQLHelper.stageWidget(Shuffleboard.getTab("Hood").add("Lower Limit", 0));  
-        SQLHelper.stageWidget(Shuffleboard.getTab("Hood").add("Upper Limit", 0));
-        Shuffleboard.getTab("Hood").add("Hood Offset", 0);
+        Shuffleboard.getTab("Hood").add("Hood Position", 0);
+        //SQLHelper.stageWidget(Shuffleboard.getTab("Hood").add("HoodAlign", "Init"));
+        //SQLHelper.stageWidget(Shuffleboard.getTab("Hood").add("HoodLimitInterrupt", "Init"));
+        //SQLHelper.stageWidget(Shuffleboard.getTab("Hood").add("HoodManual", "Init"));  
+        //SQLHelper.stageWidget(Shuffleboard.getTab("Hood").add("Lower Limit", 0));  
+        //SQLHelper.stageWidget(Shuffleboard.getTab("Hood").add("Upper Limit", 0));
+        //Shuffleboard.getTab("Hood").add("Hood Offset", 0);
 
-        Shuffleboard.getTab("Drivetrain");
-        Shuffleboard.getTab("Drivetrain").add("Precision Weight", 0.25);
+        //Shuffleboard.getTab("Drivetrain");
+        //Shuffleboard.getTab("Drivetrain").add("Precision Weight", 0.25);
         // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
         // autonomous chooser on the dashboard.
         m_robotContainer = new RobotContainer();

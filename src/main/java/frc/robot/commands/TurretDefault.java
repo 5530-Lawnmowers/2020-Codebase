@@ -16,9 +16,9 @@ import frc.robot.subsystems.*;
 
 public class TurretDefault extends CommandBase {
     private Turret turret;
-    private double kP;
-    private double kD;
-    private double manualSet;
+    private double kP = 0.03;
+    private double kD = 0;
+    private double manualSet = 0.3;
     private double offset;
     private double previousOffset;
 
@@ -36,14 +36,14 @@ public class TurretDefault extends CommandBase {
     public void initialize() {
         offset = LimelightHelper.getRawX();
         previousOffset = offset;
-        ShuffleboardHelpers.setWidgetValue("Turret", "TurretDefault", "Running");
+        //ShuffleboardHelpers.setWidgetValue("Turret", "TurretDefault", "Running");
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
         offset = LimelightHelper.getRawX();
-        manualSet = (double) ShuffleboardHelpers.getWidgetValue("Turret", "Set Turret");
+        //manualSet = (double) ShuffleboardHelpers.getWidgetValue("Turret", "Set Turret");
 
         if (RobotContainer.XBController2.getBumper(Hand.kRight)) { //Manual clockwise
             turret.setTurret(manualSet);
@@ -51,8 +51,8 @@ public class TurretDefault extends CommandBase {
             turret.setTurret(-manualSet);
         } else if (LimelightHelper.getRawA() > 0) { //Default to auto-align
             double offsetVelocity = Math.abs(offset - previousOffset);
-            kP = (double) ShuffleboardHelpers.getWidgetValue("Turret", "kP");
-            kD = (double) ShuffleboardHelpers.getWidgetValue("Turret", "kD");
+            //kP = (double) ShuffleboardHelpers.getWidgetValue("Turret", "kP");
+            //kD = (double) ShuffleboardHelpers.getWidgetValue("Turret", "kD");
             //Align via continous power set
             turret.setTurret(kP * offset - kD * offsetVelocity);
         } else {
@@ -65,7 +65,7 @@ public class TurretDefault extends CommandBase {
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        ShuffleboardHelpers.setWidgetValue("Turret", "TurretDefault", "Interrupted");
+        //ShuffleboardHelpers.setWidgetValue("Turret", "TurretDefault", "Interrupted");
     }
 
     // Returns true when the command should end.

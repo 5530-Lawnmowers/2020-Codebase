@@ -34,8 +34,8 @@ public class TurretManual extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        ShuffleboardHelpers.setWidgetValue("Turret", "TurretManual", "Running");
-        turretSpeed = (double) ShuffleboardHelpers.getWidgetValue("Turret", "Set Turret");
+        //ShuffleboardHelpers.setWidgetValue("Turret", "TurretManual", "Running");
+        //turretSpeed = (double) ShuffleboardHelpers.getWidgetValue("Turret", "Set Turret");
         if (RobotContainer.XBController2.getBumper(Hand.kRight)) {
             turret.setTurret(turretSpeed);
         } else if (RobotContainer.XBController2.getBumper(Hand.kLeft)) {
@@ -48,7 +48,7 @@ public class TurretManual extends CommandBase {
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        ShuffleboardHelpers.setWidgetValue("Turret", "TurretManual", "Ended");
+        //ShuffleboardHelpers.setWidgetValue("Turret", "TurretManual", "Ended");
         //turret.stopTurret();
     }
 

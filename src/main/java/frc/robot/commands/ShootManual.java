@@ -27,8 +27,8 @@ public class ShootManual extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        setSpeed = (double) ShuffleboardHelpers.getWidgetValue("Shooter", "Set Shoot Speed");
-        ShuffleboardHelpers.setWidgetValue("Shooter", "ShootManual", "Running");
+        //setSpeed = (double) ShuffleboardHelpers.getWidgetValue("Shooter", "Set Shoot Speed");
+        //ShuffleboardHelpers.setWidgetValue("Shooter", "ShootManual", "Running");
         shooter.setShooter(setSpeed);
     }
 
@@ -42,7 +42,7 @@ public class ShootManual extends CommandBase {
     @Override
     public void end(boolean interrupted) {
         shooter.stopShooter();
-        ShuffleboardHelpers.setWidgetValue("Shooter", "ShootManual", "Ended");
+        //ShuffleboardHelpers.setWidgetValue("Shooter", "ShootManual", "Ended");
     }
 
     // Returns true when the command should end.

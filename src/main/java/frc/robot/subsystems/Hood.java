@@ -52,13 +52,13 @@ public class Hood extends SubsystemBase {
             // }
 
             if (positionFrac() > HIGH && positionFrac() < HIGH + 0.1) {
-                ShuffleboardHelpers.setWidgetValue("Hood", "HoodLimitInterrupt", "Interrupt Over");
+                //ShuffleboardHelpers.setWidgetValue("Hood", "HoodLimitInterrupt", "Interrupt Over");
                 iterationSet = 0.3;
             } else if (positionFrac() < LOW && positionFrac() > LOW - 0.1) {
-                ShuffleboardHelpers.setWidgetValue("Hood", "HoodLimitInterrupt", "Interrupt Under");
+                //ShuffleboardHelpers.setWidgetValue("Hood", "HoodLimitInterrupt", "Interrupt Under");
                 iterationSet = -0.3;
             } else {
-                ShuffleboardHelpers.setWidgetValue("Hood", "HoodLimitInterrupt", "Safe");
+                //ShuffleboardHelpers.setWidgetValue("Hood", "HoodLimitInterrupt", "Safe");
             }
         }
 
@@ -128,8 +128,8 @@ public class Hood extends SubsystemBase {
             upperLimit = Math.floor(getAngleAbs()) + HIGH;
         }
 
-        ShuffleboardHelpers.setWidgetValue("Hood", "Upper Limit", upperLimit);
-        ShuffleboardHelpers.setWidgetValue("Hood", "Lower Limit", lowerLimit);
+        //ShuffleboardHelpers.setWidgetValue("Hood", "Upper Limit", upperLimit);
+        //ShuffleboardHelpers.setWidgetValue("Hood", "Lower Limit", lowerLimit);
     }
 
     private double positionFrac() {
