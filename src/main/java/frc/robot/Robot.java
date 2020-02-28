@@ -109,6 +109,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void disabledInit() {
+        /*
         try {
             timer.reset();
             timer.stop();
@@ -117,6 +118,7 @@ public class Robot extends TimedRobot {
         } catch (SQLException | NullPointerException e) {
             e.printStackTrace();
         }
+        */
     }
 
     @Override
@@ -135,6 +137,7 @@ public class Robot extends TimedRobot {
         if (m_autonomousCommand != null) {
             m_autonomousCommand.schedule();
         }
+        /*
         try {
             if (!SQLHelper.isOpen()) {
                 SQLHelper.openConnection();
@@ -144,6 +147,7 @@ public class Robot extends TimedRobot {
         } catch (SQLException | NullPointerException e) {
             e.printStackTrace();
         }
+        */
         
     }
 
@@ -153,11 +157,13 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousPeriodic() {
         auton = true;
+        /*
         try {
             SQLHelper.mySQLperiodic((int) timer.get());
         } catch (SQLException | NullPointerException e) {
             e.printStackTrace();
         }
+        */
     }
 
     @Override
@@ -170,8 +176,9 @@ public class Robot extends TimedRobot {
         if (m_autonomousCommand != null) {
             m_autonomousCommand.cancel();
         }
-        m_robotContainer.setDrivetrainMode(false);
+        //m_robotContainer.setDrivetrainMode(false);
         //if true then robot will brake
+        /*
         try {
             if (!SQLHelper.isOpen()) {
                 SQLHelper.openConnection();
@@ -181,6 +188,7 @@ public class Robot extends TimedRobot {
         } catch (SQLException | NullPointerException e) {
             e.printStackTrace();
         }
+        */
     }
 
     /**
@@ -190,11 +198,13 @@ public class Robot extends TimedRobot {
     public void teleopPeriodic() {
         auton = false;
         LimelightHelper.updateRumble();
+        /*
         try {
             SQLHelper.mySQLperiodic((int) (timer.get() * 1000));
         } catch (SQLException | NullPointerException e) {
             e.printStackTrace();
         }
+        */
     }
 
     @Override
