@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
@@ -80,6 +81,9 @@ public class Robot extends TimedRobot {
         //SQLHelper.stageWidget(Shuffleboard.getTab("Hood").add("Lower Limit", 0));  
         //SQLHelper.stageWidget(Shuffleboard.getTab("Hood").add("Upper Limit", 0));
         Shuffleboard.getTab("Hood").add("Hood Offset", 0);
+        Shuffleboard.getTab("Hood").add("TA",0);
+        Shuffleboard.getTab("Hood").add("δTA", 0);
+        Shuffleboard.getTab("Hood").add("TA LOGS", "ENDED");
 
         //Shuffleboard.getTab("Drivetrain");
         //Shuffleboard.getTab("Drivetrain").add("Precision Weight", 0.25);

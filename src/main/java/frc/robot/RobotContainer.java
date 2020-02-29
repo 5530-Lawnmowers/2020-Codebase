@@ -84,6 +84,7 @@ public class RobotContainer {
         xb2x.whenHeld(new TurretAlign(turret));
         xb2x.whenHeld(new HoodAlign(hood));
         xb2back.whenPressed(new Climb(climber));
+        xb1a.toggleWhenPressed(new OffsetTestingHelper());
 
         //Other buttons in use
         //DriveDefault: xb1 left trigger, xb1 right trigger, xb1 left stick
