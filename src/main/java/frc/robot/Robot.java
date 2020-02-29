@@ -79,7 +79,7 @@ public class Robot extends TimedRobot {
         //SQLHelper.stageWidget(Shuffleboard.getTab("Hood").add("HoodManual", "Init"));  
         //SQLHelper.stageWidget(Shuffleboard.getTab("Hood").add("Lower Limit", 0));  
         //SQLHelper.stageWidget(Shuffleboard.getTab("Hood").add("Upper Limit", 0));
-        //Shuffleboard.getTab("Hood").add("Hood Offset", 0);
+        Shuffleboard.getTab("Hood").add("Hood Offset", 0);
 
         //Shuffleboard.getTab("Drivetrain");
         //Shuffleboard.getTab("Drivetrain").add("Precision Weight", 0.25);

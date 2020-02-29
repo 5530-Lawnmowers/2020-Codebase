@@ -96,8 +96,9 @@ public class Hood extends SubsystemBase {
      * @return
      */
     public double getOffsetConstY(double offsetX, double offsetY) {
-        if (LimelightHelper.getRawA() > 1.2) return -1;
-        else return -8;
+        //if (LimelightHelper.getRawA() > 1.2) return -1;
+        //else return -8;
+        return (double) ShuffleboardHelpers.getWidgetValue("Hood", "Hood Offset");
     }
 
     /**
