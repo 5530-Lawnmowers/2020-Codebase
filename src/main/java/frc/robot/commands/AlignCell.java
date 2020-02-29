@@ -38,12 +38,12 @@ public class AlignCell extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double offsetVelocity = Math.abs(LimelightHelper.getFrontRawX() - prevoffset);
-    prevoffset = LimelightHelper.getFrontRawX();
-    drivetrain.setDrivetrainMotor((kp * LimelightHelper.getFrontRawX() - kd *offsetVelocity) + RobotContainer.XBController1.getTriggerAxis(GenericHID.Hand.kRight), Constants.DT_L1);
-    drivetrain.setDrivetrainMotor((kp * LimelightHelper.getFrontRawX() - kd *offsetVelocity) + RobotContainer.XBController1.getTriggerAxis(GenericHID.Hand.kRight), Constants.DT_L2);
-    drivetrain.setDrivetrainMotor((-(kp * LimelightHelper.getFrontRawX() - kd *offsetVelocity) - RobotContainer.XBController1.getTriggerAxis(GenericHID.Hand.kRight)), Constants.DT_R1);
-    drivetrain.setDrivetrainMotor((-(kp * LimelightHelper.getFrontRawX() - kd *offsetVelocity) - RobotContainer.XBController1.getTriggerAxis(GenericHID.Hand.kRight)), Constants.DT_R2);
+    double offsetVelocity = Math.abs(LimelightHelper.getBackRawX() - prevoffset);
+    prevoffset = LimelightHelper.getBackRawX();
+    drivetrain.setDrivetrainMotor((kp * LimelightHelper.getBackRawX() - kd *offsetVelocity) + RobotContainer.XBController1.getTriggerAxis(GenericHID.Hand.kRight), Constants.DT_L1);
+    drivetrain.setDrivetrainMotor((kp * LimelightHelper.getBackRawX() - kd *offsetVelocity) + RobotContainer.XBController1.getTriggerAxis(GenericHID.Hand.kRight), Constants.DT_L2);
+    drivetrain.setDrivetrainMotor((-(kp * LimelightHelper.getBackRawX() - kd *offsetVelocity) - RobotContainer.XBController1.getTriggerAxis(GenericHID.Hand.kRight)), Constants.DT_R1);
+    drivetrain.setDrivetrainMotor((-(kp * LimelightHelper.getBackRawX() - kd *offsetVelocity) - RobotContainer.XBController1.getTriggerAxis(GenericHID.Hand.kRight)), Constants.DT_R2);
   }
 
   // Called once the command ends or is interrupted.
