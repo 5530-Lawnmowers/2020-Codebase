@@ -32,7 +32,7 @@ public class DeliveryEject extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    intake.setIntake(0.4);
+    intake.setIntake(-0.4);
     delivery.setDeliveryBelt(-0.8);
   }
 
