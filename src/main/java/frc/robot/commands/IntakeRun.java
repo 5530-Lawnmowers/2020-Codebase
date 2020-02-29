@@ -12,8 +12,8 @@ import frc.robot.helpers.ShuffleboardHelpers;
 import frc.robot.subsystems.*;
 
 public class IntakeRun extends CommandBase {
-    private double beltSet = -1.0;
-    private double wheelSet = -1;
+    private double beltSet = 0.7;
+    private double wheelSet = 0.6;
     private double intakeSet = 0;
     private Delivery delivery;
     private Intake intake;
