@@ -37,7 +37,7 @@ public class TurretAlign extends CommandBase {
     public void initialize() {
         int currentPosition = turret.getEncoderValue();
         counter = 0;
-        offset = LimelightHelper.getRawX();
+        offset = LimelightHelper.getFrontRawX();
         previousOffset = offset;
         //ShuffleboardHelpers.setWidgetValue("Turret", "TurretAlign", "Running");
 
@@ -47,7 +47,7 @@ public class TurretAlign extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        offset = LimelightHelper.getRawX();
+        offset = LimelightHelper.getFrontRawX();
         double offsetVelocity = Math.abs(offset - previousOffset);
         //kp = (double) ShuffleboardHelpers.getWidgetValue("Turret", "kP");
         //kd = (double) ShuffleboardHelpers.getWidgetValue("Turret", "kD");

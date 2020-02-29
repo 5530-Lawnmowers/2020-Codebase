@@ -34,7 +34,7 @@ public class TurretDefault extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        offset = LimelightHelper.getRawX();
+        offset = LimelightHelper.getFrontRawX();
         previousOffset = offset;
         //ShuffleboardHelpers.setWidgetValue("Turret", "TurretDefault", "Running");
     }
@@ -42,14 +42,14 @@ public class TurretDefault extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        offset = LimelightHelper.getRawX();
+        offset = LimelightHelper.getFrontRawX();
         //manualSet = (double) ShuffleboardHelpers.getWidgetValue("Turret", "Set Turret");
 
         if (RobotContainer.XBController2.getBumper(Hand.kRight)) { //Manual clockwise
             turret.setTurret(manualSet);
         } else if (RobotContainer.XBController2.getBumper(Hand.kLeft)) { //Manual counter-clockwise
             turret.setTurret(-manualSet);
-        } else if (LimelightHelper.getRawA() > 0) { //Default to auto-align
+        } else if (LimelightHelper.getFrontRawA() > 0) { //Default to auto-align
             double offsetVelocity = Math.abs(offset - previousOffset);
             //kP = (double) ShuffleboardHelpers.getWidgetValue("Turret", "kP");
             //kD = (double) ShuffleboardHelpers.getWidgetValue("Turret", "kD");

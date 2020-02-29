@@ -82,8 +82,8 @@ public class Hood extends SubsystemBase {
      * @return The calculated speed the hood should be set to based on the current Limelight offset
      */
     public double hoodControllerCalculate() {
-        double offsetX = LimelightHelper.getRawX();
-        double offsetY = LimelightHelper.getRawY();
+        double offsetX = LimelightHelper.getFrontRawX();
+        double offsetY = LimelightHelper.getFrontRawY();
         return hoodController.calculate(offsetY, getOffsetConstY(offsetX, offsetY));
     }
 

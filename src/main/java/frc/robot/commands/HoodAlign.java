@@ -33,7 +33,7 @@ public class HoodAlign extends CommandBase {
         //Eventually should be a function of getRawA()
 
         //TODO: only run if getRawA() is above a certain size (determine empirically)
-        if (Math.abs(LimelightHelper.getRawY() - offset) <= MARGIN) {
+        if (Math.abs(LimelightHelper.getFrontRawY() - offset) <= MARGIN) {
             hood.stopHood();
             counter++;
         } else {

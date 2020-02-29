@@ -23,22 +23,42 @@ import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 public class LimelightHelper {
     private static final double D_HEIGHT = 23.25;
 
-    public static double getRawY() {
-        NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+    public static double getFrontRawY() {
+        NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight-front");
+        NetworkTableEntry ty = table.getEntry("ty");
+        double y = ty.getDouble(0.0);
+        return y;
+    }
+    public static double getBackRawY(){
+        NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight-back");
         NetworkTableEntry ty = table.getEntry("ty");
         double y = ty.getDouble(0.0);
         return y;
     }
 
-    public static double getRawX() {
-        NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+    public static double getFrontRawX() {
+        NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight-front");
         NetworkTableEntry tx = table.getEntry("tx");
         double x = tx.getDouble(0.0);
         return x;
     }
 
-    public static double getRawA() {
-        NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+    public static double getBackRawX() {
+        NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight-back");
+        NetworkTableEntry tx = table.getEntry("tx");
+        double x = tx.getDouble(0.0);
+        return x;
+    }
+
+    public static double getFrontRawA() {
+        NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight-front");
+        NetworkTableEntry ta = table.getEntry("ta");
+        double a = ta.getDouble(0.0);
+        return a;
+    }
+
+    public static double getBackRawA() {
+        NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight-back");
         NetworkTableEntry ta = table.getEntry("ta");
         double a = ta.getDouble(0.0);
         return a;
@@ -52,14 +72,14 @@ public class LimelightHelper {
      * @return the distance to the target
      */
     public static double getDistance(double angleOffset) {
-        NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+        NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight-front");
         NetworkTableEntry ty = table.getEntry("ty");
         double theta = ty.getDouble(0.0) + angleOffset;
         return D_HEIGHT / Math.tan(Math.toRadians(theta));
     }
 
     public static void updateRumble() {
-        if (getRawA() > 0) {
+        if (getFrontRawA() > 0) {
             //RobotContainer.XBController1.setRumble(RumbleType.kRightRumble, 1);
             RobotContainer.XBController1.setRumble(RumbleType.kLeftRumble, 0);
         } else if (TimerHelper.getEndgame()) {
