@@ -24,21 +24,41 @@ public class LimelightHelper {
     private static final double D_HEIGHT = 23.25;
 
     public static double getFrontRawY() {
-        NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+        NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight-front");
+        NetworkTableEntry ty = table.getEntry("ty");
+        double y = ty.getDouble(0.0);
+        return y;
+    }
+    public static double getBackRawY(){
+        NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight-back");
         NetworkTableEntry ty = table.getEntry("ty");
         double y = ty.getDouble(0.0);
         return y;
     }
 
     public static double getFrontRawX() {
-        NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+        NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight-front");
+        NetworkTableEntry tx = table.getEntry("tx");
+        double x = tx.getDouble(0.0);
+        return x;
+    }
+
+    public static double getBackRawX() {
+        NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight-back");
         NetworkTableEntry tx = table.getEntry("tx");
         double x = tx.getDouble(0.0);
         return x;
     }
 
     public static double getFrontRawA() {
-        NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+        NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight-front");
+        NetworkTableEntry ta = table.getEntry("ta");
+        double a = ta.getDouble(0.0);
+        return a;
+    }
+
+    public static double getBackRawA() {
+        NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight-back");
         NetworkTableEntry ta = table.getEntry("ta");
         double a = ta.getDouble(0.0);
         return a;
@@ -52,7 +72,7 @@ public class LimelightHelper {
      * @return the distance to the target
      */
     public static double getDistance(double angleOffset) {
-        NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+        NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight-front");
         NetworkTableEntry ty = table.getEntry("ty");
         double theta = ty.getDouble(0.0) + angleOffset;
         return D_HEIGHT / Math.tan(Math.toRadians(theta));
