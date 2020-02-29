@@ -34,7 +34,6 @@ public class DeliveryEject extends CommandBase {
   public void execute() {
     intake.setIntake(0.4);
     delivery.setDeliveryBelt(-0.8);
-    delivery.setDeliveryWheel(-0.7);
   }
 
   // Called once the command ends or is interrupted.
@@ -42,7 +41,6 @@ public class DeliveryEject extends CommandBase {
   public void end(boolean interrupted) {
     intake.stopIntake();
     delivery.stopDeliveryBelt();
-    delivery.stopDeliveryWheel();
   }
 
   // Returns true when the command should end.

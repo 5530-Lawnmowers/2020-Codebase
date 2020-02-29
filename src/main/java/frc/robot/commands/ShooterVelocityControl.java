@@ -93,7 +93,6 @@ public class ShooterVelocityControl extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     delivery.stopDeliveryBelt();
-    delivery.stopDeliveryWheel();
     shooter.stopShooter();
   }
 

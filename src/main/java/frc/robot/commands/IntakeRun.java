@@ -52,7 +52,6 @@ public class IntakeRun extends CommandBase {
         //ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "IntakeRun", "Running");
         intake.setIntake(intakeSet);
         delivery.setDeliveryBelt(beltSet);
-        delivery.setDeliveryWheel(wheelSet);
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -73,7 +72,6 @@ public class IntakeRun extends CommandBase {
     public void end(boolean interrupted) {
         intake.stopIntake();
         delivery.stopDeliveryBelt();
-        delivery.stopDeliveryWheel();
         //ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "IntakeRun", "Ended");
     }
 

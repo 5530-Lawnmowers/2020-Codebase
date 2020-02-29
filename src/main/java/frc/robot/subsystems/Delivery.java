@@ -19,7 +19,6 @@ import edu.wpi.first.wpilibj.DigitalInput;
 
 public class Delivery extends SubsystemBase {
     private final CANSparkMax deliveryBelt = new CANSparkMax(Constants.DELIVERY_BELT, CANSparkMaxLowLevel.MotorType.kBrushless);
-    private final CANSparkMax deliveryWheel = new CANSparkMax(Constants.DELIVERY_WHEEL, CANSparkMaxLowLevel.MotorType.kBrushed);
 
     //Delivery has assorted digital triggers
     private final DigitalInput deliverySensor1 = new DigitalInput(Constants.DELIVERY_S1);
@@ -33,8 +32,6 @@ public class Delivery extends SubsystemBase {
     public Delivery() {
         deliveryBelt.setIdleMode(IdleMode.kBrake);
         //deliveryBelt.setSmartCurrentLimit(40);
-        deliveryWheel.setIdleMode(IdleMode.kBrake);
-        //deliveryWheel.setSmartCurrentLimit(40);
     }
 
     @Override
@@ -44,15 +41,6 @@ public class Delivery extends SubsystemBase {
         //ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "Breakbeam 2", deliverySensor2.get());
         //ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "Breakbeam 3", deliverySensor3.get());
         ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "Breakbeam 4", deliverySensor4.get());
-    }
-
-    /**
-     * Sets the speed of the inner intake wheel
-     *
-     * @param speed The speed to set
-     */
-    public void setDeliveryWheel(double speed) {
-        deliveryWheel.set(speed);
     }
 
     /**
@@ -72,13 +60,6 @@ public class Delivery extends SubsystemBase {
     }
 
     /**
-     * Stops the inner intake wheel
-     */
-    public void stopDeliveryWheel() {
-        deliveryWheel.stopMotor();
-    }
-
-    /**
      * Gets the position of the belt motor
      *
      * @return encoder value of the motor
@@ -86,15 +67,6 @@ public class Delivery extends SubsystemBase {
     public double getDeliveryBeltPosition() {
         return deliveryBelt.getEncoder().getPosition();
     }
-
-    /**
-     * Gets the position of the wheel motor
-     *
-     * @return encoder value of the motor
-     */
-    //public double getDeliveryWheelPosition() {
-    //    return deliveryWheel.getEncoder().getPosition();
-    //}
 
     /**
      * Returns the states of the delivery breakbeam sensors. {@code true} if clear, {@code false} otherwise

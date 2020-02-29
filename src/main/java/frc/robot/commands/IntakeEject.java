@@ -34,14 +34,12 @@ public class IntakeEject extends CommandBase {
   @Override
   public void execute() {
     intake.setIntake(0.4);
-    delivery.setDeliveryWheel(-0.7);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     intake.stopIntake();
-    delivery.stopDeliveryWheel();
   }
 
   // Returns true when the command should end.

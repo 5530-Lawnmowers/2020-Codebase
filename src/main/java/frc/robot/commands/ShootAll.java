@@ -62,10 +62,8 @@ public class ShootAll extends CommandBase {
 
         //Deliver 5th ball in intake to belt system
         if (!delivery.getBreakbeams()[0] && intake.getSwitch()) {
-            delivery.setDeliveryWheel(0.6);
             intake.setIntake(0.4);
         } else {
-            delivery.stopDeliveryWheel();
             intake.stopIntake();
         }
 
@@ -88,7 +86,6 @@ public class ShootAll extends CommandBase {
     @Override
     public void end(boolean interrupted) {
         delivery.stopDeliveryBelt();
-        delivery.stopDeliveryWheel();
         shooter.stopShooter();
         intake.stopIntake();
         //ShuffleboardHelpers.setWidgetValue("Shooter", "ShootAll", "Ended");

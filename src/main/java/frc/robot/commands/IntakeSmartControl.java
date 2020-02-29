@@ -143,13 +143,13 @@ public class IntakeSmartControl extends CommandBase {
             }
         }
 
-        if (delivery.getBreakbeams()[0]) {
-            delivery.stopDeliveryWheel();
-        } else if (intake.getSwitch()) {
-            delivery.setDeliveryWheel(wheelSet);
-        } else {
-            delivery.setDeliveryWheel(wheelSet - 0.2);
-        }
+        // if (delivery.getBreakbeams()[0]) {
+        //     delivery.stopDeliveryWheel();
+        // } else if (intake.getSwitch()) {
+        //     delivery.setDeliveryWheel(wheelSet);
+        // } else {
+        //     delivery.setDeliveryWheel(wheelSet - 0.2);
+        // }
 
         if (delivery.getBreakbeams()[3]) {
             delivery.stopDeliveryBelt();
@@ -173,7 +173,6 @@ public class IntakeSmartControl extends CommandBase {
     public void end(boolean interrupted) {
         intake.stopIntake();
         delivery.stopDeliveryBelt();
-        delivery.stopDeliveryWheel();
 
         //ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "IntakeSmartControl", "Ended");
     }

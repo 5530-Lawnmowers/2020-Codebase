@@ -34,11 +34,10 @@ public final class Constants {
     public static final int DT_L2 = 12;  //TalonFX
 
     //Intake motors
-    public static final int INTAKE = 8;   //SparkMAX (NEO 550)
+    public static final int INTAKE = 7;   //SparkMAX Brushed Motor
 
     //Delivery motors
     public static final int DELIVERY_BELT = 4; //SparkMAX
-    public static final int DELIVERY_WHEEL = 7;//SParkMAX
 
     //Shooter motors
     public static final int SHOOTER_1 = 1; //SparkMAX
