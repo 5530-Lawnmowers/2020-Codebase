@@ -63,11 +63,13 @@ public class ShooterVelocityControl extends CommandBase {
     if (shooter.getShooterVelocity() < thresholdVelocity) {
       shooter.setShooter(1.0);
       feed = false;
-    } else if (shooter.getShooterVelocity() <= targetVelocity) {
-      shooter.shooterPID1.setReference(-targetVelocity, ControlType.kSmartVelocity);
-      shooter.shooterPID2.setReference(targetVelocity, ControlType.kSmartVelocity);
+    } else if (shooter.getShooterVelocity() < targetVelocity - 10) {
+      shooter.shooterPID1.setReference(-targetVelocity, ControlType.kVelocity);
+      shooter.shooterPID2.setReference(targetVelocity, ControlType.kVelocity);
       feed = false;
     } else {
+      shooter.shooterPID1.setReference(-targetVelocity, ControlType.kVelocity);
+      shooter.shooterPID2.setReference(targetVelocity, ControlType.kVelocity);
       feed = true;
     }
 
