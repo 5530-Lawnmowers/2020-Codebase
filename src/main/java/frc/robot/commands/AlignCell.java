@@ -40,10 +40,18 @@ public class AlignCell extends CommandBase {
   public void execute() {
     double offsetVelocity = Math.abs(LimelightHelper.getBackRawX() - prevoffset);
     prevoffset = LimelightHelper.getBackRawX();
+    if(LimelightHelper.getBackRawX() < 0){
     drivetrain.setDrivetrainMotor((kp * LimelightHelper.getBackRawX() - kd *offsetVelocity) + RobotContainer.XBController1.getTriggerAxis(GenericHID.Hand.kRight), Constants.DT_L1);
     drivetrain.setDrivetrainMotor((kp * LimelightHelper.getBackRawX() - kd *offsetVelocity) + RobotContainer.XBController1.getTriggerAxis(GenericHID.Hand.kRight), Constants.DT_L2);
     drivetrain.setDrivetrainMotor((-(kp * LimelightHelper.getBackRawX() - kd *offsetVelocity) - RobotContainer.XBController1.getTriggerAxis(GenericHID.Hand.kRight)), Constants.DT_R1);
     drivetrain.setDrivetrainMotor((-(kp * LimelightHelper.getBackRawX() - kd *offsetVelocity) - RobotContainer.XBController1.getTriggerAxis(GenericHID.Hand.kRight)), Constants.DT_R2);
+    }
+    else{
+      drivetrain.setDrivetrainMotor(0, Constants.DT_L1);
+      drivetrain.setDrivetrainMotor(0, Constants.DT_L2);
+      drivetrain.setDrivetrainMotor(0, Constants.DT_R1);
+      drivetrain.setDrivetrainMotor(0, Constants.DT_R2);
+    }
   }
 
   // Called once the command ends or is interrupted.
