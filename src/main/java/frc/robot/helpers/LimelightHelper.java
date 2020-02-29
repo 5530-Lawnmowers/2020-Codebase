@@ -23,21 +23,21 @@ import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 public class LimelightHelper {
     private static final double D_HEIGHT = 23.25;
 
-    public static double getRawY() {
+    public static double getFrontRawY() {
         NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
         NetworkTableEntry ty = table.getEntry("ty");
         double y = ty.getDouble(0.0);
         return y;
     }
 
-    public static double getRawX() {
+    public static double getFrontRawX() {
         NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
         NetworkTableEntry tx = table.getEntry("tx");
         double x = tx.getDouble(0.0);
         return x;
     }
 
-    public static double getRawA() {
+    public static double getFrontRawA() {
         NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
         NetworkTableEntry ta = table.getEntry("ta");
         double a = ta.getDouble(0.0);
@@ -59,7 +59,7 @@ public class LimelightHelper {
     }
 
     public static void updateRumble() {
-        if (getRawA() > 0) {
+        if (getFrontRawA() > 0) {
             //RobotContainer.XBController1.setRumble(RumbleType.kRightRumble, 1);
             RobotContainer.XBController1.setRumble(RumbleType.kLeftRumble, 0);
         } else if (TimerHelper.getEndgame()) {
