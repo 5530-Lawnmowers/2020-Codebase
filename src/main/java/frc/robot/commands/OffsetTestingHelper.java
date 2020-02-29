@@ -13,13 +13,13 @@ public class OffsetTestingHelper extends CommandBase {
 
     @Override
     public void initialize() {
-        this.min = LimelightHelper.getRawA();
-        this.max = LimelightHelper.getRawA();
+        this.min = LimelightHelper.getFrontRawA();
+        this.max = LimelightHelper.getFrontRawA();
     }
 
     @Override
     public void execute() {
-        double area = LimelightHelper.getRawA();
+        double area = LimelightHelper.getFrontRawA();
         if (Math.abs(area) < 0.001) return;
         if (area < min) min = area;
         if (area > max) max = area;
