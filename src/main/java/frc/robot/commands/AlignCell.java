@@ -25,7 +25,7 @@ public class AlignCell extends CommandBase {
   private double kd = .005;
   public AlignCell(Drivetrain drivetrain) {
     this.drivetrain = drivetrain;
-
+    addRequirements(drivetrain);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -40,7 +40,7 @@ public class AlignCell extends CommandBase {
   public void execute() {
     double offsetVelocity = Math.abs(LimelightHelper.getBackRawX() - prevoffset);
     prevoffset = LimelightHelper.getBackRawX();
-    if(LimelightHelper.getBackRawX() < 0){
+    if(LimelightHelper.getBackRawY() < 0){
     drivetrain.setDrivetrainMotor((kp * LimelightHelper.getBackRawX() - kd *offsetVelocity) + RobotContainer.XBController1.getTriggerAxis(GenericHID.Hand.kRight), Constants.DT_L1);
     drivetrain.setDrivetrainMotor((kp * LimelightHelper.getBackRawX() - kd *offsetVelocity) + RobotContainer.XBController1.getTriggerAxis(GenericHID.Hand.kRight), Constants.DT_L2);
     drivetrain.setDrivetrainMotor((-(kp * LimelightHelper.getBackRawX() - kd *offsetVelocity) - RobotContainer.XBController1.getTriggerAxis(GenericHID.Hand.kRight)), Constants.DT_R1);
