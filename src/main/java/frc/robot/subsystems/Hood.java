@@ -19,12 +19,12 @@ public class Hood extends SubsystemBase {
 
     private final DutyCycleEncoder angleAbs = new DutyCycleEncoder(Constants.DUTY_CYCLE_SOURCE);
 
-    private final double LOW = 0.5;
-    private final double HIGH = 0.25;
+    private final double LOW = 0.2;
+    private final double HIGH = 0.1;
 
     private double upperLimit;
     private double lowerLimit;
-    private boolean ignoreSoftwareLimits = true;
+    private boolean ignoreSoftwareLimits = false;
 
     private double iterationSet = 0; // New limit code
 
@@ -51,10 +51,10 @@ public class Hood extends SubsystemBase {
             //     ShuffleboardHelpers.setWidgetValue("Hood", "HoodLimitInterrupt", "Safe");
             // }
 
-            if (positionFrac() > HIGH && positionFrac() < HIGH + 0.1) {
+            if (positionFrac() > HIGH && positionFrac() < HIGH + 0.05) {
                 //ShuffleboardHelpers.setWidgetValue("Hood", "HoodLimitInterrupt", "Interrupt Over");
                 iterationSet = 0.3;
-            } else if (positionFrac() < LOW && positionFrac() > LOW - 0.1) {
+            } else if (positionFrac() < LOW && positionFrac() > LOW - 0.05) {
                 //ShuffleboardHelpers.setWidgetValue("Hood", "HoodLimitInterrupt", "Interrupt Under");
                 iterationSet = -0.3;
             } else {
