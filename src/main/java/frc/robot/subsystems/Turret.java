@@ -129,7 +129,7 @@ public class Turret extends SubsystemBase {
         // This method will be called once per scheduler run
         //resetCycleZero();
 
-        if (!ignoreSoftwareLimit && !Robot.auton) {
+        if (!ignoreSoftwareLimit) {
             // if (turretSpin.getSelectedSensorPosition() >= upperLimit) {
             //     CommandScheduler.getInstance().schedule(new TurretLimitInterrupt(this, true));
             //     ShuffleboardHelpers.setWidgetValue("Turret", "TurretLimitInterrupt", "Interrupt Over");
