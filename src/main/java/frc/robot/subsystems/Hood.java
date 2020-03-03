@@ -82,23 +82,21 @@ public class Hood extends SubsystemBase {
      * @return The calculated speed the hood should be set to based on the current Limelight offset
      */
     public double hoodControllerCalculate() {
-        double offsetX = LimelightHelper.getFrontRawX();
-        double offsetY = LimelightHelper.getFrontRawY();
-        return hoodController.calculate(offsetY, getOffsetConstY(offsetX, offsetY));
+        double offsetA = LimelightHelper.getFrontRawA();
+        return hoodController.calculate(offsetA, getOffsetConstY(offsetA));
     }
 
     /**
      * Get the offset constant in the Y Direction
      * <br>Used to adjust for air resistance and other factors
      *
-     * @param offsetX The current Limelight offset in the X Direction
-     * @param offsetY The current Limelight offset in the Y Direction
+     * @param offsetA The current visible target area
      * @return
      */
-    public double getOffsetConstY(double offsetX, double offsetY) {
-        //if (LimelightHelper.getRawA() > 1.2) return -1;
-        //else return -8;
-        return (double) ShuffleboardHelpers.getWidgetValue("Hood", "Hood Offset");
+    public double getOffsetConstY(double offsetA) {
+        final double FIT_A = -9.039;
+        final double FIT_B = 0.4935;
+        return FIT_A * Math.log(FIT_B * offsetA);
     }
 
     /**
