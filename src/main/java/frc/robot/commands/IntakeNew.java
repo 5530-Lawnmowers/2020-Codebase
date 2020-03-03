@@ -13,7 +13,7 @@ import frc.robot.subsystems.*;
 public class IntakeNew extends CommandBase {
   private Intake intake;
   private Delivery delivery;
-  private final double intakeSpeed = 1.0;
+  private final double intakeSpeed = -1.0;
   private final double beltSpeed = 0.5;
 
   /**
