@@ -142,14 +142,14 @@ public class Turret extends SubsystemBase {
             if (getEncoderValue() >= REL_ZERO + 1024 && getEncoderValue() <= REL_ZERO + 2048) {
                 iterationSet = -.1;
                 //ShuffleboardHelpers.setWidgetValue("Turret", "TurretLimitInterrupt", "Interrupt Over");
-            } else if (getEncoderValue() <= REL_ZERO - 1024 && getEncoderValue() > REL_ZERO + 2048) {
+            } else if (getEncoderValue() <= REL_ZERO - 1024 || getEncoderValue() > REL_ZERO + 2048) {
                 iterationSet = .1;
                 //ShuffleboardHelpers.setWidgetValue("Turret", "TurretLimitInterrupt", "Interrupt Under");
             } else {
                 //ShuffleboardHelpers.setWidgetValue("Turret", "TurretLimitInterrupt", "Safe");
             }
         }
-
+        //ShuffleboardHelpers.setWidgetValue("Turret", "Position", getEncoderValue());
         turretSpin.set(iterationSet); // New limit code
         iterationSet = 0; // New limit code
 
