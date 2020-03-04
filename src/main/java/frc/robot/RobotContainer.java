@@ -76,22 +76,28 @@ public class RobotContainer {
      * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
      */
     private void configureButtonBindings() {
-        xb2y.whenHeld(new IntakeRun(delivery, intake));
-        xb1y.toggleWhenPressed(new IntakeSmartControl(intake, delivery));
-        //xb2y.whenHeld(new IntakeOn(intake));
-        xb2a.toggleWhenPressed(new ShootManual(shooter));
-        xb2b.whenHeld(new ShootAll(delivery, shooter, intake));
+        //xb2y.whenHeld(new IntakeRun(delivery, intake));    
         //xb2b.whenHeld(new IntakeActManual(intake));
-        xb2x.whenHeld(new TurretAlign(turret));
-        xb2x.whenHeld(new HoodAlign(hood));
-        xb2back.whenPressed(new Climb(climber));
-        xb1a.toggleWhenPressed(new OffsetTestingHelper());
+
+        //xb1a.toggleWhenPressed(new OffsetTestingHelper());
         //xb1b.whenHeld(new AlignCell(drivetrain));
 
+        //XB1
+        xb1y.toggleWhenPressed(new IntakeSmartControl(intake, delivery));
+
+        //XB2
+        xb2lb.toggleWhenPressed(new ShootManual(shooter));
+        xb2rb.whenHeld(new ShootAll(delivery, shooter, intake));
+        xb2a.whenHeld(new TurretAlign(turret));
+        xb2a.whenHeld(new HoodAlign(hood));
+        xb2back.whenPressed(new Climb(climber));
+        xb2b.whenHeld(new IntakeActManual(intake));
+        xb2x.whenHeld(new IntakeOn(intake));
         //Other buttons in use
         //DriveDefault: xb1 left trigger, xb1 right trigger, xb1 left stick
-        //TurretManual: xb2 left bumper, xb2 right bumper
-        //HoodManual: xb2 left stick button, xb2 right stick button
+        //TurretManual: xb2 left stick
+        //HoodManual: xb2 left stick
+        //DeliveryManual: xb2 right trigger, xb2 left trigger
         //IntakeActManual: xb2 right trigger, xb2 left trigger
     }
 
