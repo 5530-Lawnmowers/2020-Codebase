@@ -21,6 +21,7 @@ import edu.wpi.first.wpilibj.Servo;
 public class Intake extends SubsystemBase {
     //Intake has 2 motors: 2 NEO motors on the intake (Spark)
     private final CANSparkMax intake = new CANSparkMax(Constants.INTAKE, CANSparkMaxLowLevel.MotorType.kBrushless);
+    private final CANSparkMax intakeActuation = new CANSparkMax(Constants.IN_ACT, CANSparkMaxLowLevel.MotorType.kBrushed);
     private final Servo releaseServo = new Servo(Constants.INTAKE_RELEASE);
 
     private final DigitalInput intakeSwitch = new DigitalInput(Constants.INTAKE_SWITCH);
@@ -50,10 +51,26 @@ public class Intake extends SubsystemBase {
     }
 
     /**
+     * Sets the speed of the intake actuation motor
+     *
+     * @param speed The speed to set
+     */
+    public void setIntakeActuation(double speed) {
+        intakeActuation.set(speed);
+    }
+
+    /**
      * Stops the intake motor
      */
     public void stopIntake() {
         intake.stopMotor();
+    }
+
+    /**
+     * Stops the intake actuation motor
+     */
+    public void stopIntakeActuation() {
+        intakeActuation.stopMotor();
     }
 
     /**
