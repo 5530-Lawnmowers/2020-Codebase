@@ -12,7 +12,7 @@ import frc.robot.subsystems.*;
 
 public class IntakeOn extends CommandBase {
   private Intake intake;
-  private double intakeSet = 0.7;
+  private double intakeSet = 1.0;
 
   /**
    * Creates a new IntakeOn.
