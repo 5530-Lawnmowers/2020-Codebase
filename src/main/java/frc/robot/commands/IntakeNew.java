@@ -15,6 +15,7 @@ public class IntakeNew extends CommandBase {
   private Delivery delivery;
   private final double intakeSpeed = 1.0;
   private final double beltSpeed = 0.5;
+  private int triggerCounter = 0;
 
   /**
    * Creates a new IntakeNew.
@@ -29,6 +30,7 @@ public class IntakeNew extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    triggerCounter = 0;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -38,9 +40,13 @@ public class IntakeNew extends CommandBase {
     if (delivery.getBreakbeams()[3]) {
       delivery.stopDeliveryBelt();
     } else if (intake.getSwitch()) {
-      delivery.setDeliveryBelt(beltSpeed);
+      triggerCounter++;
+      if (triggerCounter >= 5){
+        delivery.setDeliveryBelt(beltSpeed);
+      }
     } else {
       delivery.stopDeliveryBelt();
+      triggerCounter = 0;
     }
   }
 
