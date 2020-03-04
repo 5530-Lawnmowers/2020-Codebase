@@ -13,7 +13,7 @@ import frc.robot.subsystems.*;
 
 public class IntakeRun extends CommandBase {
     private double beltSet = 0.5;
-    private double intakeSet = -1;
+    private double intakeSet = 1;
     private Delivery delivery;
     private Intake intake;
 
