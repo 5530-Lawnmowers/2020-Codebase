@@ -12,13 +12,14 @@ import frc.robot.subsystems.*;
 
 public class IntakeOn extends CommandBase {
   private Intake intake;
-  private double intakeSet = -1;
+  private double intakeSet = 0.7;
 
   /**
    * Creates a new IntakeOn.
    */
   public IntakeOn(Intake intake) {
     addRequirements(intake);
+    this.intake = intake;
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
