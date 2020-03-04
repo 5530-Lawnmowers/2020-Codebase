@@ -20,9 +20,9 @@ public class AlignCell extends CommandBase {
    */
 
   private Drivetrain drivetrain;
-  private double kp = .005;
+  private double kp = .03;
   private double prevoffset = 0;
-  private double kd = .005;
+  private double kd = 0;
   public AlignCell(Drivetrain drivetrain) {
     this.drivetrain = drivetrain;
     addRequirements(drivetrain);
@@ -43,8 +43,8 @@ public class AlignCell extends CommandBase {
     if(LimelightHelper.getBackRawY() < 0){
     drivetrain.setDrivetrainMotor((kp * LimelightHelper.getBackRawX() - kd *offsetVelocity) + RobotContainer.XBController1.getTriggerAxis(GenericHID.Hand.kRight), Constants.DT_L1);
     drivetrain.setDrivetrainMotor((kp * LimelightHelper.getBackRawX() - kd *offsetVelocity) + RobotContainer.XBController1.getTriggerAxis(GenericHID.Hand.kRight), Constants.DT_L2);
-    drivetrain.setDrivetrainMotor((-(kp * LimelightHelper.getBackRawX() - kd *offsetVelocity) - RobotContainer.XBController1.getTriggerAxis(GenericHID.Hand.kRight)), Constants.DT_R1);
-    drivetrain.setDrivetrainMotor((-(kp * LimelightHelper.getBackRawX() - kd *offsetVelocity) - RobotContainer.XBController1.getTriggerAxis(GenericHID.Hand.kRight)), Constants.DT_R2);
+    drivetrain.setDrivetrainMotor((kp * LimelightHelper.getBackRawX() - kd *offsetVelocity) - RobotContainer.XBController1.getTriggerAxis(GenericHID.Hand.kRight), Constants.DT_R1);
+    drivetrain.setDrivetrainMotor((kp * LimelightHelper.getBackRawX() - kd *offsetVelocity) - RobotContainer.XBController1.getTriggerAxis(GenericHID.Hand.kRight), Constants.DT_R2);
     }
     else{
       drivetrain.setDrivetrainMotor(0, Constants.DT_L1);
