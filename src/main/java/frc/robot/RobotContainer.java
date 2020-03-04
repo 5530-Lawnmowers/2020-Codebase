@@ -91,6 +91,7 @@ public class RobotContainer {
         //DriveDefault: xb1 left trigger, xb1 right trigger, xb1 left stick
         //TurretManual: xb2 left bumper, xb2 right bumper
         //HoodManual: xb2 left stick button, xb2 right stick button
+        //IntakeActManual: xb2 right trigger, xb2 left trigger
     }
 
     /**
