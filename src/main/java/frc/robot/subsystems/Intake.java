@@ -21,7 +21,9 @@ import edu.wpi.first.wpilibj.Servo;
 public class Intake extends SubsystemBase {
     //Intake has 2 motors: 2 NEO motors on the intake (Spark)
     private final CANSparkMax intake = new CANSparkMax(Constants.INTAKE, CANSparkMaxLowLevel.MotorType.kBrushless);
-    private final CANSparkMax intakeActuation = new CANSparkMax(Constants.IN_ACT, CANSparkMaxLowLevel.MotorType.kBrushed);
+    private final CANSparkMax intakeActuationL = new CANSparkMax(Constants.IN_ACT_L, CANSparkMaxLowLevel.MotorType.kBrushless);
+    private final CANSparkMax intakeActuationR = new CANSparkMax(Constants.IN_ACT_R, CANSparkMaxLowLevel.MotorType.kBrushless);
+
     private final Servo releaseServo = new Servo(Constants.INTAKE_RELEASE);
 
     private final DigitalInput intakeSwitch = new DigitalInput(Constants.INTAKE_SWITCH);
@@ -33,6 +35,8 @@ public class Intake extends SubsystemBase {
         releaseServo.set(1);
         intake.setIdleMode(IdleMode.kBrake);
         intake.setSmartCurrentLimit(40);
+        intakeActuationL.setSmartCurrentLimit(40);
+        intakeActuationR.setSmartCurrentLimit(40);
     }
 
     @Override
@@ -56,7 +60,8 @@ public class Intake extends SubsystemBase {
      * @param speed The speed to set
      */
     public void setIntakeActuation(double speed) {
-        intakeActuation.set(speed);
+        intakeActuationL.set(speed);
+        intakeActuationR.set(-speed);
     }
 
     /**
@@ -70,7 +75,8 @@ public class Intake extends SubsystemBase {
      * Stops the intake actuation motor
      */
     public void stopIntakeActuation() {
-        intakeActuation.stopMotor();
+        intakeActuationL.stopMotor();
+        intakeActuationR.stopMotor();
     }
 
     /**
@@ -89,5 +95,14 @@ public class Intake extends SubsystemBase {
      */
     public double getIntakePosition() {
         return intake.getEncoder().getPosition();
+    }
+
+    /**
+     * Get the position of the intake
+     * 
+     * @return the position of the left intake actuation motor
+     */
+    public double getActuationPosition() {
+        return intakeActuationL.getEncoder().getPosition();
     }
 }

@@ -35,7 +35,8 @@ public final class Constants {
 
     //Intake motors
     public static final int INTAKE = 7;   //SparkMAX NEO 550
-    public static final int IN_ACT = 8; //SparkMAX Brushed Motor
+    public static final int IN_ACT_L = 8; //SparkMAX NEO 550
+    public static final int IN_ACT_R = 6; //SparkMAX NEO 550
 
     //Delivery motors
     public static final int DELIVERY_BELT = 4; //SparkMAX
@@ -47,7 +48,8 @@ public final class Constants {
     public static final int TURRET = 16;   //Talon
 
     //Spinner motors
-    public static final int SPIN = 6;
+    public static final int SPIN = 20; //UNUSED
+    
 
     //Delivery sensors
     public static final int DELIVERY_S1 = 0; //DIO
