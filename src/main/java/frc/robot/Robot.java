@@ -53,6 +53,7 @@ public class Robot extends TimedRobot {
         Shuffleboard.getTab("Intake and Delivery").add("Breakbeam 4", true);
         Shuffleboard.getTab("Intake and Delivery").add("Breakbeam Intake", true);
         Shuffleboard.getTab("Intake and Delivery").add("Act Position", 0);
+        Shuffleboard.getTab("Intake and Delivery").add("Intake Status", false);
         //SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Intake Feed Offset", 8));
         //SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Belt Feed Offset", 1));
         //SQLHelper.stageWidget(Shuffleboard.getTab("Intake and Delivery").add("Wheel Feed Offset", 5));

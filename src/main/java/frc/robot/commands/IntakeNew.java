@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.helpers.ShuffleboardHelpers;
 import frc.robot.subsystems.*;
 
 public class IntakeNew extends CommandBase {
@@ -31,6 +32,7 @@ public class IntakeNew extends CommandBase {
   @Override
   public void initialize() {
     triggerCounter = 0;
+    ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "Intake Status", true);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -55,6 +57,8 @@ public class IntakeNew extends CommandBase {
   public void end(boolean interrupted) {
     delivery.stopDeliveryBelt();
     intake.stopIntake();
+    ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "Intake Status", false);
+
   }
 
   // Returns true when the command should end.

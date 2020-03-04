@@ -67,6 +67,7 @@ public class IntakeSmartControl extends CommandBase {
         beltGood = true;
         intakeTriggerReset = true;
         finalBall = false;
+        ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "Intake Status", true);
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -173,6 +174,7 @@ public class IntakeSmartControl extends CommandBase {
     public void end(boolean interrupted) {
         intake.stopIntake();
         delivery.stopDeliveryBelt();
+        ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "Intake Status", false);
 
         //ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "IntakeSmartControl", "Ended");
     }
