@@ -16,7 +16,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.sensors.PigeonIMU;
 
-import frc.robot.commands.CurvatureDrive;
+import frc.robot.commands.CurvatureDriveNew;
 import frc.robot.commands.DriveDefault;
 import org.opencv.core.RotatedRect;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
@@ -103,7 +103,7 @@ public class Drivetrain extends SubsystemBase {
 
         gyro.zeroYaw();
         //setDefaultCommand(new ThrottleMotorTest(this)); //Use this for motor tests
-        setDefaultCommand(new CurvatureDrive(this));
+        setDefaultCommand(new CurvatureDriveNew(this));
     }
 
     @Override
