@@ -49,6 +49,7 @@ public class DeliveryManual extends CommandBase {
     @Override
     public void end(boolean interrupted) {
         //ShuffleboardHelpers.setWidgetValue("Hood", "HoodManual", "Ended");
+        delivery.stopDeliveryBelt();
     }
 
     // Returns true when the command should end.

@@ -43,6 +43,7 @@ public class HoodManual extends CommandBase {
     @Override
     public void end(boolean interrupted) {
         //ShuffleboardHelpers.setWidgetValue("Hood", "HoodManual", "Ended");
+        hood.stopHood();
     }
 
     // Returns true when the command should end.
