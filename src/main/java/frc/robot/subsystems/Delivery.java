@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.commands.DeliveryManual;
 import frc.robot.helpers.ShuffleboardHelpers;
 
 import com.revrobotics.*;
@@ -31,6 +32,7 @@ public class Delivery extends SubsystemBase {
      */
     public Delivery() {
         deliveryBelt.setIdleMode(IdleMode.kBrake);
+        setDefaultCommand(new DeliveryManual(this));
         //deliveryBelt.setSmartCurrentLimit(40);
     }
 
