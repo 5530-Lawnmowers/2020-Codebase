@@ -46,7 +46,7 @@ public class TurretManual extends CommandBase {
     @Override
     public void end(boolean interrupted) {
         //ShuffleboardHelpers.setWidgetValue("Turret", "TurretManual", "Ended");
-        //turret.stopTurret();
+        turret.stopTurret();
     }
 
     // Returns true when the command should end.
