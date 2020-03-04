@@ -15,7 +15,8 @@ import frc.robot.RobotContainer;
 
 public class HoodManual extends CommandBase {
     private Hood hood;
-    private double hoodSpeed = 0.8;
+    private double hoodSpeed = 0;
+    private final double kDeadband = 0.2;
 
     /**
      * Creates a new HoodManual.
@@ -34,14 +35,8 @@ public class HoodManual extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        //ShuffleboardHelpers.setWidgetValue("Hood", "HoodManual", "Running");
-        if (RobotContainer.XBController2.getStickButton(Hand.kLeft)) {
-            hood.setHood(hoodSpeed);
-        } else if (RobotContainer.XBController2.getStickButton(Hand.kRight)) {
-            hood.setHood(-hoodSpeed);
-        } else {
-            hood.stopHood();
-        }
+       hoodSpeed = deadband(RobotContainer.XBController2.getY(Hand.kRight), kDeadband) * 0.3;
+       hood.setHood(hoodSpeed);
     }
 
     // Called once the command ends or is interrupted.
@@ -54,5 +49,20 @@ public class HoodManual extends CommandBase {
     @Override
     public boolean isFinished() {
         return false;
+    }
+
+    /**
+     * Takes care of deadbanding
+     * 
+     * @param input     the input value
+     * @param threshold the deadband value
+     * @return {@code 0} if input is within deadband, {@code input} otherwise
+     */
+    private double deadband(double input, double threshold) {
+        if (Math.abs(input) > threshold) {
+            return input;
+        } else {
+            return 0;
+        }
     }
 }

@@ -15,7 +15,8 @@ import frc.robot.RobotContainer;
 
 public class TurretManual extends CommandBase {
     private Turret turret;
-    private double turretSpeed = 0.3;
+    private double turretSpeed = 0;
+    private final double kDeadband = 0.2;
 
     /**
      * Creates a new TurretManual.
@@ -29,6 +30,7 @@ public class TurretManual extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
+        turretSpeed = 0;
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -36,13 +38,8 @@ public class TurretManual extends CommandBase {
     public void execute() {
         //ShuffleboardHelpers.setWidgetValue("Turret", "TurretManual", "Running");
         //turretSpeed = (double) ShuffleboardHelpers.getWidgetValue("Turret", "Set Turret");
-        if (RobotContainer.XBController2.getBumper(Hand.kRight)) {
-            turret.setTurret(turretSpeed);
-        } else if (RobotContainer.XBController2.getBumper(Hand.kLeft)) {
-            turret.setTurret(-turretSpeed);
-        } else {
-            turret.stopTurret();
-        }
+        turretSpeed = deadband(RobotContainer.XBController2.getX(Hand.kLeft), kDeadband) * 0.5;
+        turret.setTurret(turretSpeed);
     }
 
     // Called once the command ends or is interrupted.
@@ -56,5 +53,20 @@ public class TurretManual extends CommandBase {
     @Override
     public boolean isFinished() {
         return false;
+    }
+
+    /**
+     * Takes care of deadbanding
+     * 
+     * @param input     the input value
+     * @param threshold the deadband value
+     * @return {@code 0} if input is within deadband, {@code input} otherwise
+     */
+    private double deadband(double input, double threshold) {
+        if (Math.abs(input) > threshold) {
+            return input;
+        } else {
+            return 0;
+        }
     }
 }
