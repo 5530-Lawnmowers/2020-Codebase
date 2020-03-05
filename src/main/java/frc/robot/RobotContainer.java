@@ -94,6 +94,7 @@ public class RobotContainer {
         xb2back.whenPressed(new Climb(climber));
         xb2b.whenHeld(new IntakeActManual(intake));
         xb2x.whenHeld(new IntakeOn(intake));
+        xb2y.whenPressed(new ToggleLight());
         //Other buttons in use
         //DriveDefault: xb1 left trigger, xb1 right trigger, xb1 left stick
         //TurretManual: xb2 left stick
