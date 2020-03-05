@@ -18,6 +18,10 @@ public class IntakeNew extends CommandBase {
   private final double beltSpeed = 0.5;
   private int triggerCounter = 0;
 
+  private final double OFFSET = 0.5;
+  private boolean moveBall;
+  private double targetPosition;
+
   /**
    * Creates a new IntakeNew.
    */
@@ -32,23 +36,37 @@ public class IntakeNew extends CommandBase {
   @Override
   public void initialize() {
     triggerCounter = 0;
+    moveBall = false;
+
+    delivery.stopDeliveryBelt();
+    intake.stopIntake();
     ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "Intake Status", true);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    intake.setIntake(intakeSpeed);
+    intake.setIntake(intakeSpeed); // Intake always on
+
     if (delivery.getBreakbeams()[3]) {
-      delivery.stopDeliveryBelt();
+      delivery.stopDeliveryBelt(); // Stop if last breakbeam hit
     } else if (intake.getSwitch()) {
-      triggerCounter++;
-      if (triggerCounter >= 5){
-        delivery.setDeliveryBelt(beltSpeed);
+      triggerCounter++; // Increase counter whenever intake breakbeam hit
+
+      if (triggerCounter >= 10){
+        delivery.setDeliveryBelt(beltSpeed); // Intake if ball is settled
+        moveBall = true;
       }
     } else {
-      delivery.stopDeliveryBelt();
-      triggerCounter = 0;
+      if (moveBall) {
+        targetPosition = delivery.getDeliveryBeltPosition() + OFFSET;
+        moveBall = false; // Set target if just moved off of intake breakbeam
+      }
+
+      if (delivery.getDeliveryBeltPosition() >= targetPosition) {
+        delivery.stopDeliveryBelt(); // If current past target, stop
+      }
+      triggerCounter = 0; // Reset counter whenever intake not triggered
     }
   }
 
