@@ -20,7 +20,7 @@ public class Hood extends SubsystemBase {
     private final DutyCycleEncoder angleAbs = new DutyCycleEncoder(Constants.DUTY_CYCLE_SOURCE);
 
     private final double LOW = 0.2;
-    private final double HIGH = 0.1;
+    private final double HIGH = 0;
 
     private double upperLimit;
     private double lowerLimit;
