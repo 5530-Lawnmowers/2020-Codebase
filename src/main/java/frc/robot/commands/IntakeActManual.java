@@ -35,7 +35,8 @@ public class IntakeActManual extends CommandBase {
   public void execute() {
     double up = deadband(RobotContainer.XBController2.getTriggerAxis(Hand.kRight), kDeadband);
     double down = deadband(RobotContainer.XBController2.getTriggerAxis(Hand.kLeft), kDeadband);
-    intake.setIntakeActuation(up - down);
+    intake.setIntakeActuationL(up - down);
+    intake.setIntakeActuationR(down - up);
   }
 
   // Called once the command ends or is interrupted.
