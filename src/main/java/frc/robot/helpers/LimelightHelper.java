@@ -84,10 +84,14 @@ public class LimelightHelper {
         } 
         else{
             RobotContainer.XBController1.setRumble(RumbleType.kRightRumble, 0);
-        }
-    
+        }    
+    }
+    public static void onLight(){
+        NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
 
-        
-           
+    }
+    public static void offLight(){
+        NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1);
+
     }
 }
