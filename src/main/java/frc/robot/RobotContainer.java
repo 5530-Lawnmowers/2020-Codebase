@@ -83,8 +83,7 @@ public class RobotContainer {
         //xb1b.whenHeld(new AlignCell(drivetrain));
 
         //XB1
-        //xb1y.toggleWhenPressed(new IntakeSmartControl(intake, delivery)); // Old
-        xb1y.toggleWhenPressed(new IntakeNew(intake, delivery)); // Test
+        xb1y.toggleWhenPressed(new IntakeNew(intake, delivery));
 
         //XB2
         xb2lb.toggleWhenPressed(new ShootManual(shooter));
