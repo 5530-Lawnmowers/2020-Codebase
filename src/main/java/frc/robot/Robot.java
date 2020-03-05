@@ -54,6 +54,8 @@ public class Robot extends TimedRobot {
         Shuffleboard.getTab("Intake and Delivery").add("Breakbeam Intake", true);
         Shuffleboard.getTab("Intake and Delivery").add("Act Position L", 0);
         Shuffleboard.getTab("Intake and Delivery").add("Act Position R", 0);
+        Shuffleboard.getTab("Intake and Delivery").add("L Start", 0);
+        Shuffleboard.getTab("Intake and Delivery").add("R Start", 0);
         Shuffleboard.getTab("Intake and Delivery").add("Act Target L", 0);
         Shuffleboard.getTab("Intake and Delivery").add("Act Target R", 0);
         Shuffleboard.getTab("Intake and Delivery").add("Intake Status", false);

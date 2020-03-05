@@ -28,7 +28,7 @@ public class Intake extends SubsystemBase {
 
     private final DigitalInput intakeSwitch = new DigitalInput(Constants.INTAKE_SWITCH);
 
-    private boolean isUp = false;
+    private boolean isUp = true;
     public final double START_L;
     public final double START_R;
     public final double DIFF = 11;
@@ -42,8 +42,12 @@ public class Intake extends SubsystemBase {
         intake.setSmartCurrentLimit(40);
         intakeActuationL.setSmartCurrentLimit(40);
         intakeActuationR.setSmartCurrentLimit(40);
+        intakeActuationL.setIdleMode(IdleMode.kBrake);
+        intakeActuationR.setIdleMode(IdleMode.kBrake);
         START_L = intakeActuationL.getEncoder().getPosition();
         START_R = intakeActuationR.getEncoder().getPosition();
+        ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "L Start", START_L);
+        ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "R Start", START_R);
     }
 
     @Override

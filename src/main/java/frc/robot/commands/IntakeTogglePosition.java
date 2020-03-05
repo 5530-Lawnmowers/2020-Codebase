@@ -22,7 +22,7 @@ public class IntakeTogglePosition extends CommandBase {
   private double setSpeedL = 0;
   private double setSpeedR = 0;
 
-  private final double kP = 0.01;
+  private final double kP = 0.05;
   private final double kD = 0;
   private double lastPositionL = 0;
   private double lastPositionR = 0;
@@ -64,7 +64,7 @@ public class IntakeTogglePosition extends CommandBase {
     double velocityL = Math.abs(intake.getActuationPositionL() - lastPositionL);
     double velocityR = Math.abs(intake.getActuationPositionR() - lastPositionR);
     setSpeedL = kP * (targetPositionL - intake.getActuationPositionL()) + kD * velocityL;
-    setSpeedR = kP * (targetPositionR - intake.getActuationPositionR()) + kD * velocityR;
+    setSpeedR = (kP) * (targetPositionR - intake.getActuationPositionR()) + kD * velocityR;
 
     intake.setIntakeActuationL(setSpeedL);
     intake.setIntakeActuationR(setSpeedR);
@@ -79,7 +79,7 @@ public class IntakeTogglePosition extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return Math.abs(intake.getActuationPositionL() - targetPositionL) <= 0.25 
-      && Math.abs(intake.getActuationPositionR() - targetPositionR) <= 0.25;
+    return Math.abs(intake.getActuationPositionL() - targetPositionL) <= 1 
+      && Math.abs(intake.getActuationPositionR() - targetPositionR) <= 1;
   }
 }
