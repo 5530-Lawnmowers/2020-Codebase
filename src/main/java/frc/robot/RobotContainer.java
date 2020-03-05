@@ -87,11 +87,11 @@ public class RobotContainer {
         xb1y.toggleWhenPressed(new IntakeTogglePosition(intake));
 
         //XB2
-        xb2lb.toggleWhenPressed(new ShootManual(shooter));
+        xb2a.toggleWhenPressed(new ShootManual(shooter));
         //xb2rb.whenHeld(new ShootAll(delivery, shooter, intake)); // Old
         xb2rb.whenHeld(new ShootSmart(delivery, shooter)); // Test
-        xb2a.whenHeld(new TurretAlign(turret));
-        xb2a.whenHeld(new HoodAlign(hood));
+        xb2lb.whenHeld(new TurretAlign(turret));
+        xb2lb.whenHeld(new HoodAlign(hood));
         xb2back.whenPressed(new Climb(climber));
         xb2b.whenHeld(new IntakeActManual(intake));
         xb2x.whenHeld(new IntakeOn(intake));

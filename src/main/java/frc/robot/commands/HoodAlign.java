@@ -29,6 +29,7 @@ public class HoodAlign extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
+        LimelightHelper.updateRumble();
         double offset = hood.getOffsetConstY(LimelightHelper.getFrontRawA()); //From shuffleboard
         //Eventually should be a function of getRawA()
 

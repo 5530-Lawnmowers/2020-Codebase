@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import frc.robot.helpers.ShuffleboardHelpers;
 import frc.robot.subsystems.*;
 import frc.robot.RobotContainer;
@@ -30,6 +31,8 @@ public class HoodManual extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
+        RobotContainer.XBController2.setRumble(RumbleType.kRightRumble, 0);
+
     }
 
     // Called every time the scheduler runs while the command is scheduled.
