@@ -28,6 +28,11 @@ public class Intake extends SubsystemBase {
 
     private final DigitalInput intakeSwitch = new DigitalInput(Constants.INTAKE_SWITCH);
 
+    private boolean isUp = false;
+    public final double START_L;
+    public final double START_R;
+    public final double DIFF = 11;
+
     /**
      * Creates a new Intake.
      */
@@ -37,12 +42,15 @@ public class Intake extends SubsystemBase {
         intake.setSmartCurrentLimit(40);
         intakeActuationL.setSmartCurrentLimit(40);
         intakeActuationR.setSmartCurrentLimit(40);
+        START_L = intakeActuationL.getEncoder().getPosition();
+        START_R = intakeActuationR.getEncoder().getPosition();
     }
 
     @Override
     public void periodic() {
         ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "Breakbeam Intake", intakeSwitch.get());
-        ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "Act Position", getActuationPosition());
+        ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "Act Position L", getActuationPositionL());
+        ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "Act Position R", getActuationPositionR());
         // This method will be called once per scheduler run
     }
 
@@ -56,13 +64,21 @@ public class Intake extends SubsystemBase {
     }
 
     /**
-     * Sets the speed of the intake actuation motor
+     * Sets the speed of the left intake actuation motor
      *
      * @param speed The speed to set
      */
-    public void setIntakeActuation(double speed) {
+    public void setIntakeActuationL(double speed) {
         intakeActuationL.set(speed);
-        intakeActuationR.set(-speed);
+    }
+
+    /**
+     * Sets the speed of the right intake actuation motor
+     *
+     * @param speed The speed to set
+     */
+    public void setIntakeActuationR(double speed) {
+        intakeActuationR.set(speed);
     }
 
     /**
@@ -103,7 +119,31 @@ public class Intake extends SubsystemBase {
      * 
      * @return the position of the left intake actuation motor
      */
-    public double getActuationPosition() {
+    public double getActuationPositionL() {
         return intakeActuationL.getEncoder().getPosition();
+    }
+
+    /**
+     * Get the position of the intake
+     * 
+     * @return the position of the right intake actuation motor
+     */
+    public double getActuationPositionR() {
+        return intakeActuationR.getEncoder().getPosition();
+    }
+
+    /**
+     * Switches the intake's expected acutation state
+     */
+    public void toggleActuationState() {
+        isUp = !isUp;
+    }
+    
+    /**
+     * Returns the intake's expected actuation state
+     * @retunr {@code true} if the intake is up, {@code false} if the intake is down
+     */
+    public boolean getActuationState() {
+        return isUp;
     }
 }

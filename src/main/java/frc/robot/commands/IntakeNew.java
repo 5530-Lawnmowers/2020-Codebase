@@ -18,7 +18,7 @@ public class IntakeNew extends CommandBase {
   private final double beltSpeed = 0.5;
   private int triggerCounter = 0;
 
-  private final double OFFSET = 0.5;
+  private final double OFFSET = 0.2;
   private boolean moveBall;
   private double targetPosition;
 
@@ -53,7 +53,7 @@ public class IntakeNew extends CommandBase {
     } else if (intake.getSwitch()) {
       triggerCounter++; // Increase counter whenever intake breakbeam hit
 
-      if (triggerCounter >= 10){
+      if (triggerCounter >= 15){
         delivery.setDeliveryBelt(beltSpeed); // Intake if ball is settled
         moveBall = true;
       }
