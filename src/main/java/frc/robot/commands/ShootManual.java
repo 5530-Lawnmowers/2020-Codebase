@@ -7,7 +7,9 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.RobotContainer;
 import frc.robot.helpers.ShuffleboardHelpers;
 import frc.robot.subsystems.*;
 
@@ -36,12 +38,15 @@ public class ShootManual extends CommandBase {
     @Override
     public void execute() {
         ShuffleboardHelpers.setWidgetValue("Shooter", "Shooter Velocity", shooter.getShooterVelocity());
+        RobotContainer.XBController2.setRumble(RumbleType.kLeftRumble, Math.pow((shooter.getShooterVelocity() / 6000), 2));
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
         shooter.stopShooter();
+        RobotContainer.XBController2.setRumble(RumbleType.kLeftRumble, 0);
+
         //ShuffleboardHelpers.setWidgetValue("Shooter", "ShootManual", "Ended");
     }
 

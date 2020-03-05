@@ -79,15 +79,15 @@ public class LimelightHelper {
     }
 
     public static void updateRumble() {
-        if (getFrontRawA() > 0) {
-            //RobotContainer.XBController1.setRumble(RumbleType.kRightRumble, 1);
-            RobotContainer.XBController1.setRumble(RumbleType.kLeftRumble, 0);
-        } else if (TimerHelper.getEndgame()) {
-            //RobotContainer.XBController1.setRumble(RumbleType.kRightRumble, 1);
-            //RobotContainer.XBController1.setRumble(RumbleType.kLeftRumble, 1);
-        } else {
+        if (getFrontRawY() <= .2 && getFrontRawX() <= 2 && getFrontRawA() > .001) {
+            RobotContainer.XBController1.setRumble(RumbleType.kRightRumble, 1);
+        } 
+        else{
             RobotContainer.XBController1.setRumble(RumbleType.kRightRumble, 0);
-            RobotContainer.XBController1.setRumble(RumbleType.kLeftRumble, 0);
         }
+    
+
+        
+           
     }
 }
