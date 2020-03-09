@@ -83,8 +83,8 @@ public class RobotContainer {
         //xb1b.whenHeld(new AlignCell(drivetrain));
 
         //XB1
-        xb1y.toggleWhenPressed(new IntakeNew(intake, delivery));
-        xb1y.toggleWhenPressed(new IntakeTogglePosition(intake));
+        xb1a.toggleWhenPressed(new IntakeNew(intake, delivery));
+        xb1b.toggleWhenPressed(new IntakeTogglePosition(intake));
 
         //XB2
         xb2a.toggleWhenPressed(new ShootManual(shooter));
@@ -93,9 +93,10 @@ public class RobotContainer {
         xb2lb.whenHeld(new TurretAlign(turret));
         xb2lb.whenHeld(new HoodAlign(hood));
         xb2back.whenPressed(new Climb(climber));
-        xb2b.whenHeld(new IntakeActManual(intake));
+        xb2y.toggleWhenPressed(new IntakeTogglePosition(intake));
         xb2x.whenHeld(new IntakeOn(intake));
-        xb2y.whenPressed(new ToggleLight());
+        xb2b.toggleWhenPressed(new IntakeNew(intake, delivery));
+        //xb2y.whenPressed(new ToggleLight());
         //Other buttons in use
         //DriveDefault: xb1 left trigger, xb1 right trigger, xb1 left stick
         //TurretManual: xb2 left stick

@@ -40,20 +40,22 @@ public class IntakeNew extends CommandBase {
 
     delivery.stopDeliveryBelt();
     intake.stopIntake();
+
+    intake.setSmartIntake(true);
     ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "Intake Status", true);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    intake.setIntake(intakeSpeed); // Intake always on
+    //intake.setIntake(intakeSpeed); // Intake always on
 
     if (delivery.getBreakbeams()[3]) {
       delivery.stopDeliveryBelt(); // Stop if last breakbeam hit
     } else if (intake.getSwitch()) {
       triggerCounter++; // Increase counter whenever intake breakbeam hit
 
-      if (triggerCounter >= 15){
+      if (triggerCounter >= 5){
         delivery.setDeliveryBelt(beltSpeed); // Intake if ball is settled
         moveBall = true;
       }
@@ -75,6 +77,7 @@ public class IntakeNew extends CommandBase {
   public void end(boolean interrupted) {
     delivery.stopDeliveryBelt();
     intake.stopIntake();
+    intake.setSmartIntake(false);
     ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "Intake Status", false);
 
   }

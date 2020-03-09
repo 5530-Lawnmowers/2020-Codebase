@@ -78,28 +78,23 @@ public class LimelightHelper {
         return D_HEIGHT / Math.tan(Math.toRadians(theta));
     }
 
-    public static double getOffsetConstY(double offsetA) {
-        final double FIT_A = -9.039;
-        final double FIT_B = 0.4935;
-        return FIT_A * Math.log(FIT_B * offsetA);
-    }
 
     public static void updateRumble() {
-        double offset = LimelightHelper.getOffsetConstY(LimelightHelper.getFrontRawA()); // From shuffleboard
-
-        if (Math.abs(getFrontRawX()) < 2 && Math.abs(LimelightHelper.getFrontRawY() - offset) <= .2) {
+        /*
+        if (Math.abs(getFrontRawX()) < 2 && getFrontRawA() >= .0001) {
             RobotContainer.XBController2.setRumble(RumbleType.kRightRumble, 1);
         } 
         else{
             RobotContainer.XBController2.setRumble(RumbleType.kRightRumble, 0);
         }    
+        */
     }
     public static void onLight(){
         NetworkTableInstance.getDefault().getTable("limelight-front").getEntry("ledMode").setNumber(3);
 
     }
     public static void offLight(){
-        NetworkTableInstance.getDefault().getTable("limelight-front").getEntry("ledMode").setNumber(1);
+       // NetworkTableInstance.getDefault().getTable("limelight-front").getEntry("ledMode").setNumber(1);
 
     }
 }

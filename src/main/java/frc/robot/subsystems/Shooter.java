@@ -7,8 +7,10 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 
 import com.revrobotics.*;
 
@@ -29,6 +31,14 @@ public class Shooter extends SubsystemBase {
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
+        if(getShooterVelocity() >= 4500){
+            RobotContainer.XBController2.setRumble(RumbleType.kLeftRumble, 1);
+            RobotContainer.XBController2.setRumble(RumbleType.kRightRumble, 1);
+        }
+        else{
+        RobotContainer.XBController2.setRumble(RumbleType.kRightRumble, 0);
+        RobotContainer.XBController2.setRumble(RumbleType.kLeftRumble, Math.pow((getShooterVelocity() / 6000), 2));
+        }
     }
 
     /**

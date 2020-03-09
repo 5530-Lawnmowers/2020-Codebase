@@ -10,6 +10,7 @@ public class HoodAlign extends CommandBase {
     private final Hood hood;
     private final double MARGIN = 0.2;
     private double counter;
+    private double autonCounter;
 
     /**
      * Creates a new HoodAlign
@@ -24,12 +25,12 @@ public class HoodAlign extends CommandBase {
     public void initialize() {
         //ShuffleboardHelpers.setWidgetValue("Hood", "HoodAlign", "Running");
         counter = 0;
+        autonCounter = 0;
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        LimelightHelper.updateRumble();
         double offset = hood.getOffsetConstY(LimelightHelper.getFrontRawA()); //From shuffleboard
         //Eventually should be a function of getRawA()
 
@@ -40,6 +41,10 @@ public class HoodAlign extends CommandBase {
         } else {
             hood.setHood(-hood.hoodControllerCalculate());
             counter = 0;
+        }
+
+        if (Robot.auton) {
+            autonCounter++;
         }
     }
 
@@ -57,7 +62,7 @@ public class HoodAlign extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        if(Robot.auton && isAligned()){
+        if((Robot.auton && isAligned()) || autonCounter >= 75){
             return true;
         }
         return false;

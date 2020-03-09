@@ -10,6 +10,8 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.helpers.ShuffleboardHelpers;
+import frc.robot.RobotContainer;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 
 import com.revrobotics.*;
 import com.revrobotics.CANSparkMax.IdleMode;
@@ -29,9 +31,22 @@ public class Intake extends SubsystemBase {
     private final DigitalInput intakeSwitch = new DigitalInput(Constants.INTAKE_SWITCH);
 
     private boolean isUp = true;
+    private boolean smartIntake = false;
+
     public final double START_L;
     public final double START_R;
     public final double DIFF = 11;
+
+
+    private double targetPositionR;
+    private double targetPositionL;
+    private double setSpeedL = 0;
+    private double setSpeedR = 0;
+
+    private final double kP = 0.05;
+    private final double kD = 0;
+    private double lastPositionL = 0;
+    private double lastPositionR = 0;
 
     /**
      * Creates a new Intake.
@@ -46,16 +61,51 @@ public class Intake extends SubsystemBase {
         intakeActuationR.setIdleMode(IdleMode.kBrake);
         START_L = intakeActuationL.getEncoder().getPosition();
         START_R = intakeActuationR.getEncoder().getPosition();
-        ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "L Start", START_L);
-        ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "R Start", START_R);
+        //ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "L Start", START_L);
+        //ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "R Start", START_R);
+
+        setSpeedL = 0;
+        setSpeedR = 0;
+        lastPositionL = getActuationPositionL();
+        lastPositionR = getActuationPositionR();
     }
 
     @Override
     public void periodic() {
         ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "Breakbeam Intake", intakeSwitch.get());
-        ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "Act Position L", getActuationPositionL());
-        ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "Act Position R", getActuationPositionR());
+        if (smartIntake && !isUp) {
+            intake.set(1.0);
+        } else if (RobotContainer.XBController2.getTriggerAxis(Hand.kLeft) > 0.7) {
+            intake.set(1.0);
+        } else {
+            intake.stopMotor();
+        }
+        //ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "Act Position L", getActuationPositionL());
+        //ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "Act Position R", getActuationPositionR());
         // This method will be called once per scheduler run
+        if (!isUp) {
+            targetPositionR = START_R + DIFF;
+            targetPositionL = START_L - DIFF;
+          } else {
+            targetPositionR = START_R + 3.5;
+            targetPositionL = START_L - 3.5;
+          }
+
+        double velocityL = Math.abs(getActuationPositionL() - lastPositionL);
+        double velocityR = Math.abs(getActuationPositionR() - lastPositionR);
+        setSpeedL = kP * (targetPositionL - getActuationPositionL()) + kD * velocityL;
+        setSpeedR = (kP) * (targetPositionR - getActuationPositionR()) + kD * velocityR;
+
+        if (Math.abs(getActuationPositionL() - targetPositionL) <= 1) {
+            intakeActuationL.stopMotor();
+        } else {
+            intakeActuationL.set(setSpeedL);
+        }
+        if (Math.abs(getActuationPositionR() - targetPositionR) <= 1) {
+            intakeActuationR.stopMotor();
+        } else {
+            intakeActuationR.set(setSpeedR);
+        }
     }
 
     /**
@@ -149,5 +199,9 @@ public class Intake extends SubsystemBase {
      */
     public boolean getActuationState() {
         return isUp;
+    }
+
+    public void setSmartIntake(boolean state) {
+        smartIntake = state;
     }
 }
