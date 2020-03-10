@@ -38,7 +38,7 @@ public class RobotContainer {
     private final Turret turret = new Turret();
     private final Hood hood = new Hood();
 
-    private final AutonComplex autonTest = new AutonComplex(hood, turret, shooter, delivery, intake, drivetrain);
+    private final AutonComplex autonTest = new AutonComplex(hood, turret, shooter, delivery, intake, intakeAct, drivetrain);
 
     public static JoystickButton xb1a = new JoystickButton(XBController1, 1);
     public static JoystickButton xb1b = new JoystickButton(XBController1, 2);

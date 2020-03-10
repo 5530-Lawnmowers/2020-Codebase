@@ -17,9 +17,9 @@ public class AutonBackwards extends ParallelRaceGroup {
   /**
    * Creates a new AutonBackwards.
    */
-  public AutonBackwards(Intake intake, Delivery delivery, Drivetrain drivetrain, int distance) {
+  public AutonBackwards(Intake intake, IntakeActuation intakeAct, Delivery delivery, Drivetrain drivetrain, int distance) {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
-    super(new IntakeNew(intake, delivery), new SimpleForward(drivetrain, true, distance));
+    super(new IntakeNew(intake, delivery, intakeAct), new SimpleForward(drivetrain, true, distance));
   }
 }

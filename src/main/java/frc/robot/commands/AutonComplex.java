@@ -17,11 +17,11 @@ public class AutonComplex extends SequentialCommandGroup {
   /**
    * Creates a new AutonComplex.
    */
-  public AutonComplex(Hood hood, Turret turret, Shooter shooter, Delivery delivery, Intake intake, Drivetrain drivetrain) {
+  public AutonComplex(Hood hood, Turret turret, Shooter shooter, Delivery delivery, Intake intake, IntakeActuation intakeAct, Drivetrain drivetrain) {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
-    //addCommands(new AlignAll(hood, turret), new ShootSmart(delivery, shooter), new IntakeTogglePosition(intake), new AutonBackwards(intake, delivery, drivetrain, 93000)/*, new SimpleForward(drivetrain, false, 140000), new AlignAll(hood, turret), new ShootSmart(delivery, shooter)*/);
+    //addCommands(new AlignAll(hood, turret), new ShootSmart(delivery, shooter), new IntakeTogglePosition(intakeAct), new AutonBackwards(intake, delivery, drivetrain, 93000)/*, new SimpleForward(drivetrain, false, 140000), new AlignAll(hood, turret), new ShootSmart(delivery, shooter)*/);
     //super(new AlignAll(hood, turret), new ShootSmart(delivery, shooter), new DriveBackTimed(drivetrain), new IntakeTogglePosition(intake));
-    super(new AlignAll(hood, turret), new ShootSmart(delivery, shooter), new IntakeTogglePosition(intake), new AutonBackwards(intake, delivery, drivetrain, 93000), new AlignAll(hood, turret), new ShootSmart(delivery, shooter));
+    super(new AlignAll(hood, turret), new ShootSmart(delivery, shooter), new IntakeTogglePosition(intakeAct), new AutonBackwards(intake, intakeAct, delivery, drivetrain, 93000), new AlignAll(hood, turret), new ShootSmart(delivery, shooter));
   }
 }
