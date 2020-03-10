@@ -13,15 +13,15 @@ import frc.robot.subsystems.*;
 import frc.robot.RobotContainer;
 
 public class IntakeActManual extends CommandBase {
-  private Intake intake;
+  private IntakeActuation intakeAct;
   private final double kDeadband = 0.1;
   
   /**
    * Creates a new IntakeActManual.
    */
-  public IntakeActManual(Intake intake) {
-    this.intake = intake;
-    addRequirements(intake);
+  public IntakeActManual(IntakeActuation intakeAct) {
+    this.intakeAct = intakeAct;
+    addRequirements(intakeAct);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -35,14 +35,14 @@ public class IntakeActManual extends CommandBase {
   public void execute() {
     double up = deadband(RobotContainer.XBController2.getTriggerAxis(Hand.kRight), kDeadband);
     double down = deadband(RobotContainer.XBController2.getTriggerAxis(Hand.kLeft), kDeadband);
-    intake.setIntakeActuationL(up - down);
-    intake.setIntakeActuationR(down - up);
+    intakeAct.setIntakeActuationL(up - down);
+    intakeAct.setIntakeActuationR(down - up);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    intake.stopIntakeActuation();
+    intakeAct.stopIntakeActuation();
   }
 
   // Returns true when the command should end.

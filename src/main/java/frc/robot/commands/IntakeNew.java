@@ -14,6 +14,7 @@ import frc.robot.subsystems.*;
 public class IntakeNew extends CommandBase {
   private Intake intake;
   private Delivery delivery;
+  private IntakeActuation intakeAct;
   private final double intakeSpeed = 1.0;
   private final double beltSpeed = 0.5;
   private int triggerCounter = 0;
@@ -25,10 +26,11 @@ public class IntakeNew extends CommandBase {
   /**
    * Creates a new IntakeNew.
    */
-  public IntakeNew(Intake intake, Delivery delivery) {
+  public IntakeNew(Intake intake, Delivery delivery, IntakeActuation intakeAct) {
     addRequirements(intake, delivery);
     this.intake = intake;
     this.delivery = delivery;
+    this.intakeAct = intakeAct;
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -41,14 +43,18 @@ public class IntakeNew extends CommandBase {
     delivery.stopDeliveryBelt();
     intake.stopIntake();
 
-    intake.setSmartIntake(true);
     ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "Intake Status", true);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    //intake.setIntake(intakeSpeed); // Intake always on
+    // Intake always on conditionally
+    if (intakeAct.getActuationState()) {
+      intake.stopIntake();
+    } else {
+      intake.setIntake(intakeSpeed);
+    }
 
     if (delivery.getBreakbeams()[3]) {
       delivery.stopDeliveryBelt(); // Stop if last breakbeam hit
@@ -77,9 +83,7 @@ public class IntakeNew extends CommandBase {
   public void end(boolean interrupted) {
     delivery.stopDeliveryBelt();
     intake.stopIntake();
-    intake.setSmartIntake(false);
     ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "Intake Status", false);
-
   }
 
   // Returns true when the command should end.

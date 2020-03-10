@@ -14,19 +14,19 @@ import frc.robot.helpers.ShuffleboardHelpers;
 import frc.robot.subsystems.*;
 
 public class IntakeTogglePosition extends CommandBase {
-  Intake intake;
+  IntakeActuation intakeAct;
   /**
    * Creates a new IntakeTogglePosition.
    */
-  public IntakeTogglePosition(Intake intake) {
-    this.intake = intake;
+  public IntakeTogglePosition(IntakeActuation intakeAct) {
+    this.intakeAct = intakeAct;
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    intake.toggleActuationState();
+    intakeAct.toggleActuationState();
     //ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "Act Target L", targetPositionL);
     //ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "Act Target R", targetPositionR);
   }
