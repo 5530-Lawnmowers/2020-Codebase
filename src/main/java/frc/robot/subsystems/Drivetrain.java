@@ -37,8 +37,9 @@ import com.kauailabs.navx.frc.AHRS;
 
 public class Drivetrain extends SubsystemBase {
     //Drive test
+    private final float TickPerRev = 0;
     private final double driveMultiplier = 0.9;
-
+    private final float WheelRadius = 0;
     private final WPI_TalonFX drivetrainLeft1 = new WPI_TalonFX(Constants.DT_L1);
     private final WPI_TalonFX drivetrainLeft2 = new WPI_TalonFX(Constants.DT_L2);
     private final WPI_TalonFX drivetrainRight1 = new WPI_TalonFX(Constants.DT_R1);
@@ -187,22 +188,22 @@ public class Drivetrain extends SubsystemBase {
 
     public double MetersToUnits(double meters) {
         meters = Units.metersToInches(meters);
-        meters = meters / (6 * Math.PI);
-        meters = meters * 2048;
+        meters = meters / (WheelRadius * Math.PI);
+        meters = meters * TickPerRev;
         meters = meters / 10;
         return meters;
     }
 
     public double getDistanceLeft() {
         leftDistance = (float) (drivetrainLeft1.getSelectedSensorPosition());
-        leftDistance = leftDistance / 2048;
+        leftDistance = leftDistance / TickPerRev;
         leftDistance = leftDistance * WheelCircumference;
         return leftDistance;
     }
 
     public double getDistanceRight() {
         rightDistance = (float) (drivetrainRight1.getSelectedSensorPosition());
-        rightDistance = rightDistance / 2048;
+        rightDistance = rightDistance / TickPerRev;
         rightDistance = rightDistance * WheelCircumference;
         return leftDistance;
     }
