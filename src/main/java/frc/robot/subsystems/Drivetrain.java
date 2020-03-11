@@ -110,6 +110,8 @@ public class Drivetrain extends SubsystemBase {
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
+        ShuffleboardHelpers.setWidgetValue("Drivetrain", "Left Encoder", drivetrainLeft1.getSelectedSensorPosition());
+        ShuffleboardHelpers.setWidgetValue("Drivetrain", "Right Encoder", drivetrainRight1.getSelectedSensorPosition());
     }
 
     /**
@@ -255,5 +257,13 @@ public class Drivetrain extends SubsystemBase {
         drivetrainLeft2.stopMotor();
         drivetrainRight1.stopMotor();
         drivetrainRight2.stopMotor();
+    }
+
+    public int getLeftEncoder() {
+        return drivetrainLeft1.getSelectedSensorPosition();
+    }
+
+    public int getRightEncoder() {
+        return drivetrainRight1.getSelectedSensorPosition();
     }
 }

@@ -7,43 +7,51 @@
 
 package frc.robot.commands;
 
-import com.ctre.phoenix.motion.TrajectoryPoint;
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.helpers.ShuffleboardHelpers;
-import frc.robot.subsystems.*;
+import frc.robot.Constants;
+import frc.robot.subsystems.Drivetrain;
 
-public class IntakeTogglePosition extends CommandBase {
-  IntakeActuation intakeAct;
+public class DriveBackTimed extends CommandBase {
+  private Drivetrain drivetrain;
+  private int counter = 0;
   /**
-   * Creates a new IntakeTogglePosition.
+   * Creates a new DriveBackTimed.
    */
-  public IntakeTogglePosition(IntakeActuation intakeAct) {
-    this.intakeAct = intakeAct;
+  public DriveBackTimed(Drivetrain drivetrain) {
+    addRequirements(drivetrain);
+    this.drivetrain = drivetrain;
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    intakeAct.toggleActuationState();
-    //ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "Act Target L", targetPositionL);
-    //ShuffleboardHelpers.setWidgetValue("Intake and Delivery", "Act Target R", targetPositionR);
+    counter = 0;
+    drivetrain.setBrakeMode(true);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    drivetrain.setDrivetrainMotor(-0.25, Constants.DT_L1);
+    drivetrain.setDrivetrainMotor(-0.25, Constants.DT_L2);
+    drivetrain.setDrivetrainMotor(0.25, Constants.DT_R1);
+    drivetrain.setDrivetrainMotor(0.25, Constants.DT_R2);
+    counter++;
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    drivetrain.setDrivetrainMotor(0, Constants.DT_L1);
+    drivetrain.setDrivetrainMotor(0, Constants.DT_L2);
+    drivetrain.setDrivetrainMotor(0, Constants.DT_R1);
+    drivetrain.setDrivetrainMotor(0, Constants.DT_R2);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true;
+    return counter >= 50;
   }
 }

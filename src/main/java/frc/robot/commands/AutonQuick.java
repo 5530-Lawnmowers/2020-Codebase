@@ -13,15 +13,14 @@ import frc.robot.subsystems.*;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class AutonComplex extends SequentialCommandGroup {
+public class AutonQuick extends SequentialCommandGroup {
+
   /**
-   * Creates a new AutonComplex.
+   * Creates a new AutonQuick.
    */
-  public AutonComplex(Hood hood, Turret turret, Shooter shooter, Delivery delivery, Intake intake, IntakeActuation intakeAct, Drivetrain drivetrain) {
+  public AutonQuick(Hood hood, Turret turret, Delivery delivery, Shooter shooter, Drivetrain drivetrain, Intake intake) {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
-    //addCommands(new AlignAll(hood, turret), new ShootSmart(delivery, shooter), new IntakeTogglePosition(intakeAct), new AutonBackwards(intake, delivery, drivetrain, 93000)/*, new SimpleForward(drivetrain, false, 140000), new AlignAll(hood, turret), new ShootSmart(delivery, shooter)*/);
-    //super(new AlignAll(hood, turret), new ShootSmart(delivery, shooter), new DriveBackTimed(drivetrain), new IntakeTogglePosition(intake));
-    super(new AlignAll(hood, turret), new ShootSmart(delivery, shooter), new IntakeTogglePosition(intakeAct), new AutonBackwards(intake, intakeAct, delivery, drivetrain, 93000), new AlignAll(hood, turret), new ShootSmart(delivery, shooter));
+    super(new AlignAll(hood, turret), new ShootSmart(delivery, shooter), new DriveBackTimed(drivetrain), new IntakeTogglePosition(intake));
   }
 }

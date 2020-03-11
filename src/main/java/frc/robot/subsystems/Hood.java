@@ -1,6 +1,5 @@
 package frc.robot.subsystems;
 
-
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.DutyCycleEncoder;
@@ -8,6 +7,7 @@ import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.Robot;
 import frc.robot.commands.HoodLimitInterrupt;
 import frc.robot.commands.HoodManual;
 import frc.robot.helpers.LimelightHelper;
@@ -38,6 +38,8 @@ public class Hood extends SubsystemBase {
     @Override
     public void periodic() {
         ShuffleboardHelpers.setWidgetValue("Hood", "Hood Position", angleAbs.get());
+      //  ShuffleboardHelpers.setWidgetValue("Hood", "limelight A", LimelightHelper.getFrontRawA());
+        //ShuffleboardHelpers.setWidgetValue("Hood", "Target Y", getOffsetConstY(LimelightHelper.getFrontRawA()));
         //resetLimits();
 
         if (!ignoreSoftwareLimits) {
@@ -83,7 +85,8 @@ public class Hood extends SubsystemBase {
      */
     public double hoodControllerCalculate() {
         double offsetA = LimelightHelper.getFrontRawA();
-        return hoodController.calculate(offsetA, getOffsetConstY(offsetA));
+        double offsetY = LimelightHelper.getFrontRawY();
+        return hoodController.calculate(offsetY, getOffsetConstY(offsetA));
     }
 
     /**
@@ -96,7 +99,16 @@ public class Hood extends SubsystemBase {
     public double getOffsetConstY(double offsetA) {
         final double FIT_A = -9.039;
         final double FIT_B = 0.4935;
-        return FIT_A * Math.log(FIT_B * offsetA);
+        double offset;
+        if (offsetA <= 0) {
+            return 0;
+        }
+        offset = -FIT_A * Math.log(FIT_B * offsetA);
+        if (Robot.auton) {
+            return offset + 0.5;
+        }
+        return offset + 0.3;
+        //return -5;
     }
 
     /**

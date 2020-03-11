@@ -15,11 +15,12 @@ import frc.robot.helpers.ShuffleboardHelpers;
 
 public class TurretAlign extends CommandBase {
     private Turret turret;
-    private final int MARGIN = 2;
+    private final int MARGIN = 1;
+    private double autonCounter;
     private double previousOffset;
     private double offset;
     private int counter;
-    private double kp = .03;
+    private double kp = .035;
     private double kd = 0;
 
 
@@ -35,11 +36,12 @@ public class TurretAlign extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        LimelightHelper.onLight();
+        //LimelightHelper.onLight();
         int currentPosition = turret.getEncoderValue();
         counter = 0;
         offset = LimelightHelper.getFrontRawX();
         previousOffset = offset;
+        autonCounter = 0;
         //ShuffleboardHelpers.setWidgetValue("Turret", "TurretAlign", "Running");
 
         //turret.setPosition(currentPosition + (int) Math.round(offset * 4096 / 360)); //Instant set
@@ -62,12 +64,16 @@ public class TurretAlign extends CommandBase {
         } else {
             counter = 0;
         }
+
+        if (Robot.auton) {
+            autonCounter++;
+        }
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        LimelightHelper.offLight();
+        //LimelightHelper.offLight();
 
         turret.stopTurret();
         //ShuffleboardHelpers.setWidgetValue("Turret", "TurretAlign", "Ended");
@@ -79,7 +85,7 @@ public class TurretAlign extends CommandBase {
         //if (counter > 10) {
         //    return true;
         //}
-        if(Robot.auton && isAligned()) {
+        if((Robot.auton && isAligned()) || autonCounter >= 75) {
             return true;
 
         }

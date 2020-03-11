@@ -37,8 +37,8 @@ public class DeliveryManual extends CommandBase {
     public void execute() {
       if (!RobotContainer.XBController2.getBButton()) {
         double forward = Math.pow(deadband(RobotContainer.XBController2.getTriggerAxis(Hand.kRight), kDeadband), 2);
-        double backward = Math.pow(deadband(RobotContainer.XBController2.getTriggerAxis(Hand.kLeft), kDeadband), 2);
-        beltSpeed = (forward - backward);
+        //double backward = Math.pow(deadband(RobotContainer.XBController2.getTriggerAxis(Hand.kLeft), kDeadband), 2);
+        beltSpeed = (forward);
       } else {
         beltSpeed = 0;
       }

@@ -15,7 +15,7 @@ import frc.robot.subsystems.*;
 
 public class ShootManual extends CommandBase {
     private Shooter shooter;
-    private double setSpeed = 1.0;
+    private double setSpeed = 1;
 
     /**
      * Creates a new ShootManual.
@@ -38,7 +38,8 @@ public class ShootManual extends CommandBase {
     @Override
     public void execute() {
         ShuffleboardHelpers.setWidgetValue("Shooter", "Shooter Velocity", shooter.getShooterVelocity());
-        RobotContainer.XBController2.setRumble(RumbleType.kLeftRumble, Math.pow((shooter.getShooterVelocity() / 6000), 2));
+      
+
     }
 
     // Called once the command ends or is interrupted.
